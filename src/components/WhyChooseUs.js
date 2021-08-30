@@ -21,6 +21,11 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     height: '60vh',
+    background: "url('bg.png')",
+    backgroundRepeat: 'no-repeat',
+    objectFit: 'contain',
+    backgroundPosition: 'calc(100vw - 200px) 100px',
+    backgroundSize: '300px',
   },
   icon_boxes: {
     display: 'flex',
@@ -36,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '15px',
   },
   icon_box_icon: {
-    fontSize: '70px',
+    fontSize: '50px',
     color: '#212121',
   },
   icon_box_p: {
