@@ -2,6 +2,7 @@ import React from 'react';
 import LeaderBoard from '../components/LeaderBoard';
 import AboutSection from '../components/AboutSection';
 import WhyChooseUs from '../components/WhyChooseUs';
+import Homemenu from '../components/Homemenu';
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <LeaderBoard />
       <AboutSection />
       <WhyChooseUs />
+      <Homemenu />
     </div>
   );
 }

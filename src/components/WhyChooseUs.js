@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, makeStyles, Button } from '@material-ui/core';
+import { Typography, makeStyles } from '@material-ui/core';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import EcoIcon from '@material-ui/icons/Eco';
 import BusinessIcon from '@material-ui/icons/Business';
@@ -20,12 +20,14 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    height: '60vh',
+    minHeight: '60vh',
+    height: 'max-content',
+    overflow: 'hidden',
     background: "url('bg.png')",
     backgroundRepeat: 'no-repeat',
     objectFit: 'contain',
-    backgroundPosition: 'calc(100vw - 200px) 100px',
-    backgroundSize: '300px',
+    backgroundPosition: 'calc(100vw - 170px) 160px',
+    backgroundSize: '200px',
   },
   icon_boxes: {
     display: 'flex',
