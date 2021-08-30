@@ -1,11 +1,15 @@
 import React from 'react';
-import { Typography, makeStyles } from '@material-ui/core';
+import { Typography, makeStyles, Button } from '@material-ui/core';
+import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import Homemenuitem from './Homemenuitem';
 import menudata from '../utils/menudata';
 
 const useStyles = makeStyles((theme) => ({
   homemenu: {
     padding: '50px 0px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   leaderBoard_left_h1: {
     lineHeight: '40px',
@@ -33,6 +37,14 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     paddingTop: '50px',
   },
+  button: {
+    borderRadius: '20px',
+    width: '150px',
+    marginTop: '10px',
+    textTransform: 'lowercase',
+    background: 'white',
+    border: '1px solid grey',
+  },
 }));
 
 export default function Homemenu() {
@@ -41,6 +53,7 @@ export default function Homemenu() {
     homemenu_menu,
     homemenu_explore,
     homemenu,
+    button,
     homemenu_data,
   } = useStyles();
   return (
@@ -59,6 +72,15 @@ export default function Homemenu() {
           <Homemenuitem {...data} />
         ))}
       </div>
+      <Button
+        disableElevation
+        className={button}
+        variant="contained"
+        autoCapitalize={false}
+        endIcon={<ArrowRightAltIcon />}
+      >
+        see all food
+      </Button>
     </div>
   );
 }
