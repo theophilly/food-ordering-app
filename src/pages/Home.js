@@ -3,7 +3,7 @@ import LeaderBoard from '../components/LeaderBoard';
 import AboutSection from '../components/AboutSection';
 import WhyChooseUs from '../components/WhyChooseUs';
 import Homemenu from '../components/Homemenu';
-import Testimonial from '../components/Testimonial';
+import Testimonialsection from '../components/Testimonialsection';
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
       <AboutSection />
       <WhyChooseUs />
       <Homemenu />
-      <Testimonial />
+      <Testimonialsection />
     </div>
   );
 }

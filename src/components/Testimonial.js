@@ -1,19 +1,26 @@
 import React from 'react';
-import { Typography, makeStyles, Button } from '@material-ui/core';
+import { Typography, makeStyles } from '@material-ui/core';
 import StarIcon from '@material-ui/icons/Star';
 const useStyles = makeStyles((theme) => ({
   testimonial: {
     display: 'flex',
-    width: '700px',
-    border: '1px solid red',
+    maxWidth: '700px',
+    width: 'auto',
     alignItems: 'center',
     gap: '10px',
+    overflow: 'hidden',
+    '@media (max-width: 750px)': {
+      flexDirection: 'column',
+      maxWidth: '300px',
+    },
   },
   testimonial_img: {
-    height: '180px',
-    width: '200px',
+    height: '180px !important',
+    width: '200px !important',
   },
-  testimonial_right: {},
+  testimonial_right: {
+    width: 'auto',
+  },
   testimonial_quote: {
     fontSize: '.9rem',
     fontFamily: 'Inter, sans-serif',

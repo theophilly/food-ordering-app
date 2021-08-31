@@ -2,4 +2,33 @@
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
+  /* border: 1px solid red;
+*/
+}
+
+.owl-dot.active span {
+  background: #fcc82b !important;
+}
+.owl-dot span {
+  background: lightgray !important;
+  width: 60px !important;
+  height: 2px !important;
+  margin-left: 2px !important;
+  margin-right: 2px !important;
+}
+
+.owl-theme .owl-nav.disabled + .owl-dots {
+  margin-top: 10px;
+  position: absolute;
+  top: -40px;
+  left: 40%;
+}
+
+@media (max-width: 750px) {
+  .owl-dot span {
+    width: 40px !important;
+  }
+  .owl-theme .owl-nav.disabled + .owl-dots {
+    left: 28%;
+  }
 }
