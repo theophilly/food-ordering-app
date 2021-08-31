@@ -6,6 +6,7 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import Testimonial from './Testimonial';
+import testimonialdata from '../utils/testimonialdata';
 
 const useStyles = makeStyles((theme) => ({
   testimonial_section: {
@@ -13,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
-    border: '1px solid red',
     paddingBottom: '50px',
   },
   testimonial_control: {
@@ -108,15 +108,17 @@ export default function Testimonialsection() {
           margin={10}
           center={true}
         >
-          <div class="item">
+          {/* <div class="item">
             <Testimonial />
           </div>
           <div class="item">
             <Testimonial />
-          </div>
-          <div class="item">
-            <Testimonial />
-          </div>
+          </div> */}
+          {testimonialdata.map((data) => (
+            <div class="item">
+              <Testimonial {...data} />
+            </div>
+          ))}
         </OwlCarousel>
         <div className={testimonial_control}>
           <ArrowForwardIosIcon

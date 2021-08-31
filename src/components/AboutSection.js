@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     minHeight: '70vh',
     height: 'max-content',
-    background: "url('foodnapkin.png')",
+    background: "url('foodnapkin.jpg')",
     backgroundRepeat: 'no-repeat',
     objectFit: 'contain',
     backgroundPosition: '-200px',

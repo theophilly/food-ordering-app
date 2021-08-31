@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Testimonial() {
+export default function Testimonial({ review, name, location }) {
   const {
     testimonial,
     testimonial_img,
@@ -53,9 +53,7 @@ export default function Testimonial() {
       <img className={testimonial_img} src="./testimonial.png"></img>
       <div className={testimonial_right}>
         <Typography className={testimonial_quote} variant="h2" component="h1">
-          " Thank you for your food its so fresh and deliciousand it takes the
-          work of guesswork out of m busy life when it comes to eating, Awesome
-          food is AWESOME! You have a customer for Life. "
+          {review}
         </Typography>
         <div>
           <StarIcon className={testimonial_icon} />
@@ -65,10 +63,10 @@ export default function Testimonial() {
           <StarIcon className={testimonial_icon} />
         </div>
         <Typography className={testimonial_name} variant="h2" component="h1">
-          Adeyemi Kolade
+          {name}
         </Typography>
         <Typography className={testimonial_quote} variant="h2" component="h1">
-          Lagos
+          {location}
         </Typography>
       </div>
     </div>

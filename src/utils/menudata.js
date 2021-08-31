@@ -14,7 +14,7 @@ export default [
     image_path: './menuimage2.png',
   },
   {
-    title: 'fufu and tuwo salad',
+    title: 'Fufu and tuwo salad',
     sub_title: 'spicy chicken red BBQ',
     colories: '116 calories',
     price: '#12,000',

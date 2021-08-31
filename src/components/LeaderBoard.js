@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     paddingRight: '79px',
     paddingLeft: '118px',
-    background: "url('home_bg.png')",
+    background: "url('home_bg.jpg')",
     backgroundRepeat: 'no-repeat',
     objectFit: 'contain',
     backgroundPosition: '800px -260px',
@@ -63,12 +63,15 @@ const useStyles = makeStyles(() => ({
   quicktip: {
     display: 'flex',
     alignItems: 'center',
-    //  border: '1px solid red',
     width: 'max-content',
+    '@media (max-width: 400px)': {
+      marginTop: '20px',
+    },
   },
   quicktip_text: {
     fontSize: '0.9rem',
     lineHeight: '17px',
+    fontFamily: 'Inter, sans-serif',
     marginLeft: '7px',
   },
   quickTip_container: {
@@ -76,6 +79,9 @@ const useStyles = makeStyles(() => ({
     gap: '20px',
     marginTop: '100px',
     flexWrap: 'wrap',
+    '@media (max-width: 400px)': {
+      gap: '0px',
+    },
   },
 }));
 

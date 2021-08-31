@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.8rem',
     fontWeight: 'bold',
     marginTop: '17px',
+    textAlign: 'center',
     marginBottom: '20px',
   },
   homemenu_menu: {

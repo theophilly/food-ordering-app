@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '60vh',
     height: 'max-content',
     overflow: 'hidden',
-    background: "url('bg.png')",
+    background: "url('bg.jpg')",
     backgroundRepeat: 'no-repeat',
     objectFit: 'contain',
     backgroundPosition: 'calc(100vw - 170px) 160px',
@@ -51,6 +51,11 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     marginTop: '2px',
   },
+  wcu_service: {
+    fontFamily: 'Inter, sans-serif',
+    padding: '0 20px',
+    fontSize: '.9rem',
+  },
 }));
 
 export default function WhyChooseUs() {
@@ -62,6 +67,7 @@ export default function WhyChooseUs() {
     icon_box,
     icon_box_h1,
     icon_box_p,
+    wcu_service,
   } = useStyles();
   const Iconbox = ({ details1, details2, Icon, title }) => (
     <div className={icon_box}>
@@ -80,7 +86,7 @@ export default function WhyChooseUs() {
       <Typography className={leaderBoard_left_h1} variant="h2" component="h1">
         Why choose us?
       </Typography>
-      <Typography variant="p" component="p">
+      <Typography className={wcu_service} variant="p" component="p">
         over 2 million people are happy with our service
       </Typography>
 
