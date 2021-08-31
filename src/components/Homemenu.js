@@ -6,10 +6,14 @@ import menudata from '../utils/menudata';
 
 const useStyles = makeStyles((theme) => ({
   homemenu: {
-    padding: '50px 0px',
+    //padding: '50px 0px',
+    paddingBottom: '50px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    '@media (max-width: 500px)': {
+      padding: '50px 0px',
+    },
   },
   leaderBoard_left_h1: {
     lineHeight: '40px',
@@ -32,11 +36,13 @@ const useStyles = makeStyles((theme) => ({
   },
   homemenu_data: {
     display: 'flex',
-    gap: '20px',
     justifyContent: 'center',
     marginBottom: '30px',
     flexWrap: 'wrap',
-    paddingTop: '50px',
+    paddingTop: '30px',
+    '@media (max-width: 500px)': {
+      paddingTop: '0px',
+    },
   },
   button: {
     borderRadius: '20px',

@@ -2,14 +2,6 @@ import React from 'react';
 import { Typography, makeStyles, Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-  header: {
-    backgroundColor: '#400CCC',
-    paddingRight: '79px',
-    paddingLeft: '118px',
-    '@media (max-width: 900px)': {
-      paddingLeft: 0,
-    },
-  },
   home_menu_item: {
     border: '1px solid #F2F2F2',
     height: '250px',
@@ -18,6 +10,8 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     cursor: 'pointer',
     padding: '7px',
+    marginRight: '20px',
+    marginTop: '20px',
     transition: 'all 0.6s ease-in-out',
     '&:hover': {
       background: theme.palette.primary.main,
