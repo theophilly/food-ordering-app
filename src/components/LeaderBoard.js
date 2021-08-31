@@ -30,7 +30,7 @@ const useStyles = makeStyles(() => ({
       paddingRight: '0px',
       backgroundPosition: '500px -260px',
     },
-    '@media (max-width: 300px)': {
+    '@media (max-width: 500px)': {
       paddingLeft: '20px',
       paddingRight: '0px',
       backgroundPosition: '200px 0px',
