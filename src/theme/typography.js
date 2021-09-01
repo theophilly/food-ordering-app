@@ -15,7 +15,7 @@ export function themeTypography(theme) {
       fontSize: '2.2rem',
       fontWeight: 'bold',
     },
-    title1: {
+    title3: {
       lineHeight: '50px',
       fontSize: '2.625rem',
       fontWeight: 'bold',
