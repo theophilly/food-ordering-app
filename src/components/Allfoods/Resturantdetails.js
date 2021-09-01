@@ -7,7 +7,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: '42vh',
     background: '#F9F9F9',
-    border: '1px solid red',
     padding: '40px',
     display: 'flex',
     '@media (max-width: 910px)': {
@@ -41,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
     '@media (max-width: 574px)': {
       padding: '10px',
       flexDirection: 'column',
+      height: '50vh',
       alignItems: 'center',
       '& $root_img': {
         marginBottom: '7px',
