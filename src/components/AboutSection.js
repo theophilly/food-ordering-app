@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
   about_title: {
     fontWeight: 'bold',
     fontFamily: 'Inter, sans-serif',
+    fontSize: '1rem',
     marginBottom: '20px',
   },
   button: {
@@ -80,7 +81,7 @@ export default function AboutSection() {
     <div className={about_section}>
       <div className={about_section_left}></div>
       <div className={about_section_right}>
-        <Typography className={about_title} variant="p" component="p">
+        <Typography className={about_title} component="h1">
           About
         </Typography>
         <Typography className={leaderBoard_left_h1} variant="h2" component="h1">

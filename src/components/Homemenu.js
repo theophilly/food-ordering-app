@@ -26,8 +26,8 @@ const useStyles = makeStyles((theme) => ({
   },
   homemenu_menu: {
     fontFamily: 'Inter, sans-serif',
-    fontSize: '.9rem',
     fontWeight: 'bold',
+    fontSize: '1rem',
   },
   homemenu_explore: {
     display: 'flex',
@@ -66,7 +66,7 @@ export default function Homemenu() {
   return (
     <div className={homemenu}>
       <div className={homemenu_explore}>
-        <Typography className={homemenu_menu} variant="h1" component="h1">
+        <Typography className={homemenu_menu} component="h1">
           Menu
         </Typography>
         <Typography className={leaderBoard_left_h1} variant="h2" component="h1">

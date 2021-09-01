@@ -36,10 +36,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '17px',
     marginBottom: '20px',
   },
-  homemenu_menu: {
+  testimonial_heading: {
     fontFamily: 'Inter, sans-serif',
-    fontSize: '.9rem',
     fontWeight: 'bold',
+    fontSize: '1rem',
   },
   homemenu_explore: {
     display: 'flex',
@@ -61,7 +61,7 @@ export default function Testimonialsection() {
     testimonial_control,
     testimonial_control_icon,
     leaderBoard_left_h1,
-    homemenu_menu,
+    testimonial_heading,
     homemenu_explore,
     newClass,
   } = useStyles();
@@ -69,7 +69,7 @@ export default function Testimonialsection() {
   return (
     <div className={testimonial_section}>
       <div className={homemenu_explore}>
-        <Typography className={homemenu_menu} variant="h1" component="h1">
+        <Typography className={testimonial_heading} component="h1">
           Testimonial
         </Typography>
         <Typography className={leaderBoard_left_h1} variant="h2" component="h1">

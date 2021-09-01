@@ -10,21 +10,23 @@ import {
   MenuItem,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import React, { useState, useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
 const headersData = [
   {
-    label: 'Listings',
-    href: '/listings',
+    label: 'Home',
+    href: '/home',
   },
   {
-    label: 'Mentors',
-    href: '/mentors',
+    label: 'Meals',
+    href: '/meals',
   },
   {
-    label: 'My Account',
-    href: '/account',
+    label: 'About us',
+    href: '/about',
   },
 ];
 
@@ -47,10 +49,11 @@ const useStyles = makeStyles(() => ({
     textAlign: 'left',
   },
   menuButton: {
-    fontFamily: 'Open Sans, sans-serif',
-    fontWeight: 700,
+    // fontFamily: 'Open Sans, sans-serif',
+    fontWeight: 'bold',
     size: '18px',
     marginLeft: '20px',
+    textTransform: 'capitalize',
   },
   toolbar: {
     display: 'flex',
@@ -64,11 +67,23 @@ const useStyles = makeStyles(() => ({
   },
   signinButton: {
     borderRadius: '20px',
+    textTransform: 'capitalize',
+    fontWeight: 'bold',
   },
   loginButton: {
+    fontWeight: 'bold',
     marginLeft: '20px',
     borderRadius: '20px',
     backgroundColor: 'white',
+    textTransform: 'capitalize',
+  },
+  spacerLogo: {
+    visibility: 'hidden',
+    width: 'calc(100vw - 206px)',
+    border: '1px solid red',
+  },
+  personIcon: {
+    marginRight: '6px',
   },
 }));
 
@@ -82,6 +97,8 @@ export default function Navbar() {
     logButtons,
     signinButton,
     loginButton,
+    spacerLogo,
+    personIcon,
   } = useStyles();
 
   const [state, setState] = useState({
@@ -155,6 +172,9 @@ export default function Navbar() {
         </Drawer>
 
         <div>{femmecubatorLogo}</div>
+        <PersonOutlineOutlinedIcon className={spacerLogo} />
+        <PersonOutlineOutlinedIcon className={personIcon} />
+        <ShoppingCartOutlinedIcon />
       </Toolbar>
     );
   };
