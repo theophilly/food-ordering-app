@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: '42vh',
     background: '#F9F9F9',
-    padding: '40px',
+    padding: '40px 50px',
     display: 'flex',
     '@media (max-width: 910px)': {
       '& $resturant_name': {
@@ -64,10 +64,10 @@ const useStyles = makeStyles((theme) => ({
   root_img: {
     maxHeight: '190px',
     maxWidth: '320px',
-    marginRight: '40px',
+    marginRight: '30px',
   },
   resturant_name: {
-    fontSize: '1.8rem',
+    fontSize: '1.6rem',
     color: '#333333',
     fontWeight: '500',
   },
@@ -83,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
   resturant_location: {
     color: '#666666',
     lineHeight: '15px',
+    fontSize: '.9rem',
   },
   location_icon: {
     color: '#666666',
@@ -90,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
   },
   opening_time: {
     color: '#666666',
-    fontSize: '0.9rem',
+    fontSize: '0.8rem',
     marginTop: '30px',
   },
   dpa_section: {
@@ -119,7 +120,7 @@ export default function Resturantdetails() {
           Gheomeals resturant
         </Typography>
         <Typography className={resturant_description} component="p">
-          nigerian ghanian south-african mexican delicacies
+          nigerian &nbsp; ghanian &nbsp; south-african &nbsp; delicacies
         </Typography>
         <div className={location_container}>
           <LocationOnOutlinedIcon className={location_icon} />

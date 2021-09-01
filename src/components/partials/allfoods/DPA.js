@@ -3,7 +3,7 @@ import { Typography, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginRight: '20px',
+    marginRight: '70px',
     '@media (max-width: 850px)': {
       marginRight: '10px',
     },
