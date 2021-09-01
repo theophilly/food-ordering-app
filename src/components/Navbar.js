@@ -199,7 +199,7 @@ export default function Navbar() {
 
   const femmecubatorLogo = (
     <Typography variant="h6" component="h1" className={logo}>
-      FoodFun
+      Theomeals
     </Typography>
   );
 
