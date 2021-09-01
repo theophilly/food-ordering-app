@@ -5,7 +5,7 @@
 export function themeTypography(theme) {
   return {
     fontFamily: 'Inter, sans-serif',
-    title1: {
+    title3: {
       lineHeight: '40px',
       fontSize: '1.8rem',
       fontWeight: 'bold',
@@ -15,7 +15,7 @@ export function themeTypography(theme) {
       fontSize: '2.2rem',
       fontWeight: 'bold',
     },
-    title3: {
+    title1: {
       lineHeight: '50px',
       fontSize: '2.625rem',
       fontWeight: 'bold',

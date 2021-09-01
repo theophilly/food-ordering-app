@@ -6,7 +6,7 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import Testimonial from './Testimonial';
-import testimonialdata from '../utils/testimonialdata';
+import testimonialdata from '../../utils/testimonialdata';
 
 const useStyles = makeStyles((theme) => ({
   testimonial_section: {

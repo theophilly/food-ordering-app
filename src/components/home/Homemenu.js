@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography, makeStyles, Button } from '@material-ui/core';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import Homemenuitem from './Homemenuitem';
-import menudata from '../utils/menudata';
+import menudata from '../../utils/menudata';
 
 const useStyles = makeStyles((theme) => ({
   homemenu: {

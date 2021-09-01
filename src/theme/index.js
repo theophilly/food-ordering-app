@@ -9,6 +9,8 @@ export default createTheme({
     secondary: {
       main: '#2b5ffc',
     },
+    lightdark1: '#333333',
+    lightdark2: '#666666',
   },
   typography: themeTypography(),
 });
