@@ -2,6 +2,12 @@ import React from 'react';
 import { Typography, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    marginRight: '20px',
+    '@media (max-width: 850px)': {
+      marginRight: '10px',
+    },
+  },
   root_min: {
     fontSize: '0.9rem',
     fontWeight: '500',
@@ -20,9 +26,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function DPA({ time, min }) {
-  const { root_min, root_time } = useStyles();
+  const { root_min, root_time, root } = useStyles();
   return (
-    <div>
+    <div className={root}>
       <Typography className={root_min} component="h3">
         {min}
       </Typography>

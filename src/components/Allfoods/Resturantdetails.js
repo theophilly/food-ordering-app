@@ -48,6 +48,17 @@ const useStyles = makeStyles((theme) => ({
       '& $resturant_name': {
         fontSize: '1.3rem',
       },
+      '& $location_container': {
+        alignItems: 'flex-start',
+        marginTop: '3px',
+        '& $location_icon': {
+          fontSize: '1.3rem',
+          marginRight: '2px',
+        },
+        '& $resturant_location': {
+          fontSize: '0.9rem',
+        },
+      },
     },
   },
   root_img: {
@@ -71,6 +82,7 @@ const useStyles = makeStyles((theme) => ({
   },
   resturant_location: {
     color: '#666666',
+    lineHeight: '15px',
   },
   location_icon: {
     color: '#666666',
@@ -83,7 +95,6 @@ const useStyles = makeStyles((theme) => ({
   },
   dpa_section: {
     display: 'flex',
-    gap: '20px',
     marginTop: '40px',
   },
 }));
