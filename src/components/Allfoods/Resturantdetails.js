@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     '@media (max-width: 574px)': {
+      padding: '10px',
       flexDirection: 'column',
       alignItems: 'center',
       '& $root_img': {
