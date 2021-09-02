@@ -70,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.6rem',
     color: '#333333',
     fontWeight: '500',
+    transition: 'all 1s ease',
   },
   resturant_description: {
     color: '#666666',
