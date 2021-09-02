@@ -101,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Resturantdetails() {
+export default function Resturantdetail() {
   const {
     root,
     root_img,

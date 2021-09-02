@@ -1,10 +1,10 @@
 import React from 'react';
-import Resturantdetails from '../components/allfoods/Resturantdetails';
+import Resturantdetail from '../components/all_foods/Resturantdetail';
 
 export default function Allfoods() {
   return (
     <div>
-      <Resturantdetails />
+      <Resturantdetail />
     </div>
   );
 }
