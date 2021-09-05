@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     marginRight: '70px',
     '@media (max-width: 850px)': {
-      marginRight: '10px',
+      marginRight: '15px',
     },
   },
   root_min: {
