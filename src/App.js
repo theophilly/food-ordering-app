@@ -11,8 +11,8 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Switch>
-          <Route path="/" exact component={Home}></Route>
-          <Route path="/about" exact component={Allfoods}></Route>
+          <Route path="/" exact component={Allfoods}></Route>
+          <Route path="/about" exact component={Home}></Route>
         </Switch>
       </BrowserRouter>
     </ThemeProvider>

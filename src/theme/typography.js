@@ -4,7 +4,7 @@
  */
 export function themeTypography(theme) {
   return {
-    fontFamily: 'Inter, sans-serif',
+    'fontFamily': 'inter, sans-serif',
     title3: {
       lineHeight: '40px',
       fontSize: '1.8rem',

@@ -4,6 +4,7 @@ import { Typography, makeStyles } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   root: {
     marginRight: '70px',
+    transition: 'all 1s ease',
     '@media (max-width: 850px)': {
       marginRight: '15px',
     },
