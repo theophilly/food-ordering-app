@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     background: '#F9F9F9',
     padding: '40px 50px',
     display: 'flex',
+    borderBottom: '1px solid #ebebeb',
     '@media (max-width: 910px)': {
       '& $resturant_name': {
         fontSize: '1.5rem',
@@ -118,7 +119,7 @@ export default function Resturantdetail() {
       <img className={root_img} src="./252.png"></img>
       <div>
         <Typography className={resturant_name} variant="h2" component="h1">
-          Gheomeals resturant
+          Gheomeals restaurant
         </Typography>
         <Typography className={resturant_description} component="p">
           nigerian &nbsp; ghanian &nbsp; south-african &nbsp; delicacies
