@@ -6,6 +6,11 @@
 */
 }
 
+.active_link {
+  color: black !important;
+  font-weight: 700;
+}
+
 .owl-dot.active span {
   background: #fcc82b !important;
 }

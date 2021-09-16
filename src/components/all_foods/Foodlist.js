@@ -1,5 +1,20 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core';
+import * as React from 'react';
+import {
+  makeStyles,
+  Typography,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  Radio,
+  FormControlLabel,
+  DialogTitle,
+  Backdrop,
+  useMediaQuery,
+  useTheme,
+  Button,
+} from '@material-ui/core';
+import { Link, animateScroll as scroll } from 'react-scroll';
 import SearchIcon from '@material-ui/icons/Search';
 import SingleFoodItem from './SingleFoodItem';
 
@@ -37,8 +52,10 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: '25px',
       '& li': {
         marginTop: '25px',
-        color: '#666666',
-        fontSize: '0.9rem',
+        fontFamily: 'Mulish',
+        color: 'inherit',
+        fontSize: '1rem',
+        cursor: 'pointer',
       },
     },
   },
@@ -87,25 +104,171 @@ const useStyles = makeStyles((theme) => ({
       fontFamily: 'Mulish',
     },
   },
+  mealsGroup: {},
+  mealsGroup_heading: {
+    display: 'flex',
+    alignItems: 'baseline',
+    padding: '15px 28px',
+
+    '& :nth-child(1)': {
+      // color: theme.palette.lightdark3,
+      fontSize: '1.3rem',
+      fontFamily: 'Mulish',
+    },
+    '& :nth-child(2)': {
+      color: theme.palette.lightdark2,
+      marginLeft: '20px',
+      fontSize: '0.9rem',
+      fontFamily: 'Mulish',
+    },
+  },
+  empty_cart: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    paddingTop: '30px',
+
+    '& :nth-child(1)': {
+      height: '80px',
+      width: '130px',
+    },
+    '& :nth-child(2)': {
+      color: theme.palette.lightdark2,
+      marginTop: '20px',
+      fontSize: '0.9rem',
+      fontFamily: 'Mulish',
+    },
+  },
+  modal_content: {
+    width: '600px',
+
+    '& > div:nth-child(1)': {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginBottom: '25px',
+    },
+    '& > div:nth-child(2)': {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginBottom: '12px',
+    },
+  },
+  quantity_buttons: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  price_submit: {
+    display: 'flex',
+    alignItems: 'center',
+    '& button': {
+      background: theme.palette.green,
+      border: 'none',
+      color: 'white',
+      fontFamily: 'Mulish',
+      padding: '10px 20px',
+      marginLeft: '10px',
+      cursor: 'pointer',
+    },
+  },
+  items_button: {
+    display: 'flex',
+    marginLeft: '10px',
+
+    '& button': {
+      backgroundColor: theme.palette.green,
+      fontWeight: '600',
+      fontSize: '1rem',
+      border: 'none',
+      height: '30px',
+      width: '30px',
+      color: 'white',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      cursor: 'pointer',
+    },
+    '& h1': {
+      fontWeight: '600',
+      fontSize: '1rem',
+      height: '30px',
+      width: '30px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      cursor: 'pointer',
+    },
+  },
+  backDrop: {
+    background: 'rgba(0,0,0,0.9)',
+  },
 }));
 
 export default function Foodlist() {
+  const [open, setOpen] = React.useState(false);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const {
     root,
     menu_section,
+    modal_content,
     food_list,
     cart,
     searchSection,
     searchIcon,
+    mealsGroup,
+    mealsGroup_heading,
+    empty_cart,
+    items_button,
+    quantity_buttons,
+    price_submit,
+    backDrop,
   } = useStyles();
   return (
     <div className={root}>
       <div className={menu_section}>
         <h1>Menu</h1>
         <ul>
-          <li>Fried Rice</li>
-          <li>Side Orders</li>
-          <li>Chinese Plates</li>
+          <Link
+            activeClass="active_link"
+            offset={-62}
+            to="meals"
+            duration={2000}
+            smooth={true}
+            spy={true}
+          >
+            <li>Meals</li>
+          </Link>
+          <Link
+            activeClass="active_link"
+            offset={-62}
+            to="swallow"
+            duration={2000}
+            smooth={true}
+            spy={true}
+          >
+            <li>Swallow</li>
+          </Link>
+          <Link
+            activeClass="active_link"
+            offset={-62}
+            to="bread"
+            duration={2000}
+            smooth={true}
+            spy={true}
+          >
+            <li>Bread</li>
+          </Link>
         </ul>
         <h1>Overview</h1>
       </div>
@@ -114,25 +277,100 @@ export default function Foodlist() {
           <SearchIcon className={searchIcon} />
           <input placeholder="Search For Dishes" />
         </div>
-        <SingleFoodItem />
-        <SingleFoodItem />
-        <SingleFoodItem />
-        <SingleFoodItem />
-        <SingleFoodItem />
-        <SingleFoodItem />
-        <SingleFoodItem />
-        <SingleFoodItem />
-        <SingleFoodItem />
-        <SingleFoodItem />
-        <SingleFoodItem />
-        <SingleFoodItem />
-        <SingleFoodItem />
-        <SingleFoodItem />
-        <SingleFoodItem />
+        {/* meals section */}
+        <div id="meals" className={mealsGroup}>
+          <div onClick={handleClickOpen} className={mealsGroup_heading}>
+            <Typography variant="h1">Meals</Typography>
+            <Typography variant="h1">2 item(2)</Typography>
+          </div>
+          <SingleFoodItem />
+          <SingleFoodItem />
+          <SingleFoodItem />
+          <SingleFoodItem />
+          <SingleFoodItem />
+          <SingleFoodItem />
+        </div>
+        {/* swallow section */}
+        <div id="swallow" className={mealsGroup}>
+          <div className={mealsGroup_heading}>
+            <Typography variant="h1">Swallow</Typography>
+            <Typography variant="h1">2 item(2)</Typography>
+          </div>
+          <SingleFoodItem />
+          <SingleFoodItem />
+          <SingleFoodItem />
+          <SingleFoodItem />
+          <SingleFoodItem />
+          <SingleFoodItem />
+        </div>
+        {/* bread sections */}
+        <div id="bread" className={mealsGroup}>
+          <div className={mealsGroup_heading}>
+            <Typography variant="h1">Bread</Typography>
+            <Typography variant="h1">2 item(2)</Typography>
+          </div>
+          <SingleFoodItem />
+          <SingleFoodItem />
+          <SingleFoodItem />
+          <SingleFoodItem />
+          <SingleFoodItem />
+          <SingleFoodItem />
+        </div>
       </div>
       <div className={cart}>
         <h1>Your cart</h1>
+        <div className={empty_cart}>
+          <img src="./empty_cart.svg" />
+          <Typography>Add items in your basket</Typography>
+        </div>
       </div>
+      <Dialog
+        fullScreen={fullScreen}
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
+        BackdropProps={{
+          classes: {
+            root: backDrop,
+          },
+        }}
+      >
+        <DialogTitle id="responsive-dialog-title">
+          {'Customize Your Order!'}
+        </DialogTitle>
+        <DialogContent className={modal_content}>
+          <div>
+            <FormControlLabel
+              value="female"
+              control={<Radio checked />}
+              label="Full"
+            />
+            <Typography>#4000</Typography>
+          </div>
+          <div>
+            <div className={quantity_buttons}>
+              <Typography>Quantity</Typography>
+              <div className={items_button}>
+                <button>-</button>
+                <Typography variant="h1">1</Typography>
+                <button>+</button>
+              </div>
+            </div>
+            <div className={price_submit}>
+              <Typography>Total: $50.00</Typography>
+              <button onClick={handleClose}>SUBMIT</button>
+            </div>
+          </div>
+        </DialogContent>
+        {/* <DialogActions>
+          <Button autoFocus onClick={handleClose}>
+            Disagree
+          </Button>
+          <Button onClick={handleClose} autoFocus>
+            Agree
+          </Button>
+        </DialogActions> */}
+      </Dialog>
     </div>
   );
 }

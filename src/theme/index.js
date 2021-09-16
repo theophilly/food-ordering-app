@@ -12,9 +12,7 @@ export default createTheme({
     lightdark1: '#333333',
     lightdark2: '#666666',
     lightdark3: '#444444',
-    green: {
-      main: 'red',
-    },
+    green: '#4ca146',
   },
   typography: themeTypography(),
 });

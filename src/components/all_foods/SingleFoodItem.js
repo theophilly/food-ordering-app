@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
   add_button: {
     // border: `1px solid ${theme.palette.primary.main}`,
     border: `1px solid rgb(76, 161, 70)`,
-    height: '35px',
+    height: '32px',
     width: '80px',
     color: 'rgb(76, 161, 70)',
     //fontSize: '0.9rem',
