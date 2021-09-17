@@ -9,7 +9,7 @@ export default function Allfoods() {
     <div>
       <Resturantdetail />
       <Foodlist />
-      <Dgg />
+      {/* <Dgg /> */}
     </div>
   );
 }

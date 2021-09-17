@@ -3,13 +3,10 @@ import {
   makeStyles,
   Typography,
   Dialog,
-  DialogActions,
   DialogContent,
-  DialogContentText,
   Radio,
   FormControlLabel,
   DialogTitle,
-  Backdrop,
   useMediaQuery,
   useTheme,
   Button,
@@ -17,6 +14,7 @@ import {
 import { Link, animateScroll as scroll } from 'react-scroll';
 import SearchIcon from '@material-ui/icons/Search';
 import SingleFoodItem from './SingleFoodItem';
+import menudata2 from '../../utils/menudata2';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -207,8 +205,40 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Foodlist() {
   const [open, setOpen] = React.useState(false);
+  const [activeItem, setActiveItem] = React.useState({
+    price: 0,
+    totalPrice: 0,
+    quantity: 1,
+  });
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+
+  //  control modal open
+  const openModal = (item) => {
+    handleClickOpen();
+    setActiveItem({ ...item, totalPrice: item.price, quantity: 1 });
+  };
+
+  //control cart quantities
+  const controlCartQuantities = (type) => {
+    if (type === 'INC') {
+      if (activeItem.quantity != 5) {
+        setActiveItem({
+          ...activeItem,
+          totalPrice: activeItem.totalPrice + activeItem.price,
+          quantity: activeItem.quantity + 1,
+        });
+      }
+    } else {
+      if (activeItem.quantity > 1) {
+        setActiveItem({
+          ...activeItem,
+          totalPrice: activeItem.totalPrice - activeItem.price,
+          quantity: activeItem.quantity - 1,
+        });
+      }
+    }
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -279,16 +309,15 @@ export default function Foodlist() {
         </div>
         {/* meals section */}
         <div id="meals" className={mealsGroup}>
-          <div onClick={handleClickOpen} className={mealsGroup_heading}>
+          <div className={mealsGroup_heading}>
             <Typography variant="h1">Meals</Typography>
             <Typography variant="h1">2 item(2)</Typography>
           </div>
-          <SingleFoodItem />
-          <SingleFoodItem />
-          <SingleFoodItem />
-          <SingleFoodItem />
-          <SingleFoodItem />
-          <SingleFoodItem />
+          {menudata2
+            .filter((item) => item.category === 'meals')
+            .map((item) => (
+              <SingleFoodItem {...item} onAdd={openModal} />
+            ))}
         </div>
         {/* swallow section */}
         <div id="swallow" className={mealsGroup}>
@@ -296,12 +325,11 @@ export default function Foodlist() {
             <Typography variant="h1">Swallow</Typography>
             <Typography variant="h1">2 item(2)</Typography>
           </div>
-          <SingleFoodItem />
-          <SingleFoodItem />
-          <SingleFoodItem />
-          <SingleFoodItem />
-          <SingleFoodItem />
-          <SingleFoodItem />
+          {menudata2
+            .filter((item) => item.category === 'swallow')
+            .map((item) => (
+              <SingleFoodItem {...item} onAdd={openModal} />
+            ))}
         </div>
         {/* bread sections */}
         <div id="bread" className={mealsGroup}>
@@ -309,12 +337,11 @@ export default function Foodlist() {
             <Typography variant="h1">Bread</Typography>
             <Typography variant="h1">2 item(2)</Typography>
           </div>
-          <SingleFoodItem />
-          <SingleFoodItem />
-          <SingleFoodItem />
-          <SingleFoodItem />
-          <SingleFoodItem />
-          <SingleFoodItem />
+          {menudata2
+            .filter((item) => item.category === 'bread')
+            .map((item) => (
+              <SingleFoodItem {...item} onAdd={openModal} />
+            ))}
         </div>
       </div>
       <div className={cart}>
@@ -345,19 +372,19 @@ export default function Foodlist() {
               control={<Radio checked />}
               label="Full"
             />
-            <Typography>#4000</Typography>
+            <Typography>#{activeItem.price}</Typography>
           </div>
           <div>
             <div className={quantity_buttons}>
               <Typography>Quantity</Typography>
               <div className={items_button}>
-                <button>-</button>
-                <Typography variant="h1">1</Typography>
-                <button>+</button>
+                <button onClick={() => controlCartQuantities('DEC')}>-</button>
+                <Typography variant="h1">{activeItem.quantity}</Typography>
+                <button onClick={() => controlCartQuantities('INC')}>+</button>
               </div>
             </div>
             <div className={price_submit}>
-              <Typography>Total: $50.00</Typography>
+              <Typography>Total: #{activeItem.totalPrice} </Typography>
               <button onClick={handleClose}>SUBMIT</button>
             </div>
           </div>

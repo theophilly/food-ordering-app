@@ -87,7 +87,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SingleFoodItem() {
+export default function SingleFoodItem({
+  onAdd,
+  title,
+  price,
+  image_path,
+  category,
+  available,
+  sub_title,
+}) {
   const {
     root,
     foodimage,
@@ -105,18 +113,20 @@ export default function SingleFoodItem() {
       <div className={foodinformation}>
         <div>
           <Typography className={foodname}>
-            Penn Cove Mussels
-            <span className={tag__green}>
+            {title}
+            <span className={available ? tag__green : tag__red}>
               <span>&nbsp;</span>
             </span>
           </Typography>
-          <Typography className={food_details}>
-            Thai Style Red Curry, Crusty Bread
-          </Typography>
+          <Typography className={food_details}>{sub_title}</Typography>
         </div>
-        <Typography className={food_price}>#4000.00</Typography>
+        <Typography className={food_price}>#{price}</Typography>
       </div>
-      <Button className={add_button} startIcon={<AddIcon />}>
+      <Button
+        onClick={() => onAdd({ price })}
+        className={add_button}
+        startIcon={<AddIcon />}
+      >
         ADD
       </Button>
     </div>
