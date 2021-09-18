@@ -1,41 +1,46 @@
 export default [
   {
+    id: 1,
     title: 'Family Loaf',
     sub_title: 'Thai Style Red Curry, Crusty Bread',
     colories: '105 calories',
     price: 500,
-    image_path: './menuimage1.png',
+    image_path: './bread1.jpg',
     category: 'bread',
     available: false,
   },
   {
+    id: 2,
     title: 'Unslice Family Loaf',
     sub_title: 'amala and ewedu',
     colories: '109 calories',
     price: 800,
-    image_path: './menuimage2.png',
+    image_path: './bread2.jpg',
     category: 'bread',
     available: true,
   },
   {
+    id: 3,
     title: 'Bread Roll',
     sub_title: 'spicy chicken red BBQ',
     colories: '116 calories',
     price: 12000,
-    image_path: './menuimage3.png',
+    image_path: './bread3.jpg',
     category: 'bread',
     available: true,
   },
   {
+    id: 4,
     title: 'Golden Chocolate Bread',
     sub_title: 'ukwobi prepared',
     colories: '98 calories',
     price: 1000,
-    image_path: './menuimage4.png',
+    image_path: './bread4.jpg',
     category: 'bread',
     available: true,
   },
   {
+    id: 5,
     title: 'Tuiti Fruiti',
     sub_title: 'ukwobi prepared',
     colories: '98 calories',
@@ -45,6 +50,7 @@ export default [
     available: false,
   },
   {
+    id: 6,
     title: 'Coconut super Bread',
     sub_title: 'ukwobi prepared',
     colories: '98 calories',
@@ -54,6 +60,7 @@ export default [
     available: true,
   },
   {
+    id: 7,
     title: 'Eba and Okra Soup',
     sub_title: 'spicy chicken red BBQ',
     colories: '105 calories',
@@ -63,6 +70,7 @@ export default [
     available: true,
   },
   {
+    id: 8,
     title: 'Amala with gbegiri and efo',
     sub_title: 'amala and ewedu',
     colories: '109 calories',
@@ -72,6 +80,7 @@ export default [
     available: true,
   },
   {
+    id: 9,
     title: 'Fufu and Egusi',
     sub_title: 'spicy chicken red BBQ',
     colories: '116 calories',
@@ -81,6 +90,7 @@ export default [
     available: false,
   },
   {
+    id: 10,
     title: 'Semo and Eforriro',
     sub_title: 'spicy chicken red BBQ',
     colories: '116 calories',
@@ -90,6 +100,7 @@ export default [
     available: false,
   },
   {
+    id: 11,
     title: 'Jamboree Coconut',
     sub_title: 'ukwobi prepared',
     colories: '98 calories',
@@ -99,6 +110,7 @@ export default [
     available: true,
   },
   {
+    id: 12,
     title: 'Leafy Beans',
     sub_title: 'spicy chicken red BBQ',
     colories: '105 calories',
@@ -108,6 +120,7 @@ export default [
     available: true,
   },
   {
+    id: 13,
     title: 'Jollof Rice',
     sub_title: 'amala and ewedu',
     colories: '109 calories',
@@ -117,6 +130,7 @@ export default [
     available: true,
   },
   {
+    id: 14,
     title: 'Fried Rice',
     sub_title: 'spicy chicken red BBQ',
     colories: '116 calories',
@@ -126,6 +140,7 @@ export default [
     available: false,
   },
   {
+    id: 15,
     title: 'Spagetti',
     sub_title: 'ukwobi prepared',
     colories: '98 calories',

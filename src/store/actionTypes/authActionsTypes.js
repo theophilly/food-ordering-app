@@ -1,0 +1,7 @@
+export const LOGIN_BEGIN = 'LOGIN_BEGIN';
+export const ON_LOGIN_SUCCESS = 'ON_LOGIN_SUCCESS';
+export const ON_LOGIN_ERROR = 'ON_LOGIN_ERROR';
+export const SIGN_OUT = 'SIGN_OUT';
+export const SESSION_EXPIRED = 'SESSION_EXPIRED';
+export const ON_UPDATE_SUCCESS = 'ON_UPDATE_SUCCESS';
+export const ON_UPDATE_ERROR = 'ON_UPDATE_ERROR';

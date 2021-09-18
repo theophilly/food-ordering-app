@@ -15,6 +15,8 @@ import { Link, animateScroll as scroll } from 'react-scroll';
 import SearchIcon from '@material-ui/icons/Search';
 import SingleFoodItem from './SingleFoodItem';
 import menudata2 from '../../utils/menudata2';
+import CartItem from './CartItem';
+import { useDispatch, useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -204,6 +206,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Foodlist() {
+  const dispatch = useDispatch();
+  const { products, totalQuantities } = useSelector(
+    (state) => state.cartReducer
+  );
   const [open, setOpen] = React.useState(false);
   const [activeItem, setActiveItem] = React.useState({
     price: 0,
@@ -238,6 +244,12 @@ export default function Foodlist() {
         });
       }
     }
+  };
+
+  //handle modal submit
+  const handleModalSubmit = () => {
+    dispatch({ type: 'ADD_TO_CART', payload: { product: activeItem } });
+    setOpen(false);
   };
 
   const handleClickOpen = () => {
@@ -311,45 +323,59 @@ export default function Foodlist() {
         <div id="meals" className={mealsGroup}>
           <div className={mealsGroup_heading}>
             <Typography variant="h1">Meals</Typography>
-            <Typography variant="h1">2 item(2)</Typography>
+            <Typography variant="h1">
+              {menudata2.filter((item) => item.category === 'meals').length}
+              &nbsp;item(s)
+            </Typography>
           </div>
           {menudata2
             .filter((item) => item.category === 'meals')
             .map((item) => (
-              <SingleFoodItem {...item} onAdd={openModal} />
+              <SingleFoodItem item={item} onAdd={openModal} />
             ))}
         </div>
         {/* swallow section */}
         <div id="swallow" className={mealsGroup}>
           <div className={mealsGroup_heading}>
             <Typography variant="h1">Swallow</Typography>
-            <Typography variant="h1">2 item(2)</Typography>
+            <Typography variant="h1">
+              {menudata2.filter((item) => item.category === 'swallow').length}
+              &nbsp;item(s)
+            </Typography>
           </div>
           {menudata2
             .filter((item) => item.category === 'swallow')
             .map((item) => (
-              <SingleFoodItem {...item} onAdd={openModal} />
+              <SingleFoodItem item={item} onAdd={openModal} />
             ))}
         </div>
         {/* bread sections */}
         <div id="bread" className={mealsGroup}>
           <div className={mealsGroup_heading}>
             <Typography variant="h1">Bread</Typography>
-            <Typography variant="h1">2 item(2)</Typography>
+            <Typography variant="h1">
+              {menudata2.filter((item) => item.category === 'bread').length}
+              &nbsp;item(s)
+            </Typography>
           </div>
           {menudata2
             .filter((item) => item.category === 'bread')
             .map((item) => (
-              <SingleFoodItem {...item} onAdd={openModal} />
+              <SingleFoodItem item={item} onAdd={openModal} />
             ))}
         </div>
       </div>
       <div className={cart}>
         <h1>Your cart</h1>
-        <div className={empty_cart}>
-          <img src="./empty_cart.svg" />
-          <Typography>Add items in your basket</Typography>
-        </div>
+
+        {totalQuantities > 0 ? (
+          products.map((item) => <CartItem {...item} />)
+        ) : (
+          <div className={empty_cart}>
+            <img src="./empty_cart.svg" />
+            <Typography>Add items in your basket</Typography>
+          </div>
+        )}
       </div>
       <Dialog
         fullScreen={fullScreen}
@@ -385,18 +411,10 @@ export default function Foodlist() {
             </div>
             <div className={price_submit}>
               <Typography>Total: #{activeItem.totalPrice} </Typography>
-              <button onClick={handleClose}>SUBMIT</button>
+              <button onClick={handleModalSubmit}>SUBMIT</button>
             </div>
           </div>
         </DialogContent>
-        {/* <DialogActions>
-          <Button autoFocus onClick={handleClose}>
-            Disagree
-          </Button>
-          <Button onClick={handleClose} autoFocus>
-            Agree
-          </Button>
-        </DialogActions> */}
       </Dialog>
     </div>
   );

@@ -6,11 +6,16 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     margin: '20px',
-    // border: '1px solid red',
+
     'fontFamily': 'inter, sans-serif',
     '@media (max-width: 850px)': {},
   },
   foodimage: {
+    height: '100%',
+    //  border: '1px solid red',
+    width: '100%',
+  },
+  foodimagecontainer: {
     height: '90px',
     width: '100px',
   },
@@ -87,15 +92,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SingleFoodItem({
-  onAdd,
-  title,
-  price,
-  image_path,
-  category,
-  available,
-  sub_title,
-}) {
+export default function SingleFoodItem({ onAdd, item }) {
   const {
     root,
     foodimage,
@@ -106,10 +103,14 @@ export default function SingleFoodItem({
     add_button,
     food_details,
     food_price,
+    foodimagecontainer,
   } = useStyles();
+  const { title, price, image_path, available, sub_title } = item;
   return (
     <div className={root}>
-      <img className={foodimage} src="./100.png" />
+      <div className={foodimagecontainer}>
+        <img className={foodimage} src={image_path} />
+      </div>
       <div className={foodinformation}>
         <div>
           <Typography className={foodname}>
@@ -123,7 +124,7 @@ export default function SingleFoodItem({
         <Typography className={food_price}>#{price}</Typography>
       </div>
       <Button
-        onClick={() => onAdd({ price })}
+        onClick={() => onAdd(item)}
         className={add_button}
         startIcon={<AddIcon />}
       >
