@@ -42,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
           display: 'flex',
           alignItems: 'flex-start',
           justifyContent: 'flex-start',
-
           marginBottom: '0px',
 
           '& li': {
