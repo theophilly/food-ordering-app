@@ -13,7 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import React, { useState, useEffect } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 const headersData = [
   {
@@ -30,26 +30,29 @@ const headersData = [
   },
 ];
 
-const useStyles = makeStyles(() => ({
-  header: {
+const useStyles = makeStyles({
+  header: (props) => ({
     backgroundColor: 'transparent',
-    position: 'absolute',
+    position: props.pathname === '/' ? 'absolute' : 'static',
     top: 0,
     left: 0,
+    // height: '100px',
+    paddingTop: '5px',
+    paddingBottom: '5px',
     paddingRight: '79px',
     paddingLeft: '118px',
     '@media (max-width: 900px)': {
       paddingLeft: 0,
     },
-  },
+  }),
   logo: {
     fontFamily: 'Work Sans, sans-serif',
     fontWeight: 600,
     color: 'black',
     textAlign: 'left',
+    fontSize: '1.2rem',
   },
   menuButton: {
-    // fontFamily: 'Open Sans, sans-serif',
     fontWeight: 'bold',
     size: '18px',
     marginLeft: '20px',
@@ -85,9 +88,11 @@ const useStyles = makeStyles(() => ({
   personIcon: {
     marginRight: '6px',
   },
-}));
+});
 
 export default function Navbar() {
+  const location = useLocation();
+
   const {
     header,
     logo,
@@ -99,7 +104,7 @@ export default function Navbar() {
     loginButton,
     spacerLogo,
     personIcon,
-  } = useStyles();
+  } = useStyles(location);
 
   const [state, setState] = useState({
     mobileView: false,
@@ -109,6 +114,7 @@ export default function Navbar() {
   const { mobileView, drawerOpen } = state;
 
   useEffect(() => {
+    console.log(location.pathname);
     const setResponsiveness = () => {
       return window.innerWidth < 900
         ? setState((prevState) => ({ ...prevState, mobileView: true }))
@@ -198,9 +204,17 @@ export default function Navbar() {
   };
 
   const femmecubatorLogo = (
-    <Typography variant="h6" component="h1" className={logo}>
+    <Link
+      {...{
+        component: RouterLink,
+        to: '/',
+        color: 'inherit',
+        style: { textDecoration: 'none' },
+      }}
+      className={logo}
+    >
       Theomeals
-    </Typography>
+    </Link>
   );
 
   const getMenuButtons = () => {

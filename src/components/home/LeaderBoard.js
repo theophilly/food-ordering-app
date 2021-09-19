@@ -113,7 +113,7 @@ export default function LeaderBoard() {
 
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className={leaderBoard}>
         <div className={leaderBoard_left}>
           <Typography

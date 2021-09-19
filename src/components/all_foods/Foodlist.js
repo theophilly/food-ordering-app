@@ -500,7 +500,7 @@ export default function Foodlist() {
         ) : (
           <div className={empty_cart}>
             <img src="./empty_cart.svg" />
-            <Typography>Add items in your basket</Typography>
+            <Typography>Add items to your basket</Typography>
           </div>
         )}
       </div>

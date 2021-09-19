@@ -7,7 +7,7 @@ export default [
     image_path: './menuimage1.png',
   },
   {
-    title: 'Amala with gbegiri and efo',
+    title: 'Amala with gbegiri',
     sub_title: 'amala and ewedu',
     colories: '109 calories',
     price: '#20,000',
@@ -21,7 +21,7 @@ export default [
     image_path: './menuimage3.png',
   },
   {
-    title: 'Ofansala ukwobi with meat',
+    title: 'Ofansala ukwobi',
     sub_title: 'ukwobi prepared',
     colories: '98 calories',
     price: '#7,000',

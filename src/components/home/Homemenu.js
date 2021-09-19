@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography, makeStyles, Button } from '@material-ui/core';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
+import { Link } from 'react-router-dom';
 import Homemenuitem from './Homemenuitem';
 import menudata from '../../utils/menudata';
 
@@ -85,6 +86,8 @@ export default function Homemenu() {
         variant="contained"
         autoCapitalize={false}
         endIcon={<ArrowRightAltIcon />}
+        component={Link}
+        to={'/allmeals'}
       >
         see all food
       </Button>
