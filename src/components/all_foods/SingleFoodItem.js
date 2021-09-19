@@ -16,10 +16,16 @@ const useStyles = makeStyles((theme) => ({
       },
       '& $foodinformation': {
         marginLeft: '10px',
+        '& $foodname': {
+          fontSize: '0.9rem',
+        },
+        '& $food_price': {
+          fontSize: '0.8rem',
+        },
       },
       '& $add_button': {
-        height: '27px',
-        width: '75px',
+        height: '27px !important',
+        width: '75px !important',
       },
     },
   },
