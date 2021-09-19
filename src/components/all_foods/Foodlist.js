@@ -24,8 +24,38 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '200vh',
 
     'fontFamily': 'inter, sans-serif',
-    '@media (max-width: 850px)': {
-      marginRight: '15px',
+    '@media (max-width: 900px)': {
+      flexDirection: 'column',
+      '& $menu_section': {
+        flex: 1,
+        marginTop: '10px',
+        width: '100%',
+        alignItems: 'center',
+        height: 'auto',
+        padding: '0px',
+
+        '& h1': {
+          // color: theme.palette.lightdark3,
+          display: 'none',
+        },
+        '& ul': {
+          display: 'flex',
+          alignItems: 'flex-start',
+          justifyContent: 'flex-start',
+
+          marginBottom: '0px',
+
+          '& li': {
+            marginTop: '0px',
+            marginLeft: '25px',
+            paddingTop: '10px',
+            fontFamily: 'Mulish',
+            color: 'inherit',
+            fontSize: '1rem',
+            cursor: 'pointer',
+          },
+        },
+      },
     },
   },
   menu_section: {
@@ -76,6 +106,10 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 999,
     background: 'white',
     top: 7,
+    '@media (max-width: 900px)': {
+      border: '1px solid #ebebeb',
+      marginTop: '20px',
+    },
 
     '& input': {
       flex: 1,
@@ -103,6 +137,49 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '1.3rem',
       fontFamily: 'Mulish',
     },
+  },
+  submitbutton_section: {
+    margin: '40px 0',
+
+    '& :nth-child(1)': {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+    },
+    '& > :nth-child(2)': {
+      height: '1px',
+      margin: '10px 0',
+    },
+    '& :nth-child(3)': {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+    },
+    '& :nth-child(4)': {
+      width: '100%',
+      backgroundColor: theme.palette.green,
+      color: 'white',
+      padding: '15px 0',
+      border: 'none',
+      margin: '20px 0px',
+      cursor: 'pointer',
+    },
+  },
+  Sub_total: {
+    color: theme.palette.lightdark3,
+    fontSize: '.9rem',
+  },
+  Sub_total_value: {
+    color: theme.palette.lightdark3,
+    fontSize: '.9rem',
+  },
+  amount_payable: {
+    fontSize: '.9rem',
+    fontWeight: '600',
+  },
+  amount_payable_value: {
+    fontSize: '.9rem',
+    fontWeight: '600',
   },
   mealsGroup: {},
   mealsGroup_heading: {
@@ -207,7 +284,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Foodlist() {
   const dispatch = useDispatch();
-  const { products, totalQuantities } = useSelector(
+  const { products, totalQuantities, totalPrice } = useSelector(
     (state) => state.cartReducer
   );
   const [open, setOpen] = React.useState(false);
@@ -264,6 +341,10 @@ export default function Foodlist() {
     root,
     menu_section,
     modal_content,
+    Sub_total,
+    Sub_total_value,
+    amount_payable,
+    amount_payable_value,
     food_list,
     cart,
     searchSection,
@@ -275,6 +356,7 @@ export default function Foodlist() {
     quantity_buttons,
     price_submit,
     backDrop,
+    submitbutton_section,
   } = useStyles();
   return (
     <div className={root}>
@@ -369,7 +451,39 @@ export default function Foodlist() {
         <h1>Your cart</h1>
 
         {totalQuantities > 0 ? (
-          products.map((item) => <CartItem {...item} />)
+          <>
+            <div
+              style={{
+                maxHeight: '50vh',
+                overflowY: 'auto',
+                scrollbarWidth: 'thin',
+              }}
+            >
+              {products.map((item) => (
+                <CartItem {...item} />
+              ))}
+            </div>
+
+            <div className={submitbutton_section}>
+              <div>
+                <Typography className={Sub_total}>Sub Total</Typography>
+                <Typography className={Sub_total_value}>
+                  #{totalPrice}
+                </Typography>
+              </div>
+              <hr />
+              <div>
+                <Typography className={amount_payable}>
+                  Amount Payable
+                </Typography>
+                <Typography className={amount_payable_value}>
+                  #{totalPrice}
+                </Typography>
+              </div>
+              <button>PLACE YOUR ORDER</button>
+              <Typography>Note: Min. Order : #2000.00</Typography>
+            </div>
+          </>
         ) : (
           <div className={empty_cart}>
             <img src="./empty_cart.svg" />

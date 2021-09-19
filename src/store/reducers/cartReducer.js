@@ -14,13 +14,13 @@ const cartReducer = (state = initState, action) => {
       if (check) {
         return state;
       } else {
-        const Tprice = state.totalPrice + product.totalPrice;
+        const Tprice = product.totalPrice;
         const Tquantities = state.totalQuantities + 1;
 
         return {
           ...state,
           products: [...state.products, product],
-          totalPrice: Tprice,
+          totalPrice: state.totalPrice + Tprice,
           totalQuantities: Tquantities,
         };
       }
@@ -87,7 +87,7 @@ const cartReducer = (state = initState, action) => {
             totalPrice: findPro.totalPrice + findPro.price,
           };
           state.products[index] = findPro;
-          Tprice = state.totalPrice + findPro.totalPrice;
+          Tprice = state.totalPrice + findPro.price;
 
           return {
             ...state,
@@ -103,7 +103,7 @@ const cartReducer = (state = initState, action) => {
             totalPrice: findPro.totalPrice - findPro.price,
           };
           state.products[index] = findPro;
-          Tprice = state.totalPrice - findPro.totalPrice;
+          Tprice = state.totalPrice - findPro.price;
 
           return {
             ...state,
