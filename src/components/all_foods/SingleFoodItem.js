@@ -22,10 +22,16 @@ const useStyles = makeStyles((theme) => ({
         '& $food_price': {
           fontSize: '0.8rem',
         },
+        '& $food_details': {
+          fontSize: '0.8rem',
+        },
       },
       '& $add_button': {
         height: '27px !important',
         width: '75px !important',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
       },
     },
   },

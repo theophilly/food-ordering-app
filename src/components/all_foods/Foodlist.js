@@ -93,8 +93,6 @@ const useStyles = makeStyles((theme) => ({
     borderLeft: '1px solid #ebebeb',
     borderRight: '1px solid #ebebeb',
     flex: 5,
-    //  marginLeft: '300px',
-    //  marginRight: '300px',
   },
   searchSection: {
     height: '60px',
