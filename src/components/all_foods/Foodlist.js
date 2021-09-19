@@ -56,6 +56,10 @@ const useStyles = makeStyles((theme) => ({
           },
         },
       },
+      '& $cart': {
+        flex: 1,
+        width: '100%',
+      },
     },
   },
   menu_section: {
