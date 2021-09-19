@@ -8,7 +8,20 @@ const useStyles = makeStyles((theme) => ({
     margin: '20px',
 
     'fontFamily': 'inter, sans-serif',
-    '@media (max-width: 850px)': {},
+    '@media (max-width: 488px)': {
+      margin: '15px',
+      '& $foodimagecontainer': {
+        height: '70px',
+        width: '80px',
+      },
+      '& $foodinformation': {
+        marginLeft: '10px',
+      },
+      '& $add_button': {
+        height: '27px',
+        width: '75px',
+      },
+    },
   },
   foodimage: {
     height: '100%',
