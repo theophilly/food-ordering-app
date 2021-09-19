@@ -219,6 +219,10 @@ const useStyles = makeStyles((theme) => ({
   },
   modal_content: {
     width: '600px',
+    '@media (max-width: 600px)': {
+      width: 'auto',
+      padding: '10px',
+    },
 
     '& > div:nth-child(1)': {
       display: 'flex',
