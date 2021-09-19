@@ -31,7 +31,7 @@ export default [
   },
   {
     id: 4,
-    title: 'Golden Chocolate Bread',
+    title: 'Golden Bread',
     sub_title: 'ukwobi prepared',
     colories: '98 calories',
     price: 1000,
@@ -71,7 +71,7 @@ export default [
   },
   {
     id: 8,
-    title: 'Amala with gbegiri and efo',
+    title: 'Amala with gbegiri',
     sub_title: 'amala and ewedu',
     colories: '109 calories',
     price: 3000,

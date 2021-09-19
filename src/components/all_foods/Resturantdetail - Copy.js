@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     '@media (max-width: 574px)': {
-      padding: '17px',
+      padding: '10px',
       flexDirection: 'column',
       height: '48vh',
       alignItems: 'center',
@@ -68,8 +68,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '30px',
   },
   resturant_name: {
-    fontFamily: 'Mulish',
-    fontSize: '1.6rem !important',
+    fontSize: '1.6rem',
     color: '#333333',
     fontWeight: '500',
     transition: 'all 1s ease',
@@ -77,12 +76,11 @@ const useStyles = makeStyles((theme) => ({
   resturant_description: {
     color: '#666666',
     fontSize: '0.8rem',
-    //fontFamily: 'Montserrat',
+    fontFamily: 'Montserrat',
   },
   location_container: {
     display: 'flex',
     alignItems: 'center',
-    fontFamily: 'Mulish',
   },
   resturant_location: {
     color: '#666666',
