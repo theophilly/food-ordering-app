@@ -222,6 +222,12 @@ const useStyles = makeStyles((theme) => ({
     '@media (max-width: 600px)': {
       width: 'auto',
       padding: '10px',
+      '& $modal_quantity': {
+        display: 'none',
+      },
+      '& $items_button': {
+        marginLeft: '0px',
+      },
     },
 
     '& > div:nth-child(1)': {
@@ -282,6 +288,7 @@ const useStyles = makeStyles((theme) => ({
       cursor: 'pointer',
     },
   },
+  modal_quantity: {},
   backDrop: {
     background: 'rgba(0,0,0,0.9)',
   },
@@ -346,6 +353,7 @@ export default function Foodlist() {
     root,
     menu_section,
     modal_content,
+    modal_quantity,
     Sub_total,
     Sub_total_value,
     amount_payable,
@@ -521,7 +529,7 @@ export default function Foodlist() {
           </div>
           <div>
             <div className={quantity_buttons}>
-              <Typography>Quantity</Typography>
+              <Typography className={modal_quantity}>Quantity</Typography>
               <div className={items_button}>
                 <button onClick={() => controlCartQuantities('DEC')}>-</button>
                 <Typography variant="h1">{activeItem.quantity}</Typography>
