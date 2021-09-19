@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
 
     'fontFamily': 'inter, sans-serif',
     '@media (max-width: 488px)': {
-      margin: '15px',
+      margin: '10px',
       '& $foodimagecontainer': {
         height: '70px',
         width: '80px',
