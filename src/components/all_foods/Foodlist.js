@@ -12,6 +12,7 @@ import {
   Button,
 } from '@material-ui/core';
 import { Link, animateScroll as scroll } from 'react-scroll';
+import { Link as NavLink } from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
 import SingleFoodItem from './SingleFoodItem';
 import menudata2 from '../../utils/menudata2';
@@ -493,7 +494,13 @@ export default function Foodlist() {
                   #{totalPrice}
                 </Typography>
               </div>
-              <button>PLACE YOUR ORDER</button>
+              <Button
+                component={NavLink}
+                to={'/checkout'}
+                style={{ paddingLeft: '90px' }}
+              >
+                PLACE YOUR ORDER
+              </Button>
               <Typography>Note: Min. Order : #2000.00</Typography>
             </div>
           </>
