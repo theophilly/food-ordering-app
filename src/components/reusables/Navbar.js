@@ -36,7 +36,6 @@ const useStyles = makeStyles({
     position: props.pathname === '/' ? 'absolute' : 'static',
     top: 0,
     left: 0,
-    // height: '100px',
     paddingTop: '5px',
     paddingBottom: '5px',
     paddingRight: '79px',
@@ -139,7 +138,11 @@ export default function Navbar() {
           <Button className={signinButton} variant="outlined">
             sign in
           </Button>
-          <Button disableElevation className={loginButton} variant="contained">
+          <Button
+            disableElevation
+            className={loginButton}
+            variant={location.pathname === '/' ? 'contained' : 'outlined'}
+          >
             log in
           </Button>
         </div>
