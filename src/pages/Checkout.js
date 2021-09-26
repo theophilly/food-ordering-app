@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { usePaystackPayment } from 'react-paystack';
 import {
   makeStyles,
   Stepper,
@@ -184,9 +185,32 @@ export default function Checkout() {
     amount_payable_value,
     note,
   } = useStyles();
+
   const { products, totalQuantities, totalPrice } = useSelector(
     (state) => state.cartReducer
   );
+  const dispatch = useDispatch();
+
+  //paystack hook
+  const initializePayment = usePaystackPayment({
+    reference: new Date().getTime().toString(),
+    email: 'user@example.com',
+    amount: totalPrice,
+    publicKey: 'pk_test_9667838c0fa5f162be811a2e81b1ec5a9394ee74',
+  });
+
+  // you can call this function anything
+  const onSuccess = (reference) => {
+    // Implementation for whatever you want to do with reference and after success call.
+    console.log(reference);
+    dispatch({ type: 'EMPTY_CART' });
+  };
+
+  // you can call this function anything
+  const onClose = () => {
+    // implementation for  whatever you want to do when the Paystack dialog closed.
+    console.log('closed');
+  };
 
   const [customer_detail, set_Customer_detail] = useState({
     firstName: '',
@@ -224,6 +248,7 @@ export default function Checkout() {
           onSubmit={async (values) => {
             await sleep(3000);
             console.log('values', values);
+            initializePayment(onSuccess, onClose);
           }}
         >
           <FormikStep

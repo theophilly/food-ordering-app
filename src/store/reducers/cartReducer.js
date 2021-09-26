@@ -114,6 +114,9 @@ const cartReducer = (state = initState, action) => {
       }
       return state;
     }
+    case 'EMPTY_CART': {
+      return { ...state, totalPrice: 0, totalQuantities: 0 };
+    }
     default:
       return state;
   }
