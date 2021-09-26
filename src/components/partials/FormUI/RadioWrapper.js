@@ -20,6 +20,16 @@ const useStyles = makeStyles(() => ({
     borderRadius: '10px',
     padding: '10px 20px',
   },
+  deliverybox_group: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    '@media (max-width: 500px)': {
+      flexDirection: 'column',
+      '& :nth-child(2)': {
+        marginTop: '10px',
+      },
+    },
+  },
   deliverybox_header: {
     display: 'flex',
     alignItems: 'center',
@@ -45,6 +55,7 @@ const RadioWrapper = ({ name, options, ...otherProps }) => {
     deliverybox_header,
     deliverybox,
     deliverymethod_info,
+    deliverybox_group,
   } = useStyles();
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
@@ -71,12 +82,7 @@ const RadioWrapper = ({ name, options, ...otherProps }) => {
   return (
     <div>
       <RadioGroup {...configSelect}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-          }}
-        >
+        <div className={deliverybox_group}>
           <div className={deliverybox}>
             <div className={deliverybox_header}>
               <FormControlLabel

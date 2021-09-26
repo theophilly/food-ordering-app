@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     flex: '0.7',
     paddingLeft: '120px',
     '@media (max-width: 900px)': {
-      paddingLeft: '20px',
+      paddingLeft: '10px',
     },
   },
   checkout_right: {
@@ -211,15 +211,15 @@ export default function Checkout() {
       <div className={checkout_left}>
         <FormikStepper
           initialValues={{
-            firstName: '',
-            lastName: '',
-            address: '',
-            country: '',
-            city: '',
-            phone: '',
-            state: '',
-            deliveryMethod: '',
-            paymentMethod: '',
+            firstName: 'jjj',
+            lastName: 'jjj',
+            address: 'jjj',
+            postalCode: '111',
+            city: 'jjj',
+            phone: '111',
+            state: 'jjj',
+            deliveryMethod: 'jjj',
+            paymentMethod: 'jjj',
           }}
           onSubmit={async (values) => {
             await sleep(3000);
@@ -231,9 +231,12 @@ export default function Checkout() {
               firstName: Yup.string().required('First Name is Required'),
               lastName: Yup.string().required('Last Name is Required'),
               address: Yup.string().required('Address is Required'),
-              country: Yup.string().required('Country is Required'),
+              //  postalCode: Yup.string().required('postalCode is Required'),
               city: Yup.string().required('city is Required'),
-              // postalCode: Yup.string().required('Postal Code is Required'),
+              postalCode: Yup.number()
+                .integer()
+                .typeError('Please enter a valid postal number')
+                .required('Postal code is Required'),
               phone: Yup.number()
                 .integer()
                 .typeError('Please enter a valid phone number')
@@ -258,17 +261,17 @@ export default function Checkout() {
                 <Textfield name="address" helpertext="Address" />
               </Grid>
               <Grid item xs={12} md={6}>
-                <Textfield name="country" helpertext="Country" />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Textfield name="city" helpertext="City" />
-              </Grid>
-              <Grid item xs={12} md={6}>
                 <SelectWrapper
                   name="state"
                   helpertext="State"
                   options={stateData}
                 />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Textfield name="city" helpertext="City" />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Textfield name="postalCode" helpertext="Postal code" />
               </Grid>
               <Grid item xs={12} md={6}>
                 <Textfield name="phone" helpertext="Phone" />
@@ -448,7 +451,7 @@ export function FormikStepper({ children, ...props }) {
                 item
               >
                 <BsArrowLeft />
-                <Typography>Back to Order page</Typography>
+                <Typography>Order page</Typography>
               </Grid>
             ) : null}
             {step === 1 ? (
@@ -458,7 +461,7 @@ export function FormikStepper({ children, ...props }) {
                 item
               >
                 <BsArrowLeft />
-                <Typography>Back to Customer Info</Typography>
+                <Typography>Customer Info</Typography>
               </Grid>
             ) : null}
             {step === 2 ? (
@@ -468,7 +471,7 @@ export function FormikStepper({ children, ...props }) {
                 item
               >
                 <BsArrowLeft />
-                <Typography>Back to Shipping Info</Typography>
+                <Typography>Shipping Info</Typography>
               </Grid>
             ) : null}
             {/* section */}
