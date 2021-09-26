@@ -4,7 +4,6 @@ import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
-import Navbar from '../reusables/Navbar';
 
 const useStyles = makeStyles(() => ({
   header: {

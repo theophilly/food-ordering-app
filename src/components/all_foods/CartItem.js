@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, makeStyles } from '@material-ui/core';
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {

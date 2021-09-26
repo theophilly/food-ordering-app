@@ -8,6 +8,7 @@ import Allfoods from './pages/Allfoods';
 import ScrollToTop from './components/reusables/ScrollToTop';
 import Navbar from './components/reusables/Navbar';
 import Checkout from './pages/Checkout';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" exact component={Home}></Route>
           <Route path="/allmeals" exact component={Allfoods}></Route>
           <Route path="/checkout" exact component={Checkout}></Route>
+          <Route path="/login" exact component={Login}></Route>
         </Switch>
       </BrowserRouter>
     </ThemeProvider>

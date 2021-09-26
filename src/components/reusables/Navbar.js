@@ -1,7 +1,6 @@
 import {
   AppBar,
   Toolbar,
-  Typography,
   makeStyles,
   Button,
   IconButton,
@@ -18,11 +17,11 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 const headersData = [
   {
     label: 'Home',
-    href: '/home',
+    href: '/',
   },
   {
     label: 'Meals',
-    href: '/meals',
+    href: '/allmeals',
   },
   {
     label: 'About us',
@@ -39,17 +38,17 @@ const useStyles = makeStyles({
     paddingTop: '5px',
     paddingBottom: '5px',
     paddingRight: '79px',
-    paddingLeft: '118px',
+    paddingLeft: '98px',
     '@media (max-width: 900px)': {
       paddingLeft: 0,
     },
   }),
   logo: {
-    fontFamily: 'Work Sans, sans-serif',
+    fontFamily: 'Mulish, sans-serif',
     fontWeight: 600,
     color: 'black',
     textAlign: 'left',
-    fontSize: '1.2rem',
+    fontSize: '1.4rem',
   },
   menuButton: {
     fontWeight: 'bold',
@@ -135,10 +134,17 @@ export default function Navbar() {
         {femmecubatorLogo}
         <div>{getMenuButtons()}</div>
         <div className={logButtons}>
-          <Button className={signinButton} variant="outlined">
+          <Button
+            component={RouterLink}
+            to={'/login'}
+            className={signinButton}
+            variant="outlined"
+          >
             sign in
           </Button>
           <Button
+            component={RouterLink}
+            to={'/login'}
             disableElevation
             className={loginButton}
             variant={location.pathname === '/' ? 'contained' : 'outlined'}

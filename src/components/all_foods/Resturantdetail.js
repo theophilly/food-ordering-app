@@ -77,6 +77,7 @@ const useStyles = makeStyles((theme) => ({
   resturant_description: {
     color: '#666666',
     fontSize: '0.8rem',
+    visibility: 'hidden',
     //fontFamily: 'Montserrat',
   },
   location_container: {
@@ -92,6 +93,8 @@ const useStyles = makeStyles((theme) => ({
   location_icon: {
     color: '#666666',
     fontSize: '1.2rem',
+    marginLeft: '-5px',
+    marginRight: '3px',
   },
   opening_time: {
     color: '#666666',
@@ -121,7 +124,7 @@ export default function Resturantdetail() {
       <img className={root_img} src="./252.png"></img>
       <div>
         <Typography className={resturant_name} variant="h2" component="h1">
-          Gheomeals restaurant
+          Theomeals restaurant
         </Typography>
         <Typography className={resturant_description} component="p">
           nigerian &nbsp; ghanian &nbsp; south-african &nbsp; delicacies
