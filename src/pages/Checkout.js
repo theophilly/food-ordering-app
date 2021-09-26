@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     flex: '0.7',
     paddingLeft: '120px',
     '@media (max-width: 900px)': {
-      paddingLeft: '10px',
+      padding: '0 10px',
     },
   },
   checkout_right: {
