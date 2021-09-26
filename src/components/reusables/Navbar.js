@@ -82,6 +82,7 @@ const useStyles = makeStyles({
     visibility: 'hidden',
     width: 'calc(100vw - 206px)',
     border: '1px solid red',
+    marginRight: '-25px',
   },
   personIcon: {
     marginRight: '6px',
