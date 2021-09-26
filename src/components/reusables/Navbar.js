@@ -7,12 +7,14 @@ import {
   Drawer,
   Link,
   MenuItem,
+  Badge,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import React, { useState, useEffect } from 'react';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { Link as RouterLink, useLocation, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const headersData = [
   {
@@ -91,6 +93,9 @@ const useStyles = makeStyles({
 
 export default function Navbar() {
   const location = useLocation();
+  const { products, totalQuantities, totalPrice } = useSelector(
+    (state) => state.cartReducer
+  );
 
   const {
     header,
@@ -176,7 +181,6 @@ export default function Navbar() {
         >
           <MenuIcon />
         </IconButton>
-
         <Drawer
           {...{
             anchor: 'left',
@@ -186,11 +190,13 @@ export default function Navbar() {
         >
           <div className={drawerContainer}>{getDrawerChoices()}</div>
         </Drawer>
-
         <div>{femmecubatorLogo}</div>
         <PersonOutlineOutlinedIcon className={spacerLogo} />
         <PersonOutlineOutlinedIcon className={personIcon} />
-        <ShoppingCartOutlinedIcon />
+        <Badge badgeContent={totalQuantities} color="secondary">
+          <ShoppingCartOutlinedIcon />
+        </Badge>
+        ;
       </Toolbar>
     );
   };
