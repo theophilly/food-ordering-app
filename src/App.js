@@ -15,7 +15,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <ScrollToTop />
-        <Navbar />
+        {/* <Navbar /> */}
         <Switch>
           <Route path="/" exact component={Home}></Route>
           <Route path="/allmeals" exact component={Allfoods}></Route>
