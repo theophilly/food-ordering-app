@@ -211,15 +211,15 @@ export default function Checkout() {
       <div className={checkout_left}>
         <FormikStepper
           initialValues={{
-            firstName: 'jjj',
-            lastName: 'jjj',
-            address: 'jjj',
-            postalCode: '111',
-            city: 'jjj',
-            phone: '111',
-            state: 'jjj',
-            deliveryMethod: 'jjj',
-            paymentMethod: 'jjj',
+            firstName: '',
+            lastName: '',
+            address: '',
+            postalCode: '',
+            city: '',
+            phone: '',
+            state: '',
+            deliveryMethod: '',
+            paymentMethod: '',
           }}
           onSubmit={async (values) => {
             await sleep(3000);
