@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
   itemAction: {
     cursor: 'pointer',
     overflow: 'hidden',
-    padding: '16px',
+    padding: '14px',
     '&:hover': {
       background: '#e3f2fd',
     },

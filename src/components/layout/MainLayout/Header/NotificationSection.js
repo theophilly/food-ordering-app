@@ -188,7 +188,7 @@ const NotificationSection = () => {
                                 component={Link}
                                 to="#"
                                 variant="subtitle2"
-                                color="primary"
+                                color="secondary"
                               >
                                 Mark as all read
                               </Typography>

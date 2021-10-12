@@ -37,7 +37,7 @@ export default createTheme({
     grey: {
       50: '#fafafa',
       100: '#f5f5f5',
-      500: '#eeeeee',
+      500: '#9e9e9e',
     },
     lightdark1: '#333333',
     lightdark2: '#666666',
