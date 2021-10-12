@@ -1,4 +1,3 @@
-import 'react-perfect-scrollbar/dist/css/styles.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -22,9 +21,6 @@ import {
   useMediaQuery,
 } from '@material-ui/core';
 
-// third-party
-import PerfectScrollbar from 'react-perfect-scrollbar';
-
 // project imports
 import MainCard from '../../../../ui-component/cards/MainCard';
 import Transitions from '../../../../ui-component/extended/Transitions';
@@ -39,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     maxHeight: 'calc(100vh - 205px)',
     overflowX: 'hidden',
+    scrollbarWidth: 'none',
   },
   headerAvatar: {
     cursor: 'pointer',
@@ -200,7 +197,7 @@ const NotificationSection = () => {
                         </div>
                       </Grid>
                       <Grid item xs={12}>
-                        <PerfectScrollbar className={classes.ScrollHeight}>
+                        <div className="customscroll">
                           <Grid container direction="column" spacing={2}>
                             <Grid item xs={12} p={0}>
                               <Divider className={classes.divider} />
@@ -209,7 +206,7 @@ const NotificationSection = () => {
                               <NotificationList />
                             </Grid>
                           </Grid>
-                        </PerfectScrollbar>
+                        </div>
                       </Grid>
                     </Grid>
                   </CardContent>

@@ -5,6 +5,18 @@
   /* border: 1px solid red;
 */
 }
+/* custom scrollbar */
+.customscroll {
+  height: 100%;
+  max-height: calc(100vh - 205px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: red !important;
+}
+.customscroll::-webkit-scrollbar {
+  width: 5px;
+}
 
 .active_link {
   color: black !important;
