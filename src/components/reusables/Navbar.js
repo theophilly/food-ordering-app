@@ -8,13 +8,16 @@ import {
   Link,
   MenuItem,
   Badge,
+  Box,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import React, { useState, useEffect } from 'react';
-import { Link as RouterLink, useLocation, Redirect } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+
+import Notification from '../layout/MainLayout/Header/NotificationSection.js';
 
 const headersData = [
   {
@@ -118,7 +121,6 @@ export default function Navbar() {
   const { mobileView, drawerOpen } = state;
 
   useEffect(() => {
-    console.log(location.pathname);
     const setResponsiveness = () => {
       return window.innerWidth < 900
         ? setState((prevState) => ({ ...prevState, mobileView: true }))
@@ -140,7 +142,7 @@ export default function Navbar() {
         {femmecubatorLogo}
         <div>{getMenuButtons()}</div>
         <div className={logButtons}>
-          <Button
+          {/* <Button
             component={RouterLink}
             to={'/login'}
             className={signinButton}
@@ -156,7 +158,10 @@ export default function Navbar() {
             variant={location.pathname === '/' ? 'contained' : 'outlined'}
           >
             log in
-          </Button>
+          </Button> */}
+          <div>
+            <Notification />
+          </div>
         </div>
       </Toolbar>
     );
@@ -169,34 +174,48 @@ export default function Navbar() {
       setState((prevState) => ({ ...prevState, drawerOpen: false }));
 
     return (
-      <Toolbar>
-        <IconButton
-          {...{
-            edge: 'start',
-            color: 'inherit',
-            'aria-label': 'menu',
-            'aria-haspopup': 'true',
-            onClick: handleDrawerOpen,
-          }}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Drawer
-          {...{
-            anchor: 'left',
-            open: drawerOpen,
-            onClose: handleDrawerClose,
-          }}
-        >
-          <div className={drawerContainer}>{getDrawerChoices()}</div>
-        </Drawer>
-        <div>{femmecubatorLogo}</div>
-        <PersonOutlineOutlinedIcon className={spacerLogo} />
+      <Toolbar
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+
+          width: '100vw',
+          marginRight: 0,
+        }}
+      >
+        <Box border="1px solid red" display="flex" alignItems="center">
+          <IconButton
+            {...{
+              edge: 'start',
+              color: 'inherit',
+              'aria-label': 'menu',
+              'aria-haspopup': 'true',
+              onClick: handleDrawerOpen,
+            }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Drawer
+            {...{
+              anchor: 'left',
+              open: drawerOpen,
+              onClose: handleDrawerClose,
+            }}
+          >
+            <div className={drawerContainer}>{getDrawerChoices()}</div>
+          </Drawer>
+
+          <div>{femmecubatorLogo}</div>
+        </Box>
+
+        <Notification />
+        {/* <div>
+        
+        {/* <PersonOutlineOutlinedIcon className={spacerLogo} />
         <PersonOutlineOutlinedIcon className={personIcon} />
         <Badge badgeContent={totalQuantities} color="secondary">
           <ShoppingCartOutlinedIcon />
-        </Badge>
-        ;
+        </Badge> */}
       </Toolbar>
     );
   };

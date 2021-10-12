@@ -5,6 +5,8 @@ import {
   Button,
   OutlinedInput,
 } from '@material-ui/core';
+import { BsArrowLeft } from 'react-icons/bs';
+import { useHistory, useParams } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,9 +17,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   root_logo: {
-    fontSize: '1.8rem',
+    fontSize: '1.2rem',
     fontWeight: '500',
     fontFamily: 'Mulish',
+    marginLeft: '5px',
   },
   root_left: {
     minWidth: '40%',
@@ -50,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: '100px',
-    '& :nth-child(2)': {
+    '& > :nth-child(2)': {
       textTransform: 'capitalize',
       height: '30px',
       color: theme.palette.secondary.main,
@@ -65,7 +68,6 @@ const useStyles = makeStyles((theme) => ({
       fontFamily: 'Mulish',
       fontSize: '1.8rem',
       fontWeight: '700',
-      // marginBottom: '10px',
     },
   },
   log_input: {
@@ -79,7 +81,6 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.green,
     color: 'white',
     '& :hover': {
-      //  background: 'rgba(0,0,0,0.5)',
       color: 'black',
     },
   },
@@ -98,6 +99,11 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.secondary.main,
     },
   },
+  root_logo_wrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    cursor: 'pointer',
+  },
 }));
 
 export default function Login() {
@@ -111,14 +117,26 @@ export default function Login() {
     log_input,
     login_button,
     sign_up_google,
+    root_logo_wrapper,
   } = useStyles();
+  let history = useHistory();
+  let { path } = useParams();
   return (
     <div className={root}>
       <div className={root_left}>
         <div className={root_left_upper}>
-          <Typography className={root_logo} variant="h1">
-            Theodasa
-          </Typography>
+          <div
+            onClick={() => {
+              history.replace(`/${path}`);
+            }}
+            className={root_logo_wrapper}
+          >
+            <BsArrowLeft />
+            <Typography className={root_logo} variant="h1">
+              Go Back
+            </Typography>
+          </div>
+
           <Button variant="outlined">Sign In</Button>
         </div>
         <div className={root_left_lower}>

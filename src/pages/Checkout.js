@@ -224,7 +224,7 @@ export default function Checkout() {
 
   useEffect(() => {
     customer_details = set_Customer_detail;
-  });
+  }, []);
 
   if (totalQuantities === 0) {
     return <Redirect to="/allmeals" />;
@@ -426,7 +426,7 @@ export function FormikStepper({ children, ...props }) {
   const [completed, setCompleted] = useState(false);
   useEffect(() => {
     goBack = setStep;
-  });
+  }, []);
 
   function isLastStep() {
     return step === childrenArray.length - 1;
@@ -470,11 +470,7 @@ export function FormikStepper({ children, ...props }) {
 
           <Grid className={controls} container spacing={2}>
             {step === 0 ? (
-              <Grid
-                className={backsection}
-                onClick={() => history.goBack()}
-                item
-              >
+              <Grid className={backsection} onClick={() => history.go(0)} item>
                 <BsArrowLeft />
                 <Typography>Order page</Typography>
               </Grid>
