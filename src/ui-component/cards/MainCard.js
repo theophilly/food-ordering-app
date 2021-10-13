@@ -2,9 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 // material-ui
-import { useTheme } from '@material-ui/styles';
+
 import {
   Card,
+  useTheme,
   CardContent,
   CardHeader,
   Divider,

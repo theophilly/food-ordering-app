@@ -1,12 +1,13 @@
 import React from 'react';
 
 // material-ui
-import { makeStyles } from '@material-ui/styles';
+
 import {
   Avatar,
   Button,
   Box,
   Card,
+  makeStyles,
   CardContent,
   Chip,
   Divider,

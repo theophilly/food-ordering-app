@@ -2,11 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 // material-ui
-import { makeStyles, useTheme } from '@material-ui/styles';
+
 import {
   Avatar,
   Box,
   Button,
+  makeStyles,
+  useTheme,
   ButtonBase,
   CardActions,
   CardContent,

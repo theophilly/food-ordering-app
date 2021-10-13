@@ -1,7 +1,6 @@
 import {
   AppBar,
   Toolbar,
-  makeStyles,
   Button,
   IconButton,
   Drawer,
@@ -9,7 +8,9 @@ import {
   MenuItem,
   Badge,
   Box,
+  makeStyles,
 } from '@material-ui/core';
+
 import MenuIcon from '@material-ui/icons/Menu';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
@@ -18,6 +19,7 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import Notification from '../layout/MainLayout/Header/NotificationSection.js';
+import Profile from '../layout/MainLayout/Header/ProfileSection.js';
 
 const headersData = [
   {
@@ -160,6 +162,7 @@ export default function Navbar() {
             log in
           </Button> */}
           <div>
+            <Profile />
             <Notification />
           </div>
         </div>
@@ -183,7 +186,7 @@ export default function Navbar() {
           marginRight: 0,
         }}
       >
-        <Box border="1px solid red" display="flex" alignItems="center">
+        <Box display="flex" alignItems="center">
           <IconButton
             {...{
               edge: 'start',
@@ -208,7 +211,10 @@ export default function Navbar() {
           <div>{femmecubatorLogo}</div>
         </Box>
 
-        <Notification />
+        <Box>
+          <Profile />
+          <Notification />
+        </Box>
         {/* <div>
         
         {/* <PersonOutlineOutlinedIcon className={spacerLogo} />
