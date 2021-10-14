@@ -6,7 +6,7 @@ import {
   OutlinedInput,
 } from '@material-ui/core';
 import { BsArrowLeft } from 'react-icons/bs';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -119,7 +119,7 @@ export default function Login() {
     sign_up_google,
     root_logo_wrapper,
   } = useStyles();
-  let history = useHistory();
+  let history = useNavigate();
   let { path } = useParams();
   return (
     <div className={root}>

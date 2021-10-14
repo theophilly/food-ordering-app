@@ -26,6 +26,7 @@ import {
   ListItem,
   Box,
 } from '@material-ui/core';
+import Mydetails from '../components/user_profile/Mydetails';
 
 // links for the side nav
 const links = [
@@ -123,7 +124,9 @@ export default function Userprofile() {
             </Grid>
           </Grid>
         </Grid>
-        <Grid style={{ minHeight: '20px' }} xs={9} item></Grid>
+        <Grid style={{ minHeight: '20px' }} xs={9} item>
+          <Mydetails />
+        </Grid>
       </Grid>
     </Box>
   );

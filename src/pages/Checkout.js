@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory, Redirect } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { usePaystackPayment } from 'react-paystack';
 import {
@@ -227,7 +227,7 @@ export default function Checkout() {
   }, []);
 
   if (totalQuantities === 0) {
-    return <Redirect to="/allmeals" />;
+    return <Navigate to="/allmeals" />;
   }
 
   return (
@@ -419,7 +419,7 @@ export function FormikStep({ children }) {
 
 export function FormikStepper({ children, ...props }) {
   const { backsection, controls } = useStyles();
-  let history = useHistory();
+  let history = useNavigate();
   const [step, setStep] = useState(0);
   const childrenArray = React.Children.toArray(children);
   const currentChild = childrenArray[step];
