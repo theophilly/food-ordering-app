@@ -1,5 +1,5 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 
 import { FaAddressCard, FaShoppingBag } from 'react-icons/fa';
@@ -26,25 +26,24 @@ import {
   ListItem,
   Box,
 } from '@material-ui/core';
-import Mydetails from '../components/user_profile/Mydetails';
 
 // links for the side nav
 const links = [
   {
     id: 'L0',
-    path: '/profile',
+    path: '/profile/details',
     icon: <PersonOutlineOutlinedIcon />,
     title: 'My Details',
   },
   {
     id: 'L1',
-    path: '/address',
+    path: '/profile/address',
     icon: <FaAddressCard />,
     title: 'My address book',
   },
   {
     id: 'L2',
-    path: '/orders',
+    path: '/profile/orders',
     icon: <FaShoppingBag />,
     title: 'my orders',
   },
@@ -59,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: '79px',
     paddingLeft: '120px',
     '@media (max-width: 900px)': {
-      paddingLeft: 0,
+      padding: '0 20px',
     },
   },
   profileheading: {
@@ -75,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     background: 'transparent',
     color: 'black',
     alignItems: 'left',
-    width: '280px',
+    width: '250px',
 
     '&:hover': {
       color: '#1275D1',
@@ -90,10 +89,27 @@ const useStyles = makeStyles((theme) => ({
       background: '#E2ECF6',
     },
   },
+  profile_sidebar: {
+    marginBottom: '20px',
+    '@media (max-width: 1230px)': {
+      // display: 'none',
+    },
+  },
 }));
 
 export default function Userprofile() {
-  const { root, profileheading, button, selected } = useStyles();
+  const {
+    root,
+    profileheading,
+    button,
+    selected,
+    profile_sidebar,
+  } = useStyles();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  useEffect(() => {
+    pathname === '/profile' ? navigate('/profile/details') : null;
+  });
 
   return (
     <Box className={root}>
@@ -103,7 +119,7 @@ export default function Userprofile() {
         </Grid>
       </Grid>
       <Grid style={{ marginTop: '20px' }} container>
-        <Grid style={{ minHeight: '20px' }} xs={3} item>
+        <Grid className={profile_sidebar} xs={3} item>
           {/* grid for list nav */}
           <Grid container>
             <Grid item>
@@ -124,8 +140,8 @@ export default function Userprofile() {
             </Grid>
           </Grid>
         </Grid>
-        <Grid style={{ minHeight: '20px' }} xs={9} item>
-          <Mydetails />
+        <Grid xs={12} md={9} item>
+          <Outlet />
         </Grid>
       </Grid>
     </Box>
