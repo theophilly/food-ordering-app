@@ -25,7 +25,7 @@ import {
 import { DataGrid } from '@material-ui/data-grid';
 
 const columns = [
-  { field: 'id', headerName: 'ID', width: 40 },
+  // { field: 'id', headerName: 'ID', width: 40 },
   {
     field: 'food_name',
     headerName: 'Ordered Item',
@@ -171,10 +171,13 @@ const useStyles = makeStyles((theme) => ({
       background: '#E2ECF6',
     },
   },
+  cell: {
+    border: 'none',
+  },
 }));
 
 export default function Userorders() {
-  const { root, profileheading, button, selected } = useStyles();
+  const { root, profileheading, button, selected, cell } = useStyles();
 
   return (
     <div
@@ -189,13 +192,17 @@ export default function Userorders() {
       <Typography>orders</Typography>
       <Box height="max-content !important">
         <DataGrid
+          classes={{ root: cell }}
           autoHeight={true}
+          rowHeight={80}
+          showCellRightBorder={false}
           rows={rows}
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5]}
-          checkboxSelection
+          checkboxSelection={false}
           disableSelectionOnClick
+          disableMultipleSelection={true}
         />
       </Box>
     </div>
