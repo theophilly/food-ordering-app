@@ -19,6 +19,7 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Notification from '../layout/MainLayout/Header/NotificationSection.js';
 import Profile from '../layout/MainLayout/Header/ProfileSection.js';
+import Sidedrawer from './Sidedrawer.js';
 
 const headersData = [
   {
@@ -67,7 +68,8 @@ const useStyles = makeStyles({
     justifyContent: 'space-between',
   },
   drawerContainer: {
-    padding: '20px 30px',
+    padding: '5px 0px',
+    width: '280px',
   },
   logButtons: {
     display: 'flex',
@@ -204,7 +206,10 @@ export default function Navbar() {
               onClose: handleDrawerClose,
             }}
           >
-            <div className={drawerContainer}>{getDrawerChoices()}</div>
+            <div className={drawerContainer}>
+              {/* {getDrawerChoices()} */}
+              <Sidedrawer />
+            </div>
           </Drawer>
 
           <div>{femmecubatorLogo}</div>
