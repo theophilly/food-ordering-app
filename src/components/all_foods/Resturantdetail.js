@@ -6,7 +6,7 @@ import DPA from '../partials/allfoods/DPA';
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: '42vh',
-    background: '#F9F9F9',
+    background: '#F4F6F8',
     padding: '40px 50px',
     display: 'flex',
     borderBottom: '1px solid #ebebeb',

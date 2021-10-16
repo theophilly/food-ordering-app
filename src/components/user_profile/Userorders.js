@@ -24,6 +24,28 @@ import {
 } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
 
+const checkStatus = (status) => {
+  if (status === 'Delivered') {
+    return (
+      <Chip
+        label={status}
+        style={{ color: 'green', borderColor: 'green' }}
+        variant="outlined"
+      />
+    );
+  } else if (status === 'Failed') {
+    return (
+      <Chip
+        label={status}
+        style={{ color: '#f44336', borderColor: '#f44336' }}
+        variant="outlined"
+      />
+    );
+  } else if (status === 'Pending') {
+    return <Chip label={status} color="primary" variant="outlined" />;
+  }
+};
+
 const columns = [
   // { field: 'id', headerName: 'ID', width: 40 },
   {
@@ -66,13 +88,11 @@ const columns = [
     field: 'date',
     headerName: 'Date',
     width: 200,
-    editable: true,
   },
   {
     field: 'payment_method',
     headerName: 'Payment Method',
     width: 110,
-    editable: true,
   },
   {
     field: 'status',
@@ -80,6 +100,7 @@ const columns = [
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
     width: 160,
+    renderCell: (params) => checkStatus(params.row.status),
   },
   {
     field: 'payment_amount',
@@ -96,7 +117,7 @@ const rows = [
     category: 'bread',
     date: '20/10/2021 8:02 PM',
     payment_method: 'PayPal',
-    status: 'paid',
+    status: 'Delivered',
     payment_amount: '#400.00',
   },
   {
@@ -106,7 +127,7 @@ const rows = [
     category: 'bread',
     date: '20/10/2021 8:02 PM',
     payment_method: 'PayPal',
-    status: 'paid',
+    status: 'Failed',
     payment_amount: '#400.00',
   },
   {
@@ -116,7 +137,7 @@ const rows = [
     category: 'bread',
     date: '20/10/2021 8:02 PM',
     payment_method: 'PayPal',
-    status: 'paid',
+    status: 'Delivered',
     payment_amount: '#400.00',
   },
   {
@@ -126,7 +147,7 @@ const rows = [
     category: 'bread',
     date: '20/10/2021 8:02 PM',
     payment_method: 'PayPal',
-    status: 'paid',
+    status: 'Pending',
     payment_amount: '#400.00',
   },
 ];

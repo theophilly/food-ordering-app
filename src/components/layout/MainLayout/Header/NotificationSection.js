@@ -46,10 +46,10 @@ const useStyles = makeStyles((theme) => ({
     height: '34px',
     fontSize: '1.2rem',
     transition: 'all .2s ease-in-out',
-    background: theme.palette.secondary.light,
-    color: theme.palette.secondary.dark,
+    background: '#E2ECF6',
+    color: '#1275D1',
     '&[aria-controls="menu-list-grow"],&:hover': {
-      background: theme.palette.secondary.dark,
+      background: '#1275D1',
       color: theme.palette.secondary.light,
     },
   },

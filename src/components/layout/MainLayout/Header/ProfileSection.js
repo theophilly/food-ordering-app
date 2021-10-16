@@ -58,10 +58,10 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '5px',
     border: 'none',
     transition: 'all .2s ease-in-out',
-    background: theme.palette.secondary.light + '!important',
-    color: theme.palette.secondary.dark,
+    background: '#E2ECF6',
+    color: '#1275D1',
     '&[aria-controls="menu-list-grow"], &:hover': {
-      background: theme.palette.secondary.dark + '!important',
+      background: '#1275D1 !important',
       color: theme.palette.secondary.light,
       '& svg': {
         stroke: theme.palette.secondary.light,
