@@ -52,9 +52,9 @@ const useStyles = makeStyles((theme) => ({
     background: 'rgb(223, 223, 223)',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    paddingLeft: '20px',
     width: '90%',
-    height: '75px',
+    height: '70px',
     margin: '0 auto',
     borderRadius: '15px',
     marginTop: '15px',
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     '& h2': {
       // fontWeight: '500',
       marginLeft: '10px',
-      fontSize: '1.2rem',
+      fontSize: '1.1rem',
       //   fontFamily: 'mulish',
     },
   },
@@ -79,7 +79,7 @@ export default function Sidedrawer() {
           alt="Travis Howard"
           src="https://randomuser.me/api/portraits/women/57.jpg"
         />
-        <Typography component="h2">Travis Howard</Typography>
+        <Typography component="h2">John Doe</Typography>
       </Box>
     );
   };
@@ -87,7 +87,7 @@ export default function Sidedrawer() {
     <>
       <Toolbar>
         <Typography className={drawerheading} variant="h6" component="h2">
-          Hello
+          Theomeals
         </Typography>
       </Toolbar>
       {userData()}
