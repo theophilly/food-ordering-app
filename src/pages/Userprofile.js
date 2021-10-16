@@ -35,17 +35,18 @@ const links = [
     icon: <PersonOutlineOutlinedIcon />,
     title: 'My Details',
   },
-  {
-    id: 'L1',
-    path: '/profile/address',
-    icon: <FaAddressCard />,
-    title: 'My address book',
-  },
+
   {
     id: 'L2',
     path: '/profile/orders',
     icon: <FaShoppingBag />,
     title: 'my orders',
+  },
+  {
+    id: 'L1',
+    path: '/profile/address',
+    icon: <FaAddressCard />,
+    title: 'My address book',
   },
 ];
 
