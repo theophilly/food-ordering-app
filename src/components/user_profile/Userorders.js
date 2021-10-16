@@ -123,8 +123,8 @@ const rows = [
   {
     id: 2,
     image: 'https://picsum.photos/id/237/200',
-    food_name: 'Spagetti Rice',
-    category: 'bread',
+    food_name: 'Jamboree Tuiti',
+    category: 'meals',
     date: '20/10/2021 8:02 PM',
     payment_method: 'PayPal',
     status: 'Failed',
@@ -133,8 +133,8 @@ const rows = [
   {
     id: 3,
     image: 'https://picsum.photos/id/1000/200',
-    food_name: 'Spagetti Rice',
-    category: 'bread',
+    food_name: 'Fried Rice',
+    category: 'meals',
     date: '20/10/2021 8:02 PM',
     payment_method: 'PayPal',
     status: 'Delivered',
@@ -143,7 +143,7 @@ const rows = [
   {
     id: 4,
     image: 'https://picsum.photos/id/1001/200',
-    food_name: 'Spagetti Rice',
+    food_name: 'Bread Roll',
     category: 'bread',
     date: '20/10/2021 8:02 PM',
     payment_method: 'PayPal',

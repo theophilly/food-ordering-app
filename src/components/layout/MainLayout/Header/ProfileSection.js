@@ -58,9 +58,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '5px',
     border: 'none',
     transition: 'all .2s ease-in-out',
-    background: '#E2ECF6',
+    background: '#E2ECF6 !important',
     color: '#1275D1',
-    '&[aria-controls="menu-list-grow"], &:hover': {
+    '&[aria-controls="menu-list-grow"],&:hover': {
       background: '#1275D1 !important',
       color: theme.palette.secondary.light,
       '& svg': {

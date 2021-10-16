@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -14,10 +15,8 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
-import React, { useState, useEffect } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
 import Notification from '../layout/MainLayout/Header/NotificationSection.js';
 import Profile from '../layout/MainLayout/Header/ProfileSection.js';
 
@@ -116,7 +115,7 @@ export default function Navbar() {
   } = useStyles(location);
 
   const [state, setState] = useState({
-    mobileView: false,
+    mobileView: true,
     drawerOpen: false,
   });
 
