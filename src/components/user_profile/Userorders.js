@@ -144,9 +144,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   profileheading: {
-    fontWeight: '600',
-    fontSize: '1.3rem',
+    fontWeight: '700',
+    fontSize: '1.4rem',
     fontFamily: 'mulish',
+    marginBottom: '10px',
+    paddingLeft: '14px',
+    marginTop: '30px',
   },
   button: {
     borderRadius: '5px',
@@ -189,7 +192,10 @@ export default function Userorders() {
         height: 'max-content',
       }}
     >
-      <Typography>orders</Typography>
+      <Typography className={profileheading} variant="h1">
+        My Order History
+      </Typography>
+
       <Box height="max-content !important">
         <DataGrid
           classes={{ root: cell }}
