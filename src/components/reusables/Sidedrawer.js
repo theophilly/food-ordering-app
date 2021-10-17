@@ -8,11 +8,35 @@ import {
   Drawer,
   Link,
   MenuItem,
+  List,
   Badge,
   Box,
+  styled,
   makeStyles,
   Typography,
 } from '@material-ui/core';
+
+import { BiHomeCircle } from 'react-icons/bi';
+import { IoFastFood } from 'react-icons/io5';
+import { MdContacts } from 'react-icons/md';
+import CustomListItem from './Customlistitem';
+
+// links for the side nav
+const links = [
+  {
+    id: 'L0',
+    path: '/',
+    icon: <BiHomeCircle />,
+    title: 'Home',
+  },
+  { id: 'L1', path: '/allmeals', icon: <IoFastFood />, title: 'All Meals' },
+  {
+    id: 'L2',
+    path: '/about',
+    icon: <MdContacts />,
+    title: 'About Us',
+  },
+];
 
 // style const
 const useStyles = makeStyles((theme) => ({
@@ -68,7 +92,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Sidedrawer() {
+const ListStyle = styled(List)(({ theme }) => ({
+  marginTop: theme.spacing(2),
+}));
+
+export default function Sidedrawer(props) {
   const { root, drawerheading, button, usersection, cell } = useStyles();
 
   const userData = () => {
@@ -91,6 +119,18 @@ export default function Sidedrawer() {
         </Typography>
       </Toolbar>
       {userData()}
+      {/* List of links */}
+      <ListStyle>
+        {links.map((el) => (
+          <CustomListItem
+            key={el.id}
+            path={el.path}
+            icon={el.icon}
+            title={el.title}
+            onClick={props.onClose}
+          />
+        ))}
+      </ListStyle>
     </>
   );
 }
