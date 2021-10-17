@@ -113,7 +113,7 @@ export default function Sidedrawer(props) {
     <>
       <Toolbar>
         <Typography className={drawerheading} variant="h6" component="h2">
-          Theomeals
+          Hello
         </Typography>
       </Toolbar>
       {userData()}

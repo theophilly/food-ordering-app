@@ -166,7 +166,7 @@ export default function Navbar() {
           <div>
             <Profile />
             <CartSection />
-            {/* <Notification /> */}
+            <Notification />
           </div>
         </div>
       </Toolbar>
@@ -220,7 +220,7 @@ export default function Navbar() {
         <Box>
           <Profile />
           <CartSection />
-          {/* <Notification /> */}
+          <Notification />
         </Box>
         {/* <div>
         
