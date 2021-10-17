@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 // material-ui
 
@@ -49,11 +50,18 @@ const useStyles = makeStyles((theme) => ({
 const CartSection = () => {
   const classes = useStyles();
   const theme = useTheme();
+  const { products, totalQuantities, totalPrice } = useSelector(
+    (state) => state.cartReducer
+  );
 
   return (
     <Box component="span" className={classes.box}>
       <ButtonBase>
-        <Badge color="secondary" badgeContent={4} overlap="circular">
+        <Badge
+          color="secondary"
+          badgeContent={totalQuantities}
+          overlap="circular"
+        >
           <Avatar
             variant="rounded"
             className={classes.headerAvatar}
