@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     cursor: 'pointer',
     borderRadius: '8px',
     width: '34px',
+    marginRight: '5px',
     height: '34px',
     fontSize: '1.2rem',
     transition: 'all .2s ease-in-out',
@@ -52,7 +53,7 @@ const CartSection = () => {
   return (
     <Box component="span" className={classes.box}>
       <ButtonBase>
-        <Badge color="secondary" badgeContent={1} overlap="circular">
+        <Badge color="secondary" badgeContent={4} overlap="circular">
           <Avatar
             variant="rounded"
             className={classes.headerAvatar}

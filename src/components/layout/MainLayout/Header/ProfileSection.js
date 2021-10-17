@@ -67,10 +67,24 @@ const useStyles = makeStyles((theme) => ({
         stroke: theme.palette.secondary.light,
       },
     },
+    '@media (max-width: 400px)': {
+      width: '34px',
+      height: '34px',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
   },
   profileLabel: {
     lineHeight: 0,
     padding: '12px',
+    '@media (max-width: 400px)': {
+      display: 'none',
+    },
+  },
+  icon: {
+    '@media (max-width: 400px)': {
+      margin: '0px !important',
+    },
   },
   listItem: {
     marginTop: '5px',
@@ -155,7 +169,7 @@ const ProfileSection = () => {
   return (
     <React.Fragment>
       <Chip
-        classes={{ label: classes.profileLabel }}
+        classes={{ label: classes.profileLabel, icon: classes.icon }}
         className={classes.profileChip}
         icon={<IconUser stroke={1.5} size="1.3rem" />}
         label={<Typography> Account</Typography>}

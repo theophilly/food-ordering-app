@@ -122,7 +122,7 @@ const NotificationSection = () => {
     <>
       <Box component="span" className={classes.box}>
         <ButtonBase>
-          <Badge color="secondary" badgeContent={1} overlap="circular">
+          <Badge color="secondary" badgeContent={0} overlap="circular">
             <Avatar
               variant="rounded"
               className={classes.headerAvatar}
