@@ -20,6 +20,7 @@ import { useSelector } from 'react-redux';
 import Notification from '../layout/MainLayout/Header/NotificationSection.js';
 import Profile from '../layout/MainLayout/Header/ProfileSection.js';
 import Sidedrawer from './Sidedrawer.js';
+import CartSection from '../layout/MainLayout/Header/CartSection.js';
 
 const headersData = [
   {
@@ -164,7 +165,8 @@ export default function Navbar() {
           </Button> */}
           <div>
             <Profile />
-            <Notification />
+            <CartSection />
+            {/* <Notification /> */}
           </div>
         </div>
       </Toolbar>
@@ -217,7 +219,8 @@ export default function Navbar() {
 
         <Box>
           <Profile />
-          <Notification />
+          <CartSection />
+          {/* <Notification /> */}
         </Box>
         {/* <div>
         
