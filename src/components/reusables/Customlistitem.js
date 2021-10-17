@@ -7,9 +7,6 @@ const useStyles = makeStyles((theme) => ({
   activeClass: {
     color: '#1275D1 !important',
     backgroundColor: '#E2ECF6',
-    '& .MuiTypography-subtitle1': {
-      fontWeight: 600,
-    },
   },
 }));
 
@@ -19,7 +16,7 @@ const ListItemStyle = styled(ListItem)(() => ({
 
 const CustomLinkStyle = styled(NavLink)(({ theme }) => ({
   width: '100%',
-  padding: '8px 8px 8px 32px',
+  padding: '8px 8px 8px 0px',
   display: 'flex',
   alignItems: 'center',
   textDecoration: 'none',
