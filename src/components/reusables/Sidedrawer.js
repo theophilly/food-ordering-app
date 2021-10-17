@@ -52,7 +52,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   selected: {
-    border: '1px solid red',
     color: '#1275D1 !important',
     background: '#E2ECF6 !important',
     '& :hover': {
@@ -61,15 +60,15 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   drawerheading: {
-    fontWeight: '700',
+    fontWeight: '600',
     fontSize: '1.6rem',
     fontFamily: 'mulish',
     color: '#1275D1',
     // letterSpacing: '2px',
   },
   button: {
-    borderRadius: '5px',
-    padding: '8px 8px 8px 20px',
+    borderRadius: '0',
+    padding: '10px 8px 10px 20px',
     display: 'flex',
     justifyContent: 'flex-start',
     textTransform: 'capitalize',
@@ -89,16 +88,14 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     paddingLeft: '20px',
     width: '90%',
-    height: '70px',
+    height: '60px',
     margin: '0 auto',
     borderRadius: '15px',
     marginTop: '15px',
 
     '& h2': {
-      // fontWeight: '500',
       marginLeft: '10px',
-      fontSize: '1.1rem',
-      //   fontFamily: 'mulish',
+      fontSize: '1rem',
     },
   },
 }));
