@@ -42,7 +42,12 @@ const CustomListItem = (props) => {
 
   return (
     <ListItemStyle button onClick={props.onClick}>
-      <CustomLinkStyle to={props.path} activeClassName={classes.activeClass}>
+      <CustomLinkStyle
+        exact
+        end
+        to={props.path}
+        activeClassName={classes.activeClass}
+      >
         <ListItemIcon>{props.icon}</ListItemIcon>
 
         <Typography variant="subtitle1" component="h6">

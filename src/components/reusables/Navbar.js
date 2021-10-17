@@ -208,7 +208,7 @@ export default function Navbar() {
           >
             <div className={drawerContainer}>
               {/* {getDrawerChoices()} */}
-              <Sidedrawer />
+              <Sidedrawer onClose={handleDrawerClose} />
             </div>
           </Drawer>
 
