@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import {
   AppBar,
   Toolbar,
@@ -50,6 +51,15 @@ const useStyles = makeStyles((theme) => ({
       paddingLeft: 0,
     },
   },
+  selected: {
+    border: '1px solid red',
+    color: '#1275D1 !important',
+    background: '#E2ECF6 !important',
+    '& :hover': {
+      color: 'inherit',
+      background: '#E2ECF6',
+    },
+  },
   drawerheading: {
     fontWeight: '700',
     fontSize: '1.6rem',
@@ -59,11 +69,12 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     borderRadius: '5px',
+    padding: '8px 8px 8px 20px',
     display: 'flex',
     justifyContent: 'flex-start',
     textTransform: 'capitalize',
     background: 'transparent',
-    color: 'black',
+    color: 'rgb(99, 115, 129)',
     alignItems: 'left',
     width: '280px',
 
@@ -97,7 +108,7 @@ const ListStyle = styled(List)(({ theme }) => ({
 }));
 
 export default function Sidedrawer(props) {
-  const { root, drawerheading, button, usersection, cell } = useStyles();
+  const { root, drawerheading, button, usersection, selected } = useStyles();
 
   const userData = () => {
     return (
@@ -121,14 +132,28 @@ export default function Sidedrawer(props) {
       {userData()}
       {/* List of links */}
       <ListStyle>
-        {links.map((el) => (
-          <CustomListItem
-            key={el.id}
-            path={el.path}
-            icon={el.icon}
-            title={el.title}
+        {links.map((link) => (
+          <Button
+            end={true}
+            disableElevation
+            className={button}
+            variant="contained"
+            activeClassName={selected}
+            autoCapitalize={false}
+            startIcon={link.icon}
+            component={NavLink}
+            to={link.path}
             onClick={props.onClose}
-          />
+          >
+            {link.title}
+          </Button>
+          //   <CustomListItem
+          //     key={el.id}
+          //     path={el.path}
+          //     icon={el.icon}
+          //     title={el.title}
+          //     onClick={props.onClose}
+          //   />
         ))}
       </ListStyle>
     </>
