@@ -10,7 +10,6 @@ import {
   Link,
   MenuItem,
   List,
-  Badge,
   Box,
   styled,
   makeStyles,
@@ -20,7 +19,6 @@ import {
 import { BiHomeCircle } from 'react-icons/bi';
 import { IoFastFood } from 'react-icons/io5';
 import { MdContacts } from 'react-icons/md';
-import CustomListItem from './Customlistitem';
 
 // links for the side nav
 const links = [
@@ -33,7 +31,7 @@ const links = [
   { id: 'L1', path: '/allmeals', icon: <IoFastFood />, title: 'All Meals' },
   {
     id: 'L2',
-    path: '/about',
+    path: '/profile',
     icon: <MdContacts />,
     title: 'About Us',
   },
@@ -41,15 +39,8 @@ const links = [
 
 // style const
 const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    background: '#F4F6F8',
-    minHeight: '100vh',
-    paddingRight: '79px',
-    paddingLeft: '120px',
-    '@media (max-width: 900px)': {
-      paddingLeft: 0,
-    },
+  label: {
+    marginRight: '20px',
   },
   selected: {
     color: '#1275D1 !important',
@@ -64,7 +55,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.6rem',
     fontFamily: 'mulish',
     color: '#1275D1',
-    // letterSpacing: '2px',
   },
   button: {
     borderRadius: '0',
@@ -105,7 +95,7 @@ const ListStyle = styled(List)(({ theme }) => ({
 }));
 
 export default function Sidedrawer(props) {
-  const { root, drawerheading, button, usersection, selected } = useStyles();
+  const { label, drawerheading, button, usersection, selected } = useStyles();
 
   const userData = () => {
     return (
@@ -131,6 +121,7 @@ export default function Sidedrawer(props) {
       <ListStyle>
         {links.map((link) => (
           <Button
+            classes={{ startIcon: label }}
             end={true}
             disableElevation
             className={button}
@@ -144,13 +135,6 @@ export default function Sidedrawer(props) {
           >
             {link.title}
           </Button>
-          //   <CustomListItem
-          //     key={el.id}
-          //     path={el.path}
-          //     icon={el.icon}
-          //     title={el.title}
-          //     onClick={props.onClose}
-          //   />
         ))}
       </ListStyle>
     </>
