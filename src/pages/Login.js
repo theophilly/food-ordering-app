@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Typography,
   makeStyles,
   Button,
   OutlinedInput,
+  Grid,
+  Box,
 } from '@material-ui/core';
 import { BsArrowLeft } from 'react-icons/bs';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+import Textfield from '../components/partials/FormUI/Textfield';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,6 +19,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     '@media (max-width: 900px)': {
       paddingLeft: 0,
+    },
+    '@media (max-width: 667px)': {
+      flexDirection: 'column',
+      height: 'auto',
+      maxHeight: '100000000px',
     },
   },
   root_logo: {
@@ -26,6 +36,13 @@ const useStyles = makeStyles((theme) => ({
     minWidth: '40%',
     minHeight: '100%',
     padding: '50px 100px',
+    '@media (max-width: 1050px)': {
+      minWidth: '40%',
+      padding: '50px 50px',
+    },
+    '@media (max-width: 830px)': {
+      padding: '50px 20px',
+    },
   },
   root_right: {
     minWidth: '60%',
@@ -33,7 +50,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    //  border: '1px solid red',
     minHeight: '100vh',
     background: theme.palette.green,
     '& :nth-child(1)': {
@@ -45,7 +61,17 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '2rem',
       width: '50%',
       color: 'white',
-      // marginBottom: '10px',
+    },
+    '@media (max-width: 900px)': {
+      '& :nth-child(1)': {
+        width: '90%',
+      },
+      '& :nth-child(2)': {
+        width: '65%',
+      },
+    },
+    '@media (max-width: 667px)': {
+      display: 'none',
     },
   },
   root_left_upper: {
@@ -60,7 +86,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   root_left_lower: {
-    '& :nth-child(1)': {
+    //border: '1px solid red',
+    '& > :nth-child(1)': {
       fontFamily: 'Mulish',
       fontSize: '.9rem',
     },
@@ -82,6 +109,7 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
     '& :hover': {
       color: 'black',
+      //  background: 'lightgreen',
     },
   },
   sign_up_google: {
@@ -104,9 +132,24 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     cursor: 'pointer',
   },
+  recommendation: {
+    fontFamily: 'Mulish',
+    fontSize: '.9rem',
+  },
+  recommendation_link: {
+    fontFamily: 'Mulish',
+    fontSize: '1rem',
+    fontWeight: '600',
+    cursor: 'pointer',
+    marginLeft: '5px',
+  },
 }));
 
 export default function Login() {
+  let location = useLocation();
+  let from = location.state?.from;
+  let show = location.state?.show;
+  const [state, setstate] = useState(show || 'login');
   const {
     root,
     root_logo,
@@ -118,16 +161,179 @@ export default function Login() {
     login_button,
     sign_up_google,
     root_logo_wrapper,
+    recommendation,
+    recommendation_link,
   } = useStyles();
-  let history = useNavigate();
-  let { path } = useParams();
+  let navigate = useNavigate();
+
+  const signUp = () => {
+    return (
+      <div className={root_left_lower}>
+        <Typography>get your food</Typography>
+        <Typography variant="h1" component="h1">
+          Create an Account
+        </Typography>
+        {/* third */}
+        <Box marginTop="20px">
+          <Formik
+            initialValues={{
+              email: '',
+              password: '',
+              confirmPassword: '',
+            }}
+            onSubmit={async (values) => {
+              console.log('values', values);
+            }}
+            validationSchema={Yup.object().shape({
+              email: Yup.string()
+                .email('Invalid email format')
+                .required('Required'),
+              password: Yup.string()
+                .min(6, 'password must be atleast 6 characters')
+                .required('Password is required'),
+              confirmPassword: Yup.string()
+                .oneOf([Yup.ref('password'), null], 'password must match')
+                .required('Please confirm password 😱'),
+            })}
+          >
+            {({ isSubmitting }) => (
+              <Form autoComplete="off">
+                <Grid container>
+                  <Grid xs={12} item>
+                    <Box marginTop="10px">
+                      <Textfield name="email" helpertext="Email Address" />
+                    </Box>
+
+                    <Box marginTop="10px">
+                      <Textfield
+                        type="password"
+                        name="password"
+                        helpertext="Password"
+                      />
+                    </Box>
+                    <Box marginTop="10px">
+                      <Textfield
+                        type="password"
+                        name="confirmPassword"
+                        helpertext="Confirm Password"
+                      />
+                    </Box>
+                    <Box>
+                      <Button
+                        className={login_button}
+                        disableElevation
+                        variant="contained"
+                        type="submit"
+                      >
+                        Sign Up
+                      </Button>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </Form>
+            )}
+          </Formik>
+        </Box>
+
+        {/* <div className={sign_up_google}>
+      <img src="./social-google.svg" />
+      <Typography>Sign up with Google</Typography>
+    </div> */}
+        <Box alignItems="center" display="flex" marginTop="5px">
+          <Typography className={recommendation}>
+            Already have an account?
+          </Typography>
+          <Typography color="secondary" className={recommendation_link}>
+            Log In
+          </Typography>
+        </Box>
+      </div>
+    );
+  };
+
+  const signIn = () => {
+    return (
+      <div className={root_left_lower}>
+        <Typography>get your food</Typography>
+        <Typography variant="h1" component="h1">
+          Login to Your Account
+        </Typography>
+        {/* third */}
+        <Box marginTop="20px">
+          <Formik
+            initialValues={{
+              email: '',
+              password: '',
+              confirmPassword: '',
+            }}
+            onSubmit={async (values) => {
+              console.log('values', values);
+            }}
+            validationSchema={Yup.object().shape({
+              email: Yup.string()
+                .email('Invalid email format')
+                .required('Required'),
+              password: Yup.string()
+                .min(6, 'password must be atleast 6 characters')
+                .required('Password is required'),
+            })}
+          >
+            {({ isSubmitting }) => (
+              <Form autoComplete="off">
+                <Grid container>
+                  <Grid xs={12} item>
+                    <Box marginTop="10px">
+                      <Textfield name="email" helpertext="Email Address" />
+                    </Box>
+
+                    <Box marginTop="10px">
+                      <Textfield
+                        type="password"
+                        name="password"
+                        helpertext="Password"
+                      />
+                    </Box>
+
+                    <Box>
+                      <Button
+                        className={login_button}
+                        disableElevation
+                        variant="contained"
+                        type="submit"
+                      >
+                        Sign In
+                      </Button>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </Form>
+            )}
+          </Formik>
+        </Box>
+
+        {/* <div className={sign_up_google}>
+        <img src="./social-google.svg" />
+        <Typography>Sign up with Google</Typography>
+      </div> */}
+        <Box alignItems="center" display="flex" marginTop="5px">
+          <Typography className={recommendation}>
+            Dont have an account?
+          </Typography>
+          <Typography color="secondary" className={recommendation_link}>
+            Sign Up
+          </Typography>
+        </Box>
+      </div>
+    );
+  };
+
   return (
     <div className={root}>
       <div className={root_left}>
         <div className={root_left_upper}>
           <div
             onClick={() => {
-              history.replace(`/${path}`);
+              navigate(`/${from || '/'}`);
             }}
             className={root_logo_wrapper}
           >
@@ -137,41 +343,19 @@ export default function Login() {
             </Typography>
           </div>
 
-          <Button variant="outlined">Sign In</Button>
+          {state === 'login' ? (
+            <Button onClick={() => setstate('signup')} variant="outlined">
+              Sign Up
+            </Button>
+          ) : (
+            <Button onClick={() => setstate('login')} variant="outlined">
+              Sign In
+            </Button>
+          )}
         </div>
-        <div className={root_left_lower}>
-          <Typography>get your food</Typography>
-          <Typography variant="h1" component="h1">
-            Create an Account
-          </Typography>
-          <OutlinedInput
-            style={{ marginTop: '20px' }}
-            className={log_input}
-            color="secondary"
-            placeholder="enter your username"
-          />
-          <OutlinedInput
-            className={log_input}
-            color="secondary"
-            placeholder="enter your password"
-          />
-          <OutlinedInput
-            className={log_input}
-            color="secondary"
-            placeholder="enter your password"
-          />
-          <Button className={login_button} disableElevation variant="contained">
-            Sign Up
-          </Button>
-          <div className={sign_up_google}>
-            <img src="./social-google.svg" />
-            <Typography>Sign up with Google</Typography>
-          </div>
-          {/* <div>
-            <Typography>Already have an account?</Typography>
-            <Typography>Sign in</Typography>
-          </div> */}
-        </div>
+
+        {/* show either login or signup based on state variable */}
+        {state === 'login' ? signIn() : signUp()}
       </div>
       <div className={root_right}>
         <img src="./macaroni-1469.png" />

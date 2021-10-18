@@ -6,23 +6,19 @@ import {
   IconButton,
   Drawer,
   Link,
-  MenuItem,
-  Badge,
   Box,
   makeStyles,
 } from '@material-ui/core';
 
 import MenuIcon from '@material-ui/icons/Menu';
-import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
-import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+
 import Notification from '../layout/MainLayout/Header/NotificationSection.js';
 import Profile from '../layout/MainLayout/Header/ProfileSection.js';
 import Sidedrawer from './Sidedrawer.js';
 import CartSection from '../layout/MainLayout/Header/CartSection.js';
 
-const headersData = [
+const headersData = (path) => [
   {
     label: 'Home',
     href: '/',
@@ -33,7 +29,7 @@ const headersData = [
   },
   {
     label: 'About us',
-    href: '/about',
+    href: '/login',
   },
 ];
 
@@ -41,6 +37,7 @@ const useStyles = makeStyles({
   header: (props) => ({
     backgroundColor: 'transparent',
     position: props.pathname === '/' ? 'absolute' : 'static',
+    display: props.pathname === '/login' ? 'none' : 'block',
     top: 0,
     left: 0,
     paddingTop: '5px',
@@ -100,9 +97,6 @@ const useStyles = makeStyles({
 
 export default function Navbar() {
   const location = useLocation();
-  const { products, totalQuantities, totalPrice } = useSelector(
-    (state) => state.cartReducer
-  );
 
   const {
     header,
@@ -111,10 +105,6 @@ export default function Navbar() {
     toolbar,
     drawerContainer,
     logButtons,
-    signinButton,
-    loginButton,
-    spacerLogo,
-    personIcon,
   } = useStyles(location);
 
   const [state, setState] = useState({
@@ -146,23 +136,6 @@ export default function Navbar() {
         {femmecubatorLogo}
         <div>{getMenuButtons()}</div>
         <div className={logButtons}>
-          {/* <Button
-            component={RouterLink}
-            to={'/login'}
-            className={signinButton}
-            variant="outlined"
-          >
-            sign in
-          </Button>
-          <Button
-            component={RouterLink}
-            to={'/login'}
-            disableElevation
-            className={loginButton}
-            variant={location.pathname === '/' ? 'contained' : 'outlined'}
-          >
-            log in
-          </Button> */}
           <div>
             <Profile />
             <CartSection />
@@ -209,7 +182,6 @@ export default function Navbar() {
             }}
           >
             <div className={drawerContainer}>
-              {/* {getDrawerChoices()} */}
               <Sidedrawer onClose={handleDrawerClose} />
             </div>
           </Drawer>
@@ -222,33 +194,8 @@ export default function Navbar() {
           <CartSection />
           <Notification />
         </Box>
-        {/* <div>
-        
-        {/* <PersonOutlineOutlinedIcon className={spacerLogo} />
-        <PersonOutlineOutlinedIcon className={personIcon} />
-        <Badge badgeContent={totalQuantities} color="secondary">
-          <ShoppingCartOutlinedIcon />
-        </Badge> */}
       </Toolbar>
     );
-  };
-
-  const getDrawerChoices = () => {
-    return headersData.map(({ label, href }) => {
-      return (
-        <Link
-          {...{
-            component: RouterLink,
-            to: href,
-            color: 'inherit',
-            style: { textDecoration: 'none' },
-            key: label,
-          }}
-        >
-          <MenuItem>{label}</MenuItem>
-        </Link>
-      );
-    });
   };
 
   const femmecubatorLogo = (
@@ -266,7 +213,9 @@ export default function Navbar() {
   );
 
   const getMenuButtons = () => {
-    return headersData.map(({ label, href }) => {
+    const { pathname } = useLocation();
+
+    return headersData(pathname).map(({ label, href }) => {
       return (
         <Button
           {...{
@@ -276,6 +225,7 @@ export default function Navbar() {
             component: RouterLink,
             className: menuButton,
           }}
+          state={{ from: pathname, show: 'login' }}
         >
           {label}
         </Button>
