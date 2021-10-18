@@ -28,6 +28,7 @@ import {
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
+import { RiProfileLine } from 'react-icons/ri';
 
 import { FaAddressCard, FaShoppingBag } from 'react-icons/fa';
 
@@ -36,21 +37,21 @@ const links = [
   {
     id: 'L0',
     path: '/profile/details',
-    icon: <PersonOutlineOutlinedIcon />,
-    title: 'My Details',
+    icon: <RiProfileLine />,
+    title: 'Dashboard',
   },
 
   {
     id: 'L2',
-    path: '/profile/orders',
+    path: '/allmeals',
     icon: <FaShoppingBag />,
-    title: 'my orders',
+    title: 'Meals',
   },
   {
     id: 'L1',
-    path: '/profile/address',
-    icon: <FaAddressCard />,
-    title: 'My address book',
+    path: '/login',
+    icon: <AiOutlinePoweroff style={{ color: 'red' }} />,
+    title: 'Sign Out',
   },
 ];
 
@@ -60,6 +61,7 @@ import Transitions from '../../../../ui-component/extended/Transitions.js';
 
 // assets
 import { IconLogout, IconSettings, IconUser } from '@tabler/icons';
+import { AiOutlinePoweroff } from 'react-icons/ai';
 
 // style const
 const useStyles = makeStyles((theme) => ({
@@ -118,7 +120,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cardContent: {
     padding: '20px 0px !important',
-    width: '280px',
+    width: '250px',
   },
   card: {
     backgroundColor: theme.palette.primary.light,
