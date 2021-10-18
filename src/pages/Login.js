@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
       height: '60%',
       width: '70%',
     },
-    '& :nth-child(2)': {
+    '& > :nth-child(2)': {
       fontFamily: 'Mulish',
       fontSize: '2rem',
       width: '50%',
@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
       '& :nth-child(1)': {
         width: '90%',
       },
-      '& :nth-child(2)': {
+      '& > :nth-child(2)': {
         width: '65%',
       },
     },
@@ -138,8 +138,8 @@ const useStyles = makeStyles((theme) => ({
   },
   recommendation_link: {
     fontFamily: 'Mulish',
-    fontSize: '1rem',
     fontWeight: '600',
+    fontSize: '.9rem',
     cursor: 'pointer',
     marginLeft: '5px',
   },
@@ -239,11 +239,15 @@ export default function Login() {
       <img src="./social-google.svg" />
       <Typography>Sign up with Google</Typography>
     </div> */}
-        <Box alignItems="center" display="flex" marginTop="5px">
+        <Box alignItems="center" display="flex" marginTop="10px">
           <Typography className={recommendation}>
             Already have an account?
           </Typography>
-          <Typography color="secondary" className={recommendation_link}>
+          <Typography
+            onClick={() => setstate('login')}
+            color="secondary"
+            className={recommendation_link}
+          >
             Log In
           </Typography>
         </Box>
@@ -319,7 +323,11 @@ export default function Login() {
           <Typography className={recommendation}>
             Dont have an account?
           </Typography>
-          <Typography color="secondary" className={recommendation_link}>
+          <Typography
+            onClick={() => setstate('signup')}
+            color="secondary"
+            className={recommendation_link}
+          >
             Sign Up
           </Typography>
         </Box>
