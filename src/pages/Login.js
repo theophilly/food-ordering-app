@@ -343,7 +343,7 @@ export default function Login() {
         <div className={root_left_upper}>
           <div
             onClick={() => {
-              navigate(`/${from || '/'}`);
+              navigate(`${from || '/'}`);
             }}
             className={root_logo_wrapper}
           >

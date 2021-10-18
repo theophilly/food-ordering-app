@@ -30,7 +30,7 @@ const AuthenticationRoutes = [
     element: <Userprofile />,
     children: [
       {
-        path: '/details',
+        path: 'details',
         element: <Mydetails />,
       },
       {

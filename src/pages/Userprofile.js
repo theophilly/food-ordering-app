@@ -5,27 +5,7 @@ import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined'
 import { FaAddressCard, FaShoppingBag } from 'react-icons/fa';
 
 // material-ui
-import {
-  Avatar,
-  Card,
-  CardContent,
-  makeStyles,
-  useTheme,
-  Button,
-  Chip,
-  ButtonBase,
-  ClickAwayListener,
-  Divider,
-  Grid,
-  List,
-  ListItemIcon,
-  ListItemText,
-  Paper,
-  Popper,
-  Typography,
-  ListItem,
-  Box,
-} from '@material-ui/core';
+import { makeStyles, Button, Grid, Typography, Box } from '@material-ui/core';
 
 // links for the side nav
 const links = [
@@ -83,11 +63,17 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   selected: {
-    color: '#1275D1',
+    borderRadius: '5px',
+    display: 'flex',
+    justifyContent: 'flex-start',
+    textTransform: 'capitalize',
+    alignItems: 'left',
+    width: '250px',
+    color: '#1275D1 !important',
     background: '#E2ECF6',
-    '& :hover': {
-      color: 'inherit',
-      background: '#E2ECF6',
+    '&:hover': {
+      color: '#1275D1 !important',
+      background: '#E2ECF6 !important',
     },
   },
   profile_sidebar: {
@@ -127,7 +113,7 @@ export default function Userprofile() {
               {links.map((link) => (
                 <Button
                   disableElevation
-                  className={button}
+                  className={pathname === link.path ? selected : button}
                   variant="contained"
                   activeClassName={selected}
                   autoCapitalize={false}

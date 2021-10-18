@@ -26,7 +26,7 @@
     "react-paystack": "^3.0.5",
     "react-perfect-scrollbar": "^1.5.8",
     "react-redux": "^7.2.5",
-    "react-router-dom": "^6.0.0-beta.0",
+    "react-router-dom": "^6.0.0-beta.7",
     "react-scripts": "4.0.3",
     "react-scroll": "^1.8.4",
     "redux": "^4.1.1",
@@ -42,12 +42,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -59,9 +53,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "eslint": "^7.11.0",
-    "eslint-plugin-react": "^7.26.1"
   }
 }
