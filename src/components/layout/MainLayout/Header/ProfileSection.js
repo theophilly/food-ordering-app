@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, NavLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 // material-ui
-
 import {
   Avatar,
   Card,
@@ -22,10 +21,38 @@ import {
   Popper,
   Typography,
   ListItem,
+  Button,
 } from '@material-ui/core';
 
 // third-party
 import PerfectScrollbar from 'react-perfect-scrollbar';
+
+import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
+
+import { FaAddressCard, FaShoppingBag } from 'react-icons/fa';
+
+// links for the side nav
+const links = [
+  {
+    id: 'L0',
+    path: '/profile/details',
+    icon: <PersonOutlineOutlinedIcon />,
+    title: 'My Details',
+  },
+
+  {
+    id: 'L2',
+    path: '/profile/orders',
+    icon: <FaShoppingBag />,
+    title: 'my orders',
+  },
+  {
+    id: 'L1',
+    path: '/profile/address',
+    icon: <FaAddressCard />,
+    title: 'My address book',
+  },
+];
 
 // project imports
 import MainCard from '../../../../ui-component/cards/MainCard.js';
@@ -90,8 +117,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '5px',
   },
   cardContent: {
-    padding: '20px 8px !important',
-    width: '250px',
+    padding: '20px 0px !important',
+    width: '280px',
   },
   card: {
     backgroundColor: theme.palette.primary.light,
@@ -111,6 +138,8 @@ const useStyles = makeStyles((theme) => ({
   },
   flex: {
     display: 'flex',
+    marginLeft: '25px',
+    fontSize: '.94rem !important',
   },
   name: {
     marginLeft: '2px',
@@ -125,18 +154,58 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.warning.dark,
     color: '#fff',
   },
+  button: {
+    borderRadius: '0px',
+    display: 'flex',
+    paddingLeft: '25px',
+    height: '50px',
+    justifyContent: 'flex-start',
+    textTransform: 'capitalize',
+    background: 'transparent',
+    color: 'black',
+    alignItems: 'left',
+    width: '300px',
+
+    '&:hover': {
+      color: '#1275D1',
+      background: '#E2ECF6',
+    },
+  },
+  selected: {
+    borderRadius: '0px',
+    paddingLeft: '25px',
+    height: '50px',
+    display: 'flex',
+    justifyContent: 'flex-start',
+    textTransform: 'capitalize',
+    alignItems: 'left',
+    width: '300px',
+    color: '#1275D1 !important',
+    background: '#E2ECF6',
+    '&:hover': {
+      color: '#1275D1 !important',
+      background: '#E2ECF6 !important',
+    },
+  },
 }));
 
 //-----------------------|| PROFILE MENU ||-----------------------//
 
 const ProfileSection = () => {
   const classes = useStyles();
+  const {
+    root,
+    profileheading,
+    button,
+    selected,
+    profile_sidebar,
+  } = useStyles();
   const theme = useTheme();
+  const { pathname } = useLocation();
   const customization = useSelector((state) => state.customization);
 
   const [sdm, setSdm] = React.useState(true);
   const [value, setValue] = React.useState('');
-  const [notification, setNotification] = React.useState(false);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
   const [open, setOpen] = React.useState(false);
@@ -213,116 +282,50 @@ const ProfileSection = () => {
                   <CardContent className={classes.cardContent}>
                     <Grid container direction="column" spacing={0}>
                       <Grid item className={classes.flex}>
-                        <Typography variant="subtitle1">
-                          Good Morning,
+                        <Typography
+                          style={{ fontSize: '.94rem' }}
+                          variant="subtitle1"
+                        >
+                          Welcome,
                         </Typography>
                         <Typography
                           component="span"
+                          style={{ fontSize: '.94rem' }}
                           variant="subtitle1"
                           className={classes.name}
                         >
-                          John
-                        </Typography>
-                      </Grid>
-                      <Grid item>
-                        <Typography variant="subtitle2">
-                          Project Admin
+                          User
                         </Typography>
                       </Grid>
                     </Grid>
 
                     <PerfectScrollbar className={classes.ScrollHeight}>
                       <Divider
-                        style={{ marginBottom: '0px', marginTop: '10px' }}
+                        style={{ marginBottom: '10px', marginTop: '10px' }}
                       />
-                      <List component="nav" className={classes.navContainer}>
-                        <ListItem
-                          className={classes.listItem}
-                          sx={{
-                            borderRadius: '10px',
-                          }}
-                          selected={selectedIndex === 0}
-                          onClick={(event) => handleListItemClick(event, 0)}
-                          component={React.forwardRef((props, ref) => (
-                            <RouterLink
-                              {...props}
-                              to="/user/account-profile/profile1"
-                            />
+
+                      {/* grid for list nav */}
+                      <Grid container>
+                        <Grid item>
+                          {links.map((link) => (
+                            <Button
+                              disableElevation
+                              onClick={() => handleClose(event)}
+                              className={
+                                pathname === link.path ? selected : button
+                              }
+                              variant="contained"
+                              activeClassName={selected}
+                              autoCapitalize={false}
+                              startIcon={link.icon}
+                              component={NavLink}
+                              to={link.path}
+                            >
+                              {link.title}
+                            </Button>
                           ))}
-                        >
-                          <ListItemIcon>
-                            <IconSettings stroke={1.5} size="1.3rem" />
-                          </ListItemIcon>
-                          <ListItemText
-                            primary={
-                              <Typography
-                                style={{ marginLeft: '-20px' }}
-                                variant="body2"
-                              >
-                                Account Settings
-                              </Typography>
-                            }
-                          />
-                        </ListItem>
-                        <ListItem
-                          className={classes.listItem}
-                          sx={{
-                            borderRadius: '10px',
-                          }}
-                          selected={selectedIndex === 1}
-                          onClick={(event) => handleListItemClick(event, 1)}
-                          component={React.forwardRef((props, ref) => (
-                            <RouterLink
-                              {...props}
-                              to="/user/social-profile/posts"
-                            />
-                          ))}
-                        >
-                          <ListItemIcon>
-                            <IconUser stroke={1.5} size="1.3rem" />
-                          </ListItemIcon>
-                          <ListItemText
-                            primary={
-                              <Grid
-                                container
-                                spacing={1}
-                                justifyContent="space-between"
-                              >
-                                <Grid item>
-                                  <Typography
-                                    style={{ marginLeft: '-20px' }}
-                                    variant="body2"
-                                  >
-                                    Social Profile
-                                  </Typography>
-                                </Grid>
-                              </Grid>
-                            }
-                          />
-                        </ListItem>
-                        <ListItem
-                          className={classes.listItem}
-                          sx={{
-                            borderRadius: '10px',
-                          }}
-                          selected={selectedIndex === 4}
-                          onClick={handleLogout}
-                        >
-                          <ListItemIcon>
-                            <IconLogout stroke={1.5} size="1.3rem" />
-                          </ListItemIcon>
-                          <ListItemText
-                            primary={
-                              <Typography
-                                style={{ marginLeft: '-20px' }}
-                                variant="body2"
-                              >
-                                Logout
-                              </Typography>
-                            }
-                          />
-                        </ListItem>
-                      </List>
+                        </Grid>
+                      </Grid>
                     </PerfectScrollbar>
                   </CardContent>
                 </MainCard>

@@ -178,18 +178,22 @@ const NotificationSection = () => {
                           >
                             <Grid item>
                               <Box display="flex" spacing={2}>
-                                <Typography variant="subtitle1">
+                                <Typography
+                                  style={{ fontSize: '.94rem' }}
+                                  variant="subtitle1"
+                                >
                                   All Notification
                                 </Typography>
-                                <Chip
+                                {/* <Chip
                                   size="small"
                                   label="01"
                                   className={classes.notificationChip}
-                                />
+                                /> */}
                               </Box>
                             </Grid>
                             <Grid item>
                               <Typography
+                                style={{ fontSize: '.94rem' }}
                                 component={Link}
                                 to="#"
                                 variant="subtitle2"
