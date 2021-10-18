@@ -29,11 +29,21 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 import { RiProfileLine } from 'react-icons/ri';
+import { BiHomeCircle } from 'react-icons/bi';
+import { IoFastFood } from 'react-icons/io5';
+import { MdContacts } from 'react-icons/md';
+import { ImEnter } from 'react-icons/im';
 
 import { FaAddressCard, FaShoppingBag } from 'react-icons/fa';
 
 // links for the side nav
-const links = [
+const signedinUserLinks = [
+  {
+    id: 'L9',
+    path: '/',
+    icon: <BiHomeCircle />,
+    title: 'Home',
+  },
   {
     id: 'L0',
     path: '/profile/details',
@@ -52,6 +62,34 @@ const links = [
     path: '/login',
     icon: <AiOutlinePoweroff style={{ color: 'red' }} />,
     title: 'Sign Out',
+  },
+];
+// unregistered links for the side nav
+const unSignedinUserLinks = [
+  {
+    id: 'L9',
+    path: '/',
+    icon: <BiHomeCircle />,
+    title: 'Home',
+  },
+
+  {
+    id: 'L2',
+    path: '/allmeals',
+    icon: <FaShoppingBag />,
+    title: 'Meals',
+  },
+  {
+    id: 'L1',
+    path: '/login',
+    icon: <ImEnter />,
+    title: 'Sign In',
+  },
+  {
+    id: 'L6',
+    path: '/login',
+    icon: <ImEnter />,
+    title: 'Sign Up',
   },
 ];
 
@@ -309,7 +347,7 @@ const ProfileSection = () => {
                       {/* grid for list nav */}
                       <Grid container>
                         <Grid item>
-                          {links.map((link) => (
+                          {unSignedinUserLinks.map((link) => (
                             <Button
                               disableElevation
                               onClick={() => handleClose(event)}
