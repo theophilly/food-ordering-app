@@ -81,6 +81,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '100px',
     '& > :nth-child(2)': {
       textTransform: 'capitalize',
+      display: 'flex',
+      alignItems: 'center',
       height: '30px',
       color: theme.palette.secondary.main,
     },
@@ -319,7 +321,7 @@ export default function Login() {
         <img src="./social-google.svg" />
         <Typography>Sign up with Google</Typography>
       </div> */}
-        <Box alignItems="center" display="flex" marginTop="5px">
+        <Box alignItems="center" display="flex" marginTop="10px">
           <Typography className={recommendation}>
             Dont have an account?
           </Typography>
