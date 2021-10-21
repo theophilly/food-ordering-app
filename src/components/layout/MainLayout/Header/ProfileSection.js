@@ -159,6 +159,7 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     padding: '20px 0px !important',
     width: '250px',
+    overflow: 'hidden',
   },
   card: {
     backgroundColor: theme.palette.primary.light,
