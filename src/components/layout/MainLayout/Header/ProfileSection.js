@@ -88,7 +88,7 @@ const unSignedinUserLinks = [
   {
     id: 'L6',
     path: '/login',
-    icon: <ImEnter />,
+    icon: <FaAddressCard />,
     title: 'Sign Up',
   },
 ];
@@ -158,7 +158,9 @@ const useStyles = makeStyles((theme) => ({
   },
   cardContent: {
     padding: '20px 0px !important',
+    height: 'max-content',
     width: '250px',
+    maxWidth: '250px',
     overflow: 'hidden',
   },
   card: {
@@ -247,13 +249,20 @@ const ProfileSection = () => {
   } = useStyles();
   const theme = useTheme();
   const { pathname } = useLocation();
-  const customization = useSelector((state) => state.customization);
+  const state = useSelector((state) => state.authReducer);
 
-  const [sdm, setSdm] = React.useState(true);
-  const [value, setValue] = React.useState('');
+  const [dropDownData, setDropDownData] = React.useState(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
   const [open, setOpen] = React.useState(false);
+  React.useEffect(() => {
+    if (state.authenticated) {
+      setDropDownData(signedinUserLinks);
+    } else {
+      setDropDownData(unSignedinUserLinks);
+    }
+  }, [state.authenticated]);
+
   const anchorRef = React.useRef(null);
   const handleLogout = async () => {
     console.error('Logout');
@@ -286,7 +295,11 @@ const ProfileSection = () => {
         classes={{ label: classes.profileLabel, icon: classes.icon }}
         className={classes.profileChip}
         icon={<IconUser stroke={1.5} size="1.3rem" />}
-        label={<Typography> Account</Typography>}
+        label={
+          <Typography>
+            {state.authenticated ? `  ${state.user.firstName}` : 'Account'}
+          </Typography>
+        }
         variant="outlined"
         ref={anchorRef}
         aria-controls={open ? 'menu-list-grow' : undefined}
@@ -339,40 +352,40 @@ const ProfileSection = () => {
                           variant="subtitle1"
                           className={classes.name}
                         >
-                          User
+                          {state.authenticated
+                            ? `  ${state.user.firstName}`
+                            : 'User'}
                         </Typography>
                       </Grid>
                     </Grid>
 
-                    <PerfectScrollbar className={classes.ScrollHeight}>
-                      <Divider
-                        style={{ marginBottom: '10px', marginTop: '10px' }}
-                      />
+                    <Divider
+                      style={{ marginBottom: '10px', marginTop: '10px' }}
+                    />
 
-                      {/* grid for list nav */}
-                      <Grid container>
-                        <Grid item>
-                          {unSignedinUserLinks.map((link) => (
-                            <Button
-                              disableElevation
-                              onClick={() => handleClose(event)}
-                              className={
-                                pathname === link.path ? selected : button
-                              }
-                              variant="contained"
-                              classes={{ startIcon: button_text }}
-                              activeClassName={selected}
-                              autoCapitalize={false}
-                              startIcon={link.icon}
-                              component={NavLink}
-                              to={link.path}
-                            >
-                              {link.title}
-                            </Button>
-                          ))}
-                        </Grid>
+                    {/* grid for list nav */}
+                    <Grid container>
+                      <Grid item>
+                        {dropDownData.map((link) => (
+                          <Button
+                            disableElevation
+                            onClick={() => handleClose(event)}
+                            className={
+                              pathname === link.path ? selected : button
+                            }
+                            variant="contained"
+                            classes={{ startIcon: button_text }}
+                            activeClassName={selected}
+                            autoCapitalize={false}
+                            startIcon={link.icon}
+                            component={NavLink}
+                            to={link.path}
+                          >
+                            {link.title}
+                          </Button>
+                        ))}
                       </Grid>
-                    </PerfectScrollbar>
+                    </Grid>
                   </CardContent>
                 </MainCard>
               </ClickAwayListener>
