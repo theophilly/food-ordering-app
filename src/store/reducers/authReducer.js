@@ -20,7 +20,7 @@ export default function authReducer(state = initialState, action) {
       loading: false,
       user: action.payload.user,
       authenticated: true,
-      // token: action.payload.token,
+      token: action.payload.token,
     };
   } else if (action.type === actionType.SESSION_EXPIRED) {
     return { ...initialState };

@@ -3,15 +3,21 @@ import {
   Typography,
   makeStyles,
   Button,
+  Snackbar,
   OutlinedInput,
   Grid,
   Box,
 } from '@material-ui/core';
 import { BsArrowLeft } from 'react-icons/bs';
+import Alert from '@mui/material/Alert';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import Textfield from '../components/partials/FormUI/Textfield';
+// import CheckIcon from '@mui/icons-material/Check';
+// import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import SignInForm from '../components/auth/SignInForm';
+import SignUpForm from '../components/auth/SignUpForm';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -167,178 +173,41 @@ export default function Login() {
     recommendation_link,
   } = useStyles();
   let navigate = useNavigate();
+  const [open, setOpen] = React.useState(false);
+  const [alertContent, setAlertContent] = React.useState({
+    type: '',
+    content: '',
+  });
 
-  const signUp = () => {
-    return (
-      <div className={root_left_lower}>
-        <Typography>get your food</Typography>
-        <Typography variant="h1" component="h1">
-          Create an Account
-        </Typography>
-        {/* third */}
-        <Box marginTop="20px">
-          <Formik
-            initialValues={{
-              email: '',
-              password: '',
-              confirmPassword: '',
-            }}
-            onSubmit={async (values) => {
-              console.log('values', values);
-            }}
-            validationSchema={Yup.object().shape({
-              email: Yup.string()
-                .email('Invalid email format')
-                .required('Required'),
-              password: Yup.string()
-                .min(6, 'password must be atleast 6 characters')
-                .required('Password is required'),
-              confirmPassword: Yup.string()
-                .oneOf([Yup.ref('password'), null], 'password must match')
-                .required('Please confirm password 😱'),
-            })}
-          >
-            {({ isSubmitting }) => (
-              <Form autoComplete="off">
-                <Grid container>
-                  <Grid xs={12} item>
-                    <Box marginTop="10px">
-                      <Textfield name="email" helpertext="Email Address" />
-                    </Box>
-
-                    <Box marginTop="10px">
-                      <Textfield
-                        type="password"
-                        name="password"
-                        helpertext="Password"
-                      />
-                    </Box>
-                    <Box marginTop="10px">
-                      <Textfield
-                        type="password"
-                        name="confirmPassword"
-                        helpertext="Confirm Password"
-                      />
-                    </Box>
-                    <Box>
-                      <Button
-                        className={login_button}
-                        disableElevation
-                        variant="contained"
-                        type="submit"
-                      >
-                        Sign Up
-                      </Button>
-                    </Box>
-                  </Grid>
-                </Grid>
-              </Form>
-            )}
-          </Formik>
-        </Box>
-
-        {/* <div className={sign_up_google}>
-      <img src="./social-google.svg" />
-      <Typography>Sign up with Google</Typography>
-    </div> */}
-        <Box alignItems="center" display="flex" marginTop="10px">
-          <Typography className={recommendation}>
-            Already have an account?
-          </Typography>
-          <Typography
-            onClick={() => setstate('login')}
-            color="secondary"
-            className={recommendation_link}
-          >
-            Log In
-          </Typography>
-        </Box>
-      </div>
-    );
+  const handleClick = () => {
+    setOpen(true);
   };
 
-  const signIn = () => {
-    return (
-      <div className={root_left_lower}>
-        <Typography>get your food</Typography>
-        <Typography variant="h1" component="h1">
-          Login to Your Account
-        </Typography>
-        {/* third */}
-        <Box marginTop="20px">
-          <Formik
-            initialValues={{
-              email: '',
-              password: '',
-              confirmPassword: '',
-            }}
-            onSubmit={async (values) => {
-              console.log('values', values);
-            }}
-            validationSchema={Yup.object().shape({
-              email: Yup.string()
-                .email('Invalid email format')
-                .required('Required'),
-              password: Yup.string()
-                .min(6, 'password must be atleast 6 characters')
-                .required('Password is required'),
-            })}
-          >
-            {({ isSubmitting }) => (
-              <Form autoComplete="off">
-                <Grid container>
-                  <Grid xs={12} item>
-                    <Box marginTop="10px">
-                      <Textfield name="email" helpertext="Email Address" />
-                    </Box>
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
 
-                    <Box marginTop="10px">
-                      <Textfield
-                        type="password"
-                        name="password"
-                        helpertext="Password"
-                      />
-                    </Box>
-
-                    <Box>
-                      <Button
-                        className={login_button}
-                        disableElevation
-                        variant="contained"
-                        type="submit"
-                      >
-                        Sign In
-                      </Button>
-                    </Box>
-                  </Grid>
-                </Grid>
-              </Form>
-            )}
-          </Formik>
-        </Box>
-
-        {/* <div className={sign_up_google}>
-        <img src="./social-google.svg" />
-        <Typography>Sign up with Google</Typography>
-      </div> */}
-        <Box alignItems="center" display="flex" marginTop="10px">
-          <Typography className={recommendation}>
-            Dont have an account?
-          </Typography>
-          <Typography
-            onClick={() => setstate('signup')}
-            color="secondary"
-            className={recommendation_link}
-          >
-            Sign Up
-          </Typography>
-        </Box>
-      </div>
-    );
+    setOpen(false);
   };
 
   return (
     <div className={root}>
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+      >
+        <Alert
+          variant="filled"
+          onClose={handleClose}
+          severity={alertContent['type']}
+          sx={{ width: '100%' }}
+        >
+          {alertContent['content']}
+        </Alert>
+      </Snackbar>
       <div className={root_left}>
         <div className={root_left_upper}>
           <div
@@ -365,7 +234,15 @@ export default function Login() {
         </div>
 
         {/* show either login or signup based on state variable */}
-        {state === 'login' ? signIn() : signUp()}
+        {state === 'login' ? (
+          <SignInForm
+            showToast={handleClick}
+            setClickData={setAlertContent}
+            onclick={setstate}
+          />
+        ) : (
+          <SignUpForm onclick={setstate} />
+        )}
       </div>
       <div className={root_right}>
         <img src="./macaroni-1469.png" />

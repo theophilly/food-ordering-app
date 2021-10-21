@@ -1,16 +1,16 @@
 import * as axios from 'axios';
-import { getCookie } from './utils';
+import getCookie from './getCookie.js';
 
-export default class Api {
+class Api {
   constructor() {
     this.api_token = null;
     this.client = null;
-    this.api_url = '';
+    this.api_url = 'http://localhost:5000';
     // this.api_url = process.env.REACT_APP_API_ENDPOINT;
   }
 
   init = () => {
-    this.api_token = getCookie('ACCESS_TOKEN');
+    this.api_token = getCookie();
 
     let headers = {
       Accept: 'application/json',
@@ -29,11 +29,23 @@ export default class Api {
     return this.client;
   };
 
+  //get users list
   getUserList = (params) => {
     return this.init().get('/users', { params: params });
   };
 
+  //add new user
   addNewUser = (data) => {
     return this.init().post('/users', data);
   };
+  //user sign In
+  signIn = (data) => {
+    return this.init().post('/signin', data);
+  };
+  //user sign In
+  signUp = (data) => {
+    return this.init().post('/signup', data);
+  };
 }
+
+export default new Api();

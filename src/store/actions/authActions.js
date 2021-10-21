@@ -1,5 +1,5 @@
 import * as actionType from '../actionTypes/authActionsTypes';
-import axios from '../../utils/axios';
+import api from '../../helpers/api.js';
 
 export const login = (user) => {
   return async (dispatch) => {
@@ -7,11 +7,11 @@ export const login = (user) => {
 
     console.log(user);
 
-    await axios
-      .post('/api/user/signin', { ...user })
+    await api
+      .signIn({ email: user.loginEmail, password: user.loginPassword })
       .then((res) => {
-        // localStorage.setItem('token', res.data.token);
-        // localStorage.setItem('user', JSON.stringify(res.data.user));
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('user', JSON.stringify(res.data.user));
         dispatch({
           type: actionType.ON_LOGIN_SUCCESS,
           payload: {
@@ -23,19 +23,19 @@ export const login = (user) => {
         dispatch({
           type: actionType.ON_LOGIN_ERROR,
           payload: {
-            error: error.response.data.message,
+            error: error.response.data.error,
           },
         });
       });
   };
 };
 
-export const signUp = (user) => {
+export const signup = (user) => {
   return async (dispatch) => {
     dispatch({ type: actionType.LOGIN_BEGIN });
 
-    await axios
-      .post('/api/user/signup', { ...user })
+    await api
+      .signUp({ ...user })
       .then((res) => {
         dispatch({
           type: actionType.ON_LOGIN_SUCCESS,
@@ -50,45 +50,45 @@ export const signUp = (user) => {
         dispatch({
           type: actionType.ON_LOGIN_ERROR,
           payload: {
-            error: error.response.data.message,
+            error: error.response.data.error,
           },
         });
       });
   };
 };
 
-export const logout = () => {
-  localStorage.clear();
-  return async (dispatch) => {
-    console.log('okay');
-    dispatch({ type: actionType.SIGN_OUT });
-  };
-};
-export const updateUser = (form) => {
-  let token = localStorage.getItem('token');
+// export const logout = () => {
+//   localStorage.clear();
+//   return async (dispatch) => {
+//     console.log('okay');
+//     dispatch({ type: actionType.SIGN_OUT });
+//   };
+// };
+// export const updateUser = (form) => {
+//   let token = localStorage.getItem('token');
 
-  if (token) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-  }
+//   if (token) {
+//     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+//   }
 
-  return async (dispatch) => {
-    await axios
-      .post('/api/user/updateuser', form)
-      .then((res) => {
-        dispatch({
-          type: actionType.ON_UPDATE_SUCCESS,
-          payload: {
-            ...res.data,
-          },
-        });
-      })
-      .catch((error) => {
-        dispatch({
-          type: actionType.ON_UPDATE_ERROR,
-          payload: {
-            error: error.response.data.message,
-          },
-        });
-      });
-  };
-};
+//   return async (dispatch) => {
+//     await axios
+//       .post('/api/user/updateuser', form)
+//       .then((res) => {
+//         dispatch({
+//           type: actionType.ON_UPDATE_SUCCESS,
+//           payload: {
+//             ...res.data,
+//           },
+//         });
+//       })
+//       .catch((error) => {
+//         dispatch({
+//           type: actionType.ON_UPDATE_ERROR,
+//           payload: {
+//             error: error.response.data.error,
+//           },
+//         });
+//       });
+//   };
+// };
