@@ -1,5 +1,5 @@
 import jwt_decode from 'jwt-decode';
-import store from '../store';
+import { store } from '../store';
 
 export default function getCookie() {
   const token = localStorage.getItem('token');
