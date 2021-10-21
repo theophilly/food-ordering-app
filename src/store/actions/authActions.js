@@ -10,8 +10,6 @@ export const login = (user) => {
     await api
       .signIn({ email: user.loginEmail, password: user.loginPassword })
       .then((res) => {
-        localStorage.setItem('token', res.data.token);
-        localStorage.setItem('user', JSON.stringify(res.data.user));
         dispatch({
           type: actionType.ON_LOGIN_SUCCESS,
           payload: {
@@ -43,8 +41,6 @@ export const signup = (user) => {
             ...res.data,
           },
         });
-        localStorage.setItem('token', res.data.token);
-        localStorage.setItem('user', JSON.stringify(res.data.user));
       })
       .catch((error) => {
         dispatch({

@@ -1,4 +1,6 @@
 import * as actionType from '../actionTypes/authActionsTypes';
+import { REHYDRATE } from 'redux-persist';
+import getCookie from '../../helpers/getCookie.js';
 
 const initialState = {
   loading: false,
@@ -10,7 +12,14 @@ const initialState = {
 };
 
 export default function authReducer(state = initialState, action) {
-  if (action.type === actionType.LOGIN_BEGIN) {
+  if (action.type === REHYDRATE) {
+    //console.log(action.payload.authReducer.token);
+    const cookie = getCookie(action.payload?.authReducer.token);
+    if (!cookie) {
+      return { ...initialState };
+    }
+    return { ...action.payload.authReducer };
+  } else if (action.type === actionType.LOGIN_BEGIN) {
     return { ...state, loading: true };
   } else if (action.type === actionType.ON_LOGIN_ERROR) {
     return { ...state, error: action.payload.error, loading: false };

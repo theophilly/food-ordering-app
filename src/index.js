@@ -10,7 +10,7 @@ window.store = store;
 
 ReactDOM.render(
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistedStore}>
+    <PersistGate loading={<p>loading</p>} persistor={persistedStore}>
       <React.StrictMode>
         <Router>
           <App />

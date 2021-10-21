@@ -10,7 +10,7 @@ class Api {
   }
 
   init = () => {
-    this.api_token = getCookie();
+    this.api_token = getCookie(window.store.getState().authReducer.token);
 
     let headers = {
       Accept: 'application/json',
