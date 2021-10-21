@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
 import Textfield from '../partials/FormUI/Textfield';
 import { signup } from '../../store/actions/authActions';
 
-export default function SignUpForm({ onclick }) {
+export default function SignUpForm({ onclick, setClickData, showToast }) {
   const dispatch = useDispatch();
   const {
     root_left_lower,
@@ -80,6 +80,20 @@ export default function SignUpForm({ onclick }) {
           onSubmit={async (values) => {
             console.log('values', values);
             await dispatch(signup(values));
+
+            if (window.store.getState().authReducer.authenticated === true) {
+              await setClickData({
+                type: 'success',
+                content: 'You account was successfully created',
+              });
+              showToast();
+            } else {
+              await setClickData({
+                type: 'error',
+                content: window.store.getState().authReducer.error,
+              });
+              showToast();
+            }
           }}
           validationSchema={Yup.object().shape({
             firstName: Yup.string().required('First Name is Required'),

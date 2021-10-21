@@ -3,17 +3,16 @@ import {
   Typography,
   makeStyles,
   Button,
-  Snackbar,
   OutlinedInput,
   Grid,
   Box,
 } from '@material-ui/core';
 import { BsArrowLeft } from 'react-icons/bs';
-import Alert from '@mui/material/Alert';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import Textfield from '../components/partials/FormUI/Textfield';
+import Snackbar from '../components/reusables/Snackbar';
 // import CheckIcon from '@mui/icons-material/Check';
 // import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import SignInForm from '../components/auth/SignInForm';
@@ -173,11 +172,11 @@ export default function Login() {
     recommendation_link,
   } = useStyles();
   let navigate = useNavigate();
-  const [open, setOpen] = React.useState(false);
   const [alertContent, setAlertContent] = React.useState({
     type: '',
     content: '',
   });
+  const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
     setOpen(true);
@@ -194,20 +193,10 @@ export default function Login() {
   return (
     <div className={root}>
       <Snackbar
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        alertContent={alertContent}
         open={open}
-        autoHideDuration={6000}
-        onClose={handleClose}
-      >
-        <Alert
-          variant="filled"
-          onClose={handleClose}
-          severity={alertContent['type']}
-          sx={{ width: '100%' }}
-        >
-          {alertContent['content']}
-        </Alert>
-      </Snackbar>
+        handleClose={handleClose}
+      />
       <div className={root_left}>
         <div className={root_left_upper}>
           <div
@@ -241,7 +230,11 @@ export default function Login() {
             onclick={setstate}
           />
         ) : (
-          <SignUpForm onclick={setstate} />
+          <SignUpForm
+            showToast={handleClick}
+            setClickData={setAlertContent}
+            onclick={setstate}
+          />
         )}
       </div>
       <div className={root_right}>

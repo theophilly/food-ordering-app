@@ -178,7 +178,7 @@ const useStyles = makeStyles((theme) => ({
   },
   flex: {
     display: 'flex',
-    marginLeft: '25px',
+    marginLeft: '34px',
     fontSize: '.94rem !important',
   },
   name: {
@@ -197,7 +197,7 @@ const useStyles = makeStyles((theme) => ({
   button: {
     borderRadius: '0px',
     display: 'flex',
-    paddingLeft: '25px',
+    paddingLeft: '35px',
     height: '50px',
     justifyContent: 'flex-start',
     textTransform: 'capitalize',
@@ -213,7 +213,7 @@ const useStyles = makeStyles((theme) => ({
   },
   selected: {
     borderRadius: '0px',
-    paddingLeft: '25px',
+    paddingLeft: '35px',
     height: '50px',
     display: 'flex',
     justifyContent: 'flex-start',
@@ -227,6 +227,9 @@ const useStyles = makeStyles((theme) => ({
       background: '#E2ECF6 !important',
     },
   },
+  button_text: {
+    marginRight: '30px !important',
+  },
 }));
 
 //-----------------------|| PROFILE MENU ||-----------------------//
@@ -238,6 +241,7 @@ const ProfileSection = () => {
     profileheading,
     button,
     selected,
+    button_text,
     profile_sidebar,
   } = useStyles();
   const theme = useTheme();
@@ -355,6 +359,7 @@ const ProfileSection = () => {
                                 pathname === link.path ? selected : button
                               }
                               variant="contained"
+                              classes={{ startIcon: button_text }}
                               activeClassName={selected}
                               autoCapitalize={false}
                               startIcon={link.icon}
