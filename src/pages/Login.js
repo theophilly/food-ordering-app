@@ -228,9 +228,11 @@ export default function Login() {
             showToast={handleClick}
             setClickData={setAlertContent}
             onclick={setstate}
+            path={from}
           />
         ) : (
           <SignUpForm
+            path={from}
             showToast={handleClick}
             setClickData={setAlertContent}
             onclick={setstate}

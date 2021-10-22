@@ -1,4 +1,5 @@
 import React, { lazy } from 'react';
+import { Navigate } from 'react-router-dom';
 import Userprofile from '../pages/Userprofile';
 import Mydetails from '../components/user_profile/Mydetails';
 import Useraddress from '../components/user_profile/Useraddress';
@@ -8,7 +9,7 @@ import Allfoods from '../pages/Allfoods';
 import Checkout from '../pages/Checkout';
 import Login from '../pages/Login';
 
-const AuthenticationRoutes = [
+const AuthenticationRoutes = (isLoggedIn) => [
   {
     path: '/',
     element: <Home />,
@@ -23,11 +24,11 @@ const AuthenticationRoutes = [
   },
   {
     path: '/login',
-    element: <Login />,
+    element: isLoggedIn ? <Navigate to="/profile" /> : <Login />,
   },
   {
     path: '/profile/*',
-    element: <Userprofile />,
+    element: isLoggedIn ? <Userprofile /> : <Navigate to="/login" />,
     children: [
       {
         path: 'details',
@@ -42,6 +43,10 @@ const AuthenticationRoutes = [
         element: <Userorders />,
       },
     ],
+  },
+  {
+    path: '*',
+    element: <p>not found</p>,
   },
 ];
 

@@ -5,6 +5,7 @@ import './App.css';
 import theme from './theme';
 import ScrollToTop from './components/reusables/ScrollToTop';
 import Navbar from './components/reusables/Navbar';
+import Footer from './components/reusables/Footer';
 
 import Routes from './routes';
 
@@ -14,6 +15,7 @@ function App() {
       <ScrollToTop />
       <Navbar />
       <Routes />
+      <Footer />
     </ThemeProvider>
   );
 }

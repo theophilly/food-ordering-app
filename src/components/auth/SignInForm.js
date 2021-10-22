@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 import {
   Typography,
   makeStyles,
@@ -53,7 +54,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignInForm({ onclick, setClickData, showToast }) {
+export default function SignInForm({ onclick, setClickData, showToast, path }) {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
     root_left_lower,
@@ -84,6 +86,7 @@ export default function SignInForm({ onclick, setClickData, showToast }) {
                 content: 'You have successfully logged in',
               });
               showToast();
+              navigate(path || '/profile');
             } else {
               await setClickData({
                 type: 'error',

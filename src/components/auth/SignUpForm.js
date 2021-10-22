@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 import { Alert, AlertTitle } from '@mui/material';
 import {
   Typography,
@@ -53,7 +54,8 @@ const useStyles = makeStyles((theme) => ({
 import Textfield from '../partials/FormUI/Textfield';
 import { signup } from '../../store/actions/authActions';
 
-export default function SignUpForm({ onclick, setClickData, showToast }) {
+export default function SignUpForm({ onclick, setClickData, showToast, path }) {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
     root_left_lower,
@@ -87,6 +89,7 @@ export default function SignUpForm({ onclick, setClickData, showToast }) {
                 content: 'You account was successfully created',
               });
               showToast();
+              navigate(path || '/dashboard');
             } else {
               await setClickData({
                 type: 'error',

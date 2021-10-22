@@ -33,6 +33,7 @@ import { BiHomeCircle } from 'react-icons/bi';
 import { IoFastFood } from 'react-icons/io5';
 import { MdContacts } from 'react-icons/md';
 import { ImEnter } from 'react-icons/im';
+import { FcLowPriority } from 'react-icons/fc';
 
 import { FaAddressCard, FaShoppingBag } from 'react-icons/fa';
 
@@ -88,7 +89,7 @@ const unSignedinUserLinks = [
   {
     id: 'L6',
     path: '/login',
-    icon: <FaAddressCard />,
+    icon: <FcLowPriority />,
     title: 'Sign Up',
   },
 ];
