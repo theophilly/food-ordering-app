@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import {
   AppBar,
   Toolbar,
@@ -96,6 +97,7 @@ const useStyles = makeStyles({
 });
 
 export default function Navbar() {
+  const state = useSelector((state) => state.authReducer);
   const location = useLocation();
 
   const {
@@ -139,7 +141,7 @@ export default function Navbar() {
           <div>
             <Profile />
             <CartSection />
-            <Notification />
+            {state.authenticated && <Notification />}
           </div>
         </div>
       </Toolbar>
@@ -192,7 +194,7 @@ export default function Navbar() {
         <Box>
           <Profile />
           <CartSection />
-          <Notification />
+          {state.authenticated && <Notification />}
         </Box>
       </Toolbar>
     );
