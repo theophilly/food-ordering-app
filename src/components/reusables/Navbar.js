@@ -97,7 +97,7 @@ const useStyles = makeStyles({
 });
 
 export default function Navbar() {
-  const state = useSelector((state) => state.authReducer);
+  const auth = useSelector((state) => state.authReducer);
   const location = useLocation();
 
   const {
@@ -141,7 +141,7 @@ export default function Navbar() {
           <div>
             <Profile />
             <CartSection />
-            {state.authenticated && <Notification />}
+            {auth.authenticated && <Notification />}
           </div>
         </div>
       </Toolbar>
@@ -194,7 +194,7 @@ export default function Navbar() {
         <Box>
           <Profile />
           <CartSection />
-          {state.authenticated && <Notification />}
+          {auth.authenticated && <Notification />}
         </Box>
       </Toolbar>
     );
