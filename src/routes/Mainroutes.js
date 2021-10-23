@@ -8,6 +8,7 @@ import Home from '../pages/Home';
 import Allfoods from '../pages/Allfoods';
 import Checkout from '../pages/Checkout';
 import Login from '../pages/Login';
+import NotFound from '../pages/NotFound';
 
 const AuthenticationRoutes = (isLoggedIn) => [
   {
@@ -46,7 +47,7 @@ const AuthenticationRoutes = (isLoggedIn) => [
   },
   {
     path: '*',
-    element: <p>not found</p>,
+    element: <NotFound />,
   },
 ];
 

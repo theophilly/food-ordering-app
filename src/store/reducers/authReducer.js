@@ -13,7 +13,6 @@ const initialState = {
 
 export default function authReducer(state = initialState, action) {
   if (action.type === REHYDRATE) {
-    //console.log(action.payload.authReducer.token);
     const cookie = getCookie(action.payload?.authReducer.token);
     if (!cookie) {
       return { ...initialState };
