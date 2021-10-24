@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link as RouterLink, NavLink, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 // material-ui
 import {
@@ -60,7 +60,7 @@ const signedinUserLinks = [
   },
   {
     id: 'L1',
-    path: '/login',
+    path: '/',
     icon: <AiOutlinePoweroff style={{ color: 'red' }} />,
     title: 'Sign Out',
   },
@@ -251,6 +251,7 @@ const ProfileSection = () => {
   const theme = useTheme();
   const { pathname } = useLocation();
   const state = useSelector((state) => state.authReducer);
+  const dispatch = useDispatch();
 
   const [dropDownData, setDropDownData] = React.useState(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
@@ -267,6 +268,7 @@ const ProfileSection = () => {
   const anchorRef = React.useRef(null);
   const handleLogout = async () => {
     console.error('Logout');
+    dispatch({ type: 'SIGN_OUT' });
   };
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
@@ -370,7 +372,10 @@ const ProfileSection = () => {
                         {dropDownData.map((link) => (
                           <Button
                             disableElevation
-                            onClick={() => handleClose(event)}
+                            onClick={() => {
+                              handleClose(event);
+                              link.title === 'Sign Out' && handleLogout();
+                            }}
                             className={
                               pathname === link.path ? selected : button
                             }
@@ -381,6 +386,11 @@ const ProfileSection = () => {
                             startIcon={link.icon}
                             component={NavLink}
                             to={link.path}
+                            state={
+                              link.title === 'Sign Up' && {
+                                show: 'signup',
+                              }
+                            }
                           >
                             {link.title}
                           </Button>

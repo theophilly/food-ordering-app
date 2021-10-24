@@ -52,6 +52,50 @@ export const signup = (user) => {
       });
   };
 };
+export const updateUser = (user) => {
+  return async (dispatch) => {
+    await api
+      .update({ ...user })
+      .then((res) => {
+        dispatch({
+          type: actionType.USER_UPDATE,
+          payload: {
+            ...res.data,
+          },
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: actionType.ON_UPDATE_ERROR,
+          payload: {
+            error: error.response.data.error,
+          },
+        });
+      });
+  };
+};
+export const updatePassword = (user) => {
+  return async (dispatch) => {
+    await api
+      .updatepassword({ ...user })
+      .then((res) => {
+        dispatch({
+          type: actionType.USER_UPDATE,
+          payload: {
+            ...res.data,
+          },
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: actionType.ON_UPDATE_ERROR,
+          payload: {
+            error: error.response.data.error,
+          },
+        });
+      });
+  };
+};
 
 // export const logout = () => {
 //   localStorage.clear();

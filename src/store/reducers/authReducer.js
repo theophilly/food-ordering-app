@@ -34,10 +34,19 @@ export default function authReducer(state = initialState, action) {
     return { ...initialState };
   } else if (action.type === actionType.SIGN_OUT) {
     return { ...initialState };
+  } else if (action.type === actionType.USER_UPDATE) {
+    return {
+      ...state,
+      loading: false,
+      user: action.payload.user,
+      authenticated: true,
+      token: action.payload.token,
+      updated: true,
+    };
   } else if (action.type === actionType.ON_UPDATE_SUCCESS) {
-    return { ...state, user: action.payload.user, updated: true };
+    return { ...state, updated: false };
   } else if (action.type === actionType.ON_UPDATE_ERROR) {
-    return { ...state, error: action.payload.error, updated: false };
+    return { ...state, error: action.payload.error };
   } else {
     return state;
   }

@@ -46,6 +46,18 @@ class Api {
   signUp = (data) => {
     return this.init().post('/signup', data);
   };
+  //user update
+  update = (data) => {
+    return this.init().post('/updateuser', data);
+  };
+  //user password
+  updatepassword = (data) => {
+    return this.init().post('/updatepassword', data);
+  };
+  // add order
+  addorder = (data) => {
+    return this.init().post('/orders', data);
+  };
 }
 
 export default new Api();

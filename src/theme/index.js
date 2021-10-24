@@ -11,7 +11,7 @@ export default createTheme({
     secondary: {
       main: '#2b5ffc',
       light: '#ede7f6',
-      dark: '#5e35b1',
+      dark: '#2b5ffc',
     },
     error: {
       light: '#fbe9e7',

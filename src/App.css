@@ -18,6 +18,15 @@
   width: 5px;
 }
 
+/* custom scrollbar */
+.customscrollgeneral {
+  scrollbar-width: thin;
+  scrollbar-color: red !important;
+}
+.customscrollgeneral::-webkit-scrollbar {
+  width: 5px;
+}
+
 .active_link {
   color: black !important;
   font-weight: 700;

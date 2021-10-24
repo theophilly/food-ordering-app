@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
 
@@ -13,6 +14,7 @@ import {
   ButtonBase,
   ClickAwayListener,
   Divider,
+  CircularProgress,
   Grid,
   List,
   ListItemIcon,
@@ -26,6 +28,9 @@ import {
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import Textfield from '../partials/FormUI/Textfield';
+import { updateUser, updatePassword } from '../../store/actions/authActions';
+
+import Snackbar from '../reusables/Snackbar';
 
 // style const
 const useStyles = makeStyles((theme) => ({
@@ -78,6 +83,27 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Mydetails() {
+  const [alertContent, setAlertContent] = React.useState({
+    type: '',
+    content: '',
+  });
+
+  const [open, setOpen] = React.useState(false);
+  const auth = useSelector((state) => state.authReducer);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const dispatch = useDispatch();
   const {
     root,
     profileheading,
@@ -88,6 +114,11 @@ export default function Mydetails() {
 
   return (
     <Box>
+      <Snackbar
+        alertContent={alertContent}
+        open={open}
+        handleClose={handleClose}
+      />
       <Box className={root}>
         <Typography className={profileheading} variant="h1">
           My Details
@@ -102,18 +133,37 @@ export default function Mydetails() {
 
           <Formik
             initialValues={{
-              firstName: '',
-              lastName: '',
-              phone: '',
+              updateFirstName: auth.user.firstName,
+              updateLastName: auth.user.lastName,
+              updatePhone: auth.user.phone,
             }}
             onSubmit={async (values) => {
-              console.log('values', values);
+              await dispatch(
+                updateUser({
+                  firstName: values.updateFirstName,
+                  lastName: values.updateLastName,
+                  phone: values.updatePhone,
+                })
+              );
+              if (window.store.getState().authReducer.updated === true) {
+                await setAlertContent({
+                  type: 'success',
+                  content: 'You profile has been successfully updated',
+                });
+                handleClick();
+                dispatch({ type: 'ON_UPDATE_SUCCESS' });
+              } else {
+                await setAlertContent({
+                  type: 'error',
+                  content: window.store.getState().authReducer.error,
+                });
+                handleClick();
+              }
             }}
             validationSchema={Yup.object().shape({
-              firstName: Yup.string().required('First Name is Required'),
-              lastName: Yup.string().required('Last Name is Required'),
-              address: Yup.string().required('Address is Required'),
-              phone: Yup.number()
+              updateFirstName: Yup.string().required('First Name is Required'),
+              updateLastName: Yup.string().required('Last Name is Required'),
+              updatePhone: Yup.number()
                 .integer()
                 .typeError('Please enter a valid phone number')
                 .required('Phone is Required'),
@@ -139,15 +189,18 @@ export default function Mydetails() {
                   </Grid>
                   <Grid xs={12} sm={4} item>
                     <Box marginRight="10px" marginTop="10px">
-                      <Textfield name="firstName" helpertext="First Name" />
+                      <Textfield
+                        name="updateFirstName"
+                        helpertext="First Name"
+                      />
                     </Box>
                     <Box marginRight="10px" marginTop="10px">
-                      <Textfield name="phone" helpertext="Phone Number" />
+                      <Textfield name="updatePhone" helpertext="Phone Number" />
                     </Box>
                   </Grid>
                   <Grid xs={12} sm={4} item>
                     <Box marginRight="10px" marginTop="10px">
-                      <Textfield name="lastName" helpertext="Last Name" />
+                      <Textfield name="updateLastName" helpertext="Last Name" />
                     </Box>
                   </Grid>
 
@@ -155,6 +208,11 @@ export default function Mydetails() {
                   <Grid xs={12} sm={4} item>
                     <Box>
                       <Button
+                        startIcon={
+                          isSubmitting ? (
+                            <CircularProgress color="primary" size="1rem" />
+                          ) : null
+                        }
                         color="secondary"
                         className={personalinfo_submit}
                         type="submit"
@@ -180,14 +238,46 @@ export default function Mydetails() {
 
           <Formik
             initialValues={{
-              email: '',
+              email: auth.user.email,
+              newEmail: '',
               password: '',
             }}
             onSubmit={async (values) => {
-              console.log('values', values);
+              if (values.newEmail === auth.user.email) {
+                await setAlertContent({
+                  type: 'error',
+                  content: 'This is still your email, provide a new one',
+                });
+                handleClick();
+                return;
+              }
+
+              await dispatch(
+                updateUser({
+                  email: values.newEmail,
+                  password: values.password,
+                })
+              );
+              if (window.store.getState().authReducer.updated === true) {
+                await setAlertContent({
+                  type: 'success',
+                  content: 'Your email has been successfully updated',
+                });
+                handleClick();
+                dispatch({ type: 'ON_UPDATE_SUCCESS' });
+              } else {
+                await setAlertContent({
+                  type: 'error',
+                  content: window.store.getState().authReducer.error,
+                });
+                handleClick();
+              }
             }}
             validationSchema={Yup.object().shape({
               email: Yup.string()
+                .email('Invalid email format')
+                .required('Required'),
+              newEmail: Yup.string()
                 .email('Invalid email format')
                 .required('Required'),
               password: Yup.string()
@@ -215,7 +305,17 @@ export default function Mydetails() {
                   </Grid>
                   <Grid xs={12} sm={4} item>
                     <Box marginRight="10px" marginTop="10px">
-                      <Textfield name="email" helpertext="Email Address" />
+                      <Textfield
+                        name="email"
+                        disabled={true}
+                        helpertext="Current Email Address"
+                      />
+                    </Box>
+                    <Box marginRight="10px" marginTop="10px">
+                      <Textfield
+                        name="newEmail"
+                        helpertext="New Email Address"
+                      />
                     </Box>
                     <Box marginRight="10px" marginTop="10px">
                       <Textfield
@@ -226,6 +326,11 @@ export default function Mydetails() {
                     </Box>
                     <Box>
                       <Button
+                        startIcon={
+                          isSubmitting ? (
+                            <CircularProgress color="primary" size="1rem" />
+                          ) : null
+                        }
                         color="secondary"
                         className={personalinfo_submit}
                         type="submit"
@@ -251,17 +356,36 @@ export default function Mydetails() {
 
           <Formik
             initialValues={{
-              email: '',
+              oldPassword: '',
               password: '',
               confirmPassword: '',
             }}
             onSubmit={async (values) => {
-              console.log('values', values);
+              await dispatch(
+                updatePassword({
+                  password: values.password,
+                  oldPassword: values.oldPassword,
+                })
+              );
+              if (window.store.getState().authReducer.updated === true) {
+                await setAlertContent({
+                  type: 'success',
+                  content: 'You password has been successfully updated',
+                });
+                handleClick();
+                dispatch({ type: 'ON_UPDATE_SUCCESS' });
+              } else {
+                await setAlertContent({
+                  type: 'error',
+                  content: window.store.getState().authReducer.error,
+                });
+                handleClick();
+              }
             }}
             validationSchema={Yup.object().shape({
-              email: Yup.string()
-                .email('Invalid email format')
-                .required('Required'),
+              oldPassword: Yup.string()
+                .min(6, 'password must be atleast 6 characters')
+                .required('Password is required'),
               password: Yup.string()
                 .min(6, 'password must be atleast 6 characters')
                 .required('Password is required'),
@@ -290,13 +414,17 @@ export default function Mydetails() {
                   </Grid>
                   <Grid xs={12} sm={4} item>
                     <Box marginRight="10px" marginTop="10px">
-                      <Textfield name="email" helpertext="Email Address" />
+                      <Textfield
+                        type="password"
+                        name="oldPassword"
+                        helpertext="Current Password"
+                      />
                     </Box>
                     <Box marginRight="10px" marginTop="10px">
                       <Textfield
                         type="password"
                         name="password"
-                        helpertext="Password"
+                        helpertext="New Password"
                       />
                     </Box>
                     <Box marginRight="10px" marginTop="10px">
@@ -308,6 +436,11 @@ export default function Mydetails() {
                     </Box>
                     <Box>
                       <Button
+                        startIcon={
+                          isSubmitting ? (
+                            <CircularProgress color="primary" size="1rem" />
+                          ) : null
+                        }
                         color="secondary"
                         className={personalinfo_submit}
                         type="submit"

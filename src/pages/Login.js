@@ -21,6 +21,7 @@ import SignUpForm from '../components/auth/SignUpForm';
 const useStyles = makeStyles((theme) => ({
   root: {
     maxHeight: '100vh',
+    overflow: 'hidden',
     display: 'flex',
     '@media (max-width: 900px)': {
       paddingLeft: 0,
@@ -39,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
   root_left: {
     minWidth: '40%',
+    overflow: 'scroll',
     minHeight: '100%',
     padding: '50px 100px',
     '@media (max-width: 1050px)': {
@@ -197,7 +199,7 @@ export default function Login() {
         open={open}
         handleClose={handleClose}
       />
-      <div className={root_left}>
+      <div className={`${root_left} customscrollgeneral`}>
         <div className={root_left_upper}>
           <div
             onClick={() => {

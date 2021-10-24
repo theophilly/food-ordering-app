@@ -80,14 +80,7 @@ export default function SignInForm({ onclick, setClickData, showToast, path }) {
             console.log('values', values);
             await dispatch(login(values));
 
-            if (window.store.getState().authReducer.authenticated === true) {
-              await setClickData({
-                type: 'success',
-                content: 'You have successfully logged in',
-              });
-              showToast();
-              navigate(path || '/profile');
-            } else {
+            if (!window.store.getState().authReducer.authenticated) {
               await setClickData({
                 type: 'error',
                 content: window.store.getState().authReducer.error,
