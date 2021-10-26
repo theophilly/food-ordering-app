@@ -54,9 +54,17 @@ class Api {
   updatepassword = (data) => {
     return this.init().post('/updatepassword', data);
   };
+  // fetch all meals
+  fetchmeals = () => {
+    return this.init().get('/products');
+  };
   // add order
   addorder = (data) => {
     return this.init().post('/orders', data);
+  };
+  // get user orders
+  getuserorders = () => {
+    return this.init().get('/orders/myorders');
   };
 }
 

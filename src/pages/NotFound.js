@@ -24,23 +24,27 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    height: '320px',
+    height: '370px',
     width: '400px ',
     '@media (max-width: 400px)': {
       // border: '1px solid red',
-      height: '200px  !important',
+      height: '230px  !important',
       width: '200px  !important',
       // display: 'none',
     },
   },
 }));
 
-export default function NotFound() {
+export default function NotFound({
+  animationData = notfound,
+  text = 'Go Home',
+  path = '/',
+}) {
   const { root, root2 } = useStyles(location);
   const defaultOptions = {
     loop: true,
     autoplay: true,
-    animationData: notfound,
+    animationData: animationData,
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice',
     },
@@ -57,11 +61,11 @@ export default function NotFound() {
             startIcon={<AiOutlineReload />}
             color="secondary"
             component={Link}
-            to="/"
+            to={path}
             disableElevation
             style={{ marginTop: '20px' }}
           >
-            Go Home
+            {text}
           </Button>
         </Box>
       </Box>

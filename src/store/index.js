@@ -5,10 +5,16 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import authReducer from './reducers/authReducer';
-import postReducer from './reducers/postReducer';
 import cartReducer from './reducers/cartReducer';
+import productReducer from './reducers/productReducer';
+import orderReducer from './reducers/orderReducer';
 
-const rootReducer = combineReducers({ authReducer, postReducer, cartReducer });
+const rootReducer = combineReducers({
+  authReducer,
+  cartReducer,
+  productReducer,
+  orderReducer,
+});
 const middleware = [thunk];
 
 const persistConfig = {

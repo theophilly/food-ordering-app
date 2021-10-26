@@ -118,7 +118,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SingleFoodItem({ onAdd, item }) {
+export default function SingleFoodItem({
+  onAdd,
+  item,
+  setClickData,
+  showToast,
+}) {
   const {
     root,
     foodimage,
@@ -132,6 +137,19 @@ export default function SingleFoodItem({ onAdd, item }) {
     foodimagecontainer,
   } = useStyles();
   const { title, price, image_path, available, sub_title } = item;
+
+  const addItem = async (item) => {
+    if (!item.available) {
+      await setClickData({
+        type: 'warning',
+        content: 'this meal is currently out, sorry wait for a while',
+      });
+      showToast();
+      return;
+    }
+    onAdd(item);
+  };
+
   return (
     <div className={root}>
       <div className={foodimagecontainer}>
@@ -150,7 +168,7 @@ export default function SingleFoodItem({ onAdd, item }) {
         <Typography className={food_price}>#{price}</Typography>
       </div>
       <Button
-        onClick={() => onAdd(item)}
+        onClick={() => addItem(item)}
         className={add_button}
         startIcon={<AddIcon />}
       >

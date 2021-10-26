@@ -25,6 +25,11 @@ import stateData from '../utils/stateData.json';
 import RadioWrapper from '../components/partials/FormUI/RadioWrapper';
 import Paymentmethod from '../components/partials/FormUI/Paymentmethod';
 import Cartcheckout from '../components/reusables/Cartcheckout';
+import { processOrder } from '../store/actions/orderActions';
+import Snackbar from '../components/reusables/Snackbar';
+import { ON_ORDER_SUCCESS } from '../store/actionTypes/orderActionTypes';
+
+let values = null;
 
 //material ui style
 const useStyles = makeStyles((theme) => ({
@@ -189,7 +194,45 @@ export default function Checkout() {
   const { products, totalQuantities, totalPrice } = useSelector(
     (state) => state.cartReducer
   );
+
+  const [alertContent, setAlertContent] = React.useState({
+    type: '',
+    content: '',
+  });
+
+  const [open, setOpen] = React.useState(false);
+  const auth = useSelector((state) => state.authReducer);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  //reorder cart peoduct arrays
+  const reorderProduct = (products) => {
+    let newH = [];
+    products.map((item) => {
+      newH.push({
+        title: item.title,
+        quantity: item.quantity,
+        image_path: item.image_path,
+        totalPrice: item.totalPrice,
+        product: item._id,
+      });
+    });
+    return newH;
+  };
+
   const dispatch = useDispatch();
+
+  const [orderDetails, setOrderDetails] = useState({});
 
   //paystack hook
   const initializePayment = usePaystackPayment({
@@ -199,11 +242,53 @@ export default function Checkout() {
     publicKey: 'pk_test_9667838c0fa5f162be811a2e81b1ec5a9394ee74',
   });
 
+  //onSuccess Clone
+  const onSuccessWrapper = (reference) => {
+    onSuccess(reference);
+  };
+
   // you can call this function anything
-  const onSuccess = (reference) => {
-    // Implementation for whatever you want to do with reference and after success call.
+  const onSuccess = async (reference) => {
+    console.log(values);
     console.log(reference);
-    dispatch({ type: 'EMPTY_CART' });
+
+    const order = {
+      orderItems: reorderProduct([...products]),
+      deliveryAddress: {
+        address: values.address,
+        city: values.city,
+        postalCode: values.postalCode,
+      },
+      paymentMethod: values.paymentMethod,
+      paymentResult: {
+        id: reference.reference,
+        status: reference.status,
+      },
+      deliveryPrice: values.deliveryMethod === 'paid' ? 1000 : 0,
+      totalPrice:
+        values.deliveryMethod === 'paid' ? totalPrice + 1000 : totalPrice,
+    };
+
+    await dispatch(processOrder(order));
+    console.log(order);
+    console.log('i got here');
+    if (window.store.getState().orderReducer.status === true) {
+      await setAlertContent({
+        type: 'success',
+        content: window.store.getState().orderReducer.message,
+      });
+      handleClick();
+    } else {
+      await setAlertContent({
+        type: 'error',
+        content: window.store.getState().orderReducer.message,
+      });
+      handleClick();
+    }
+    setTimeout(() => {
+      dispatch({ type: 'EMPTY_ORDER' });
+      dispatch({ type: 'EMPTY_CART' });
+    }, 3000);
   };
 
   // you can call this function anything
@@ -232,6 +317,11 @@ export default function Checkout() {
 
   return (
     <div className={checkout}>
+      <Snackbar
+        alertContent={alertContent}
+        open={open}
+        handleClose={handleClose}
+      />
       <div className={checkout_left}>
         <FormikStepper
           initialValues={{
@@ -245,10 +335,12 @@ export default function Checkout() {
             deliveryMethod: '',
             paymentMethod: '',
           }}
-          onSubmit={async (values) => {
+          onSubmit={async (formvalues) => {
             await sleep(3000);
-            console.log('values', values);
-            initializePayment(onSuccess, onClose);
+            console.log('values', formvalues);
+
+            values = formvalues;
+            initializePayment(onSuccessWrapper, onClose);
           }}
         >
           <FormikStep
@@ -470,7 +562,11 @@ export function FormikStepper({ children, ...props }) {
 
           <Grid className={controls} container spacing={2}>
             {step === 0 ? (
-              <Grid className={backsection} onClick={() => history.go(0)} item>
+              <Grid
+                className={backsection}
+                onClick={() => history('/allmeals')}
+                item
+              >
                 <BsArrowLeft />
                 <Typography>Order page</Typography>
               </Grid>

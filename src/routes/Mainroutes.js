@@ -28,6 +28,10 @@ const AuthenticationRoutes = (isLoggedIn) => [
     element: isLoggedIn ? <Navigate to="/profile" /> : <Login />,
   },
   {
+    path: '/signout',
+    element: <Navigate to="/" />,
+  },
+  {
     path: '/profile/*',
     element: isLoggedIn ? <Userprofile /> : <Navigate to="/login" />,
     children: [
@@ -42,6 +46,10 @@ const AuthenticationRoutes = (isLoggedIn) => [
       {
         path: 'orders',
         element: <Userorders />,
+      },
+      {
+        path: '*',
+        element: <NotFound />,
       },
     ],
   },

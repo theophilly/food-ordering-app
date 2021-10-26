@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Cartcheckout({
   image_path,
-  id,
+  _id,
   title,
   totalPrice,
   quantity,
@@ -61,7 +61,7 @@ export default function Cartcheckout({
         <div className={cart_lower_div}>
           <Typography className={food_price}>#{totalPrice}</Typography>
           <CancelOutlinedIcon
-            onClick={() => dispatch({ type: 'REMOVE', payload: id })}
+            onClick={() => dispatch({ type: 'REMOVE', payload: _id })}
             className={cart_cancelicon}
           />
         </div>

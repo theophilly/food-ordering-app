@@ -1,25 +1,45 @@
+import * as orderActionTypes from '../actionTypes/orderActionTypes.js';
+
 const initState = {
   orders: [],
+  message: '',
+  status: false,
 };
 
 const orderReducer = (state = initState, action) => {
   switch (action.type) {
-    case 'ADD_TO_CART':
-      const { product, quantity } = action.payload;
-      const check = state.products.find((pr) => pr.id === product.id);
-      if (check) {
-        return state;
-      } else {
-        const Tprice = product.totalPrice;
-        const Tquantities = state.totalQuantities + 1;
-
-        return {
-          ...state,
-          products: [...state.products, product],
-          totalPrice: state.totalPrice + Tprice,
-          totalQuantities: Tquantities,
-        };
-      }
+    case orderActionTypes.ON_ORDER_SUCCESS:
+      const { message, order } = action.payload;
+      return {
+        ...state,
+        message: message,
+        status: true,
+      };
+    case orderActionTypes.ON_ORDER_ERROR: {
+      const { error } = action.payload;
+      return {
+        ...state,
+        message: error,
+        status: false,
+      };
+    }
+    case orderActionTypes.GET_USER_ORDERS_ERROR: {
+      const { error } = action.payload;
+      return {
+        ...state,
+        message: error,
+      };
+    }
+    case orderActionTypes.GET_USER_ORDERS_SUCCESS:
+      return {
+        ...state,
+        orders: action.payload.orders,
+      };
+    case orderActionTypes.EMPTY_ORDER:
+      return {
+        ...state,
+        status: false,
+      };
 
     default:
       return state;

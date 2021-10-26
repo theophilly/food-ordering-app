@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CartItem({ id, title, totalPrice, quantity }) {
+export default function CartItem({ _id, title, totalPrice, quantity }) {
   const dispatch = useDispatch();
   const {
     root,
@@ -82,21 +82,24 @@ export default function CartItem({ id, title, totalPrice, quantity }) {
       <div>
         <div className={cart_items_button}>
           <button
-            onClick={() => dispatch({ type: 'INC_SINGLE', payload: { id } })}
+            onClick={() => dispatch({ type: 'INC_SINGLE', payload: { _id } })}
           >
             -
           </button>
           <Typography variant="h1">{quantity}</Typography>
           <button
             onClick={() =>
-              dispatch({ type: 'INC_SINGLE', payload: { id, increment: true } })
+              dispatch({
+                type: 'INC_SINGLE',
+                payload: { _id, increment: true },
+              })
             }
           >
             +
           </button>
         </div>
         <CancelOutlinedIcon
-          onClick={() => dispatch({ type: 'REMOVE', payload: id })}
+          onClick={() => dispatch({ type: 'REMOVE', payload: _id })}
           className={cart_cancelicon}
         />
       </div>

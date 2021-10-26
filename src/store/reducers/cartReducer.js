@@ -10,7 +10,7 @@ const cartReducer = (state = initState, action) => {
   switch (action.type) {
     case 'ADD_TO_CART':
       const { product, quantity } = action.payload;
-      const check = state.products.find((pr) => pr.id === product.id);
+      const check = state.products.find((pr) => pr._id === product._id);
       if (check) {
         return state;
       } else {
@@ -26,9 +26,11 @@ const cartReducer = (state = initState, action) => {
       }
     case 'INC': {
       let Tprice;
-      findPro = state.products.find((product) => product.id === action.payload);
+      findPro = state.products.find(
+        (product) => product._id === action.payload
+      );
       index = state.products.findIndex(
-        (product) => product.id === action.payload
+        (product) => product._id === action.payload
       );
       findPro.quantity += 1;
       state.products[index] = findPro;
@@ -41,9 +43,11 @@ const cartReducer = (state = initState, action) => {
     }
     case 'DEC': {
       let Tprice;
-      findPro = state.products.find((product) => product.id === action.payload);
+      findPro = state.products.find(
+        (product) => product._id === action.payload
+      );
       index = state.products.findIndex(
-        (product) => product.id === action.payload
+        (product) => product._id === action.payload
       );
       if (findPro.quantity > 1) {
         findPro.quantity -= 1;
@@ -58,9 +62,11 @@ const cartReducer = (state = initState, action) => {
       }
     }
     case 'REMOVE': {
-      findPro = state.products.find((product) => product.id === action.payload);
+      findPro = state.products.find(
+        (product) => product._id === action.payload
+      );
       const filtered = state.products.filter(
-        (product) => product.id !== action.payload
+        (product) => product._id !== action.payload
       );
       return {
         ...state,
@@ -73,10 +79,10 @@ const cartReducer = (state = initState, action) => {
       let Tprice;
       let Tquantities;
       index = state.products.findIndex(
-        (product) => product.id === action.payload.id
+        (product) => product._id === action.payload._id
       );
       findPro = state.products.find(
-        (product) => product.id === action.payload.id
+        (product) => product._id === action.payload._id
       );
 
       if (action.payload.increment === true) {
@@ -115,7 +121,7 @@ const cartReducer = (state = initState, action) => {
       return state;
     }
     case 'EMPTY_CART': {
-      return { ...state, totalPrice: 0, totalQuantities: 0 };
+      return { ...initState, totalPrice: 0, totalQuantities: 0 };
     }
     default:
       return state;

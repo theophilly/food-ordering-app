@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Snackbar from '../reusables/Snackbar';
 import {
   makeStyles,
   Typography,
@@ -14,6 +15,7 @@ import {
 import { Link, animateScroll as scroll } from 'react-scroll';
 import { Link as NavLink } from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
+import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import SingleFoodItem from './SingleFoodItem';
 import menudata2 from '../../utils/menudata2';
 import CartItem from './CartItem';
@@ -296,10 +298,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Foodlist() {
+  // hooks
   const dispatch = useDispatch();
   const { products, totalQuantities, totalPrice } = useSelector(
     (state) => state.cartReducer
   );
+  const allMeals = useSelector((state) => state.productReducer.products);
+  console.log(allMeals);
   const [open, setOpen] = React.useState(false);
   const [activeItem, setActiveItem] = React.useState({
     price: 0,
@@ -308,6 +313,24 @@ export default function Foodlist() {
   });
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+
+  const [alertContent, setAlertContent] = React.useState({
+    type: '',
+    content: '',
+  });
+  const [show, setShow] = React.useState(false);
+
+  const handleClick = () => {
+    setShow(true);
+  };
+
+  const handleCancel = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setShow(false);
+  };
 
   //  control modal open
   const openModal = (item) => {
@@ -374,6 +397,11 @@ export default function Foodlist() {
   } = useStyles();
   return (
     <div className={root}>
+      <Snackbar
+        alertContent={alertContent}
+        open={show}
+        handleClose={handleCancel}
+      />
       <div className={menu_section}>
         <h1>Menu</h1>
         <ul>
@@ -420,14 +448,19 @@ export default function Foodlist() {
           <div className={mealsGroup_heading}>
             <Typography variant="h1">Meals</Typography>
             <Typography variant="h1">
-              {menudata2.filter((item) => item.category === 'meals').length}
+              {allMeals.filter((item) => item.category === 'meals').length}
               &nbsp;item(s)
             </Typography>
           </div>
-          {menudata2
+          {allMeals
             .filter((item) => item.category === 'meals')
             .map((item) => (
-              <SingleFoodItem item={item} onAdd={openModal} />
+              <SingleFoodItem
+                showToast={handleClick}
+                setClickData={setAlertContent}
+                item={item}
+                onAdd={openModal}
+              />
             ))}
         </div>
         {/* swallow section */}
@@ -435,14 +468,19 @@ export default function Foodlist() {
           <div className={mealsGroup_heading}>
             <Typography variant="h1">Swallow</Typography>
             <Typography variant="h1">
-              {menudata2.filter((item) => item.category === 'swallow').length}
+              {allMeals.filter((item) => item.category === 'swallow').length}
               &nbsp;item(s)
             </Typography>
           </div>
-          {menudata2
+          {allMeals
             .filter((item) => item.category === 'swallow')
             .map((item) => (
-              <SingleFoodItem item={item} onAdd={openModal} />
+              <SingleFoodItem
+                showToast={handleClick}
+                setClickData={setAlertContent}
+                item={item}
+                onAdd={openModal}
+              />
             ))}
         </div>
         {/* bread sections */}
@@ -450,14 +488,19 @@ export default function Foodlist() {
           <div className={mealsGroup_heading}>
             <Typography variant="h1">Bread</Typography>
             <Typography variant="h1">
-              {menudata2.filter((item) => item.category === 'bread').length}
+              {allMeals.filter((item) => item.category === 'bread').length}
               &nbsp;item(s)
             </Typography>
           </div>
-          {menudata2
+          {allMeals
             .filter((item) => item.category === 'bread')
             .map((item) => (
-              <SingleFoodItem item={item} onAdd={openModal} />
+              <SingleFoodItem
+                showToast={handleClick}
+                setClickData={setAlertContent}
+                item={item}
+                onAdd={openModal}
+              />
             ))}
         </div>
       </div>
@@ -512,6 +555,7 @@ export default function Foodlist() {
         )}
       </div>
       <Dialog
+        // style={{ position: 'relative' }}
         fullScreen={fullScreen}
         open={open}
         onClose={handleClose}
@@ -525,8 +569,17 @@ export default function Foodlist() {
         <DialogTitle id="responsive-dialog-title">
           {'Customize Your Order!'}
         </DialogTitle>
+
         <DialogContent className={modal_content}>
           <div>
+            <div
+              onClick={handleClose}
+              style={{ position: 'absolute', top: 20, right: 20 }}
+            >
+              <CancelOutlinedIcon
+                style={{ color: 'red', height: '20px', width: '20px' }}
+              />
+            </div>
             <FormControlLabel
               value="female"
               control={<Radio checked />}

@@ -60,7 +60,7 @@ const signedinUserLinks = [
   },
   {
     id: 'L1',
-    path: '/',
+    path: '/signout',
     icon: <AiOutlinePoweroff style={{ color: 'red' }} />,
     title: 'Sign Out',
   },
