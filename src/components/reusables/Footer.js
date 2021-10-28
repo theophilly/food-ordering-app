@@ -8,7 +8,6 @@ const useStyles = makeStyles({
     display: props.pathname === '/login' ? 'none' : 'flex',
     minHeight: '200px',
     alignItems: 'center',
-    marginTop: '40px',
     backgroundPosition: 'right',
     backgroundImage:
       'url(https://websitedemos.net/childcare-blog-02/wp-content/uploads/sites/760/2021/01/child-care-template-yellow-blob-shape.svg)',
@@ -23,7 +22,8 @@ const useStyles = makeStyles({
       justifyContent: 'center',
     },
     '@media screen and (max-width: 30em)': {
-      padding: '10px !important',
+      padding: '30px 10px !important',
+      marginTop: '40px',
     },
   }),
   root_left: {
@@ -100,7 +100,11 @@ export default function Footer() {
 
           <a
             href="https://myreactprofile.netlify.app/"
-            style={{ textDecoration: 'none', color: 'inherit' }}
+            style={{
+              textDecoration: 'none',
+              color: 'inherit',
+              marginTop: '5px',
+            }}
             target="_blank"
           >
             About

@@ -4,6 +4,7 @@ import Userprofile from '../pages/Userprofile';
 import Mydetails from '../components/user_profile/Mydetails';
 import Useraddress from '../components/user_profile/Useraddress';
 import Userorders from '../components/user_profile/Userorders';
+import Myminiorders from '../components/user_profile/Myminiorders';
 import Home from '../pages/Home';
 import Allfoods from '../pages/Allfoods';
 import Checkout from '../pages/Checkout';
@@ -46,6 +47,10 @@ const AuthenticationRoutes = (isLoggedIn) => [
       {
         path: 'orders',
         element: <Userorders />,
+      },
+      {
+        path: 'o',
+        element: <Myminiorders />,
       },
       {
         path: '*',

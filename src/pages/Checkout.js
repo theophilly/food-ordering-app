@@ -27,7 +27,10 @@ import Paymentmethod from '../components/partials/FormUI/Paymentmethod';
 import Cartcheckout from '../components/reusables/Cartcheckout';
 import { processOrder } from '../store/actions/orderActions';
 import Snackbar from '../components/reusables/Snackbar';
+import NotFound from './NotFound';
 import { ON_ORDER_SUCCESS } from '../store/actionTypes/orderActionTypes';
+import use_avatar from '../utils/use_avatar.json';
+import { fabClasses } from '@mui/material';
 
 let values = null;
 
@@ -194,6 +197,7 @@ export default function Checkout() {
   const { products, totalQuantities, totalPrice } = useSelector(
     (state) => state.cartReducer
   );
+  const user = useSelector((state) => state.authReducer.authenticated);
 
   const [alertContent, setAlertContent] = React.useState({
     type: '',
@@ -212,19 +216,21 @@ export default function Checkout() {
       return;
     }
 
-    setOpen(false);
+    setOpen(user);
   };
 
   //reorder cart peoduct arrays
   const reorderProduct = (products) => {
     let newH = [];
     products.map((item) => {
+      console.log(item.category);
       newH.push({
         title: item.title,
         quantity: item.quantity,
         image_path: item.image_path,
         totalPrice: item.totalPrice,
         product: item._id,
+        category: item.category,
       });
     });
     return newH;
@@ -317,162 +323,171 @@ export default function Checkout() {
 
   return (
     <div className={checkout}>
-      <Snackbar
-        alertContent={alertContent}
-        open={open}
-        handleClose={handleClose}
-      />
-      <div className={checkout_left}>
-        <FormikStepper
-          initialValues={{
-            firstName: '',
-            lastName: '',
-            address: '',
-            postalCode: '',
-            city: '',
-            phone: '',
-            state: '',
-            deliveryMethod: '',
-            paymentMethod: '',
-          }}
-          onSubmit={async (formvalues) => {
-            await sleep(3000);
-            console.log('values', formvalues);
+      {user ? (
+        <div className={checkout_left}>
+          <FormikStepper
+            initialValues={{
+              firstName: user.firstName,
+              lastName: user.lastName,
+              address: '',
+              postalCode: '',
+              city: '',
+              phone: '',
+              state: '',
+              deliveryMethod: '',
+              paymentMethod: '',
+            }}
+            onSubmit={async (formvalues) => {
+              await sleep(3000);
+              console.log('values', formvalues);
 
-            values = formvalues;
-            initializePayment(onSuccessWrapper, onClose);
-          }}
-        >
-          <FormikStep
-            validationSchema={Yup.object().shape({
-              firstName: Yup.string().required('First Name is Required'),
-              lastName: Yup.string().required('Last Name is Required'),
-              address: Yup.string().required('Address is Required'),
-              //  postalCode: Yup.string().required('postalCode is Required'),
-              city: Yup.string().required('city is Required'),
-              postalCode: Yup.number()
-                .integer()
-                .typeError('Please enter a valid postal number')
-                .required('Postal code is Required'),
-              phone: Yup.number()
-                .integer()
-                .typeError('Please enter a valid phone number')
-                .required('Phone is Required'),
-              state: Yup.string().required('state is required'),
-            })}
-            label="Customer"
+              values = formvalues;
+              initializePayment(onSuccessWrapper, onClose);
+            }}
           >
-            <Grid container spacing={2}>
-              <Grid xs={12} item>
-                <Typography className={customer_info}>
-                  Customer Information
-                </Typography>
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Textfield name="firstName" helpertext="First Name" />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Textfield name="lastName" helpertext="Last Name" />
-              </Grid>
-              <Grid item xs={12}>
-                <Textfield name="address" helpertext="Address" />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <SelectWrapper
-                  name="state"
-                  helpertext="State"
-                  options={stateData}
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Textfield name="city" helpertext="City" />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Textfield name="postalCode" helpertext="Postal code" />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Textfield name="phone" helpertext="Phone" />
-              </Grid>
-            </Grid>
-          </FormikStep>
-          <FormikStep
-            validationSchema={Yup.object().shape({
-              deliveryMethod: Yup.string().required(
-                'You must select a delivery method'
-              ),
-            })}
-            label="Shipping"
-          >
-            <Grid container>
-              <Grid xs={12} item>
-                <Typography className={customer_info}>
-                  Shipping Information
-                </Typography>
-              </Grid>
-              <Grid xs={12} item>
-                <Box
-                  width="max-content"
-                  padding="16px"
-                  border="1px solid #C4C4C4"
-                  borderRadius="10px"
-                >
-                  <Typography className={adress_box_details}>
-                    {customer_detail.firstName} {customer_detail.lastName}
-                  </Typography>
-                  <Typography className={adress_box_details}>
-                    {customer_detail.address}
-                  </Typography>
-                  <Typography className={adress_box_details}>
-                    {customer_detail.city}
-                  </Typography>
-                  <Typography className={adress_box_details}>
-                    {customer_detail.state}
-                  </Typography>
-                  <Typography className={adress_box_details}>
-                    Tel: {customer_detail.phone}
-                  </Typography>
-                  <Typography
-                    onClick={() => goBack((s) => s - 1)}
-                    className={edit_address}
-                    color="secondary"
-                  >
-                    edit address
-                  </Typography>
-                </Box>
-              </Grid>
-              <Grid xs={12} item>
-                <Box marginTop="20px">
+            <FormikStep
+              validationSchema={Yup.object().shape({
+                firstName: Yup.string().required('First Name is Required'),
+                lastName: Yup.string().required('Last Name is Required'),
+                address: Yup.string().required('Address is Required'),
+                //  postalCode: Yup.string().required('postalCode is Required'),
+                city: Yup.string().required('city is Required'),
+                postalCode: Yup.number()
+                  .integer()
+                  .typeError('Please enter a valid postal number')
+                  .required('Postal code is Required'),
+                phone: Yup.number()
+                  .integer()
+                  .typeError('Please enter a valid phone number')
+                  .required('Phone is Required'),
+                state: Yup.string().required('state is required'),
+              })}
+              label="Customer"
+            >
+              <Grid container spacing={2}>
+                <Grid xs={12} item>
                   <Typography className={customer_info}>
-                    Shipping Method
+                    Customer Information
                   </Typography>
-                </Box>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <Textfield
+                    disabled={true}
+                    name="firstName"
+                    helpertext="First Name"
+                  />
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <Textfield
+                    disabled={true}
+                    name="lastName"
+                    helpertext="Last Name"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Textfield name="address" helpertext="Address" />
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <SelectWrapper
+                    name="state"
+                    helpertext="State"
+                    options={stateData}
+                  />
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <Textfield name="city" helpertext="City" />
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <Textfield name="postalCode" helpertext="Postal code" />
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <Textfield name="phone" helpertext="Phone" />
+                </Grid>
               </Grid>
-              <Grid xs={12} item>
-                <RadioWrapper name="deliveryMethod" />
+            </FormikStep>
+            <FormikStep
+              validationSchema={Yup.object().shape({
+                deliveryMethod: Yup.string().required(
+                  'You must select a delivery method'
+                ),
+              })}
+              label="Shipping"
+            >
+              <Grid container>
+                <Grid xs={12} item>
+                  <Typography className={customer_info}>
+                    Shipping Information
+                  </Typography>
+                </Grid>
+                <Grid xs={12} item>
+                  <Box
+                    width="max-content"
+                    padding="16px"
+                    border="1px solid #C4C4C4"
+                    borderRadius="10px"
+                  >
+                    <Typography className={adress_box_details}>
+                      {customer_detail.firstName} {customer_detail.lastName}
+                    </Typography>
+                    <Typography className={adress_box_details}>
+                      {customer_detail.address}
+                    </Typography>
+                    <Typography className={adress_box_details}>
+                      {customer_detail.city}
+                    </Typography>
+                    <Typography className={adress_box_details}>
+                      {customer_detail.state}
+                    </Typography>
+                    <Typography className={adress_box_details}>
+                      Tel: {customer_detail.phone}
+                    </Typography>
+                    <Typography
+                      onClick={() => goBack((s) => s - 1)}
+                      className={edit_address}
+                      color="secondary"
+                    >
+                      edit address
+                    </Typography>
+                  </Box>
+                </Grid>
+                <Grid xs={12} item>
+                  <Box marginTop="20px">
+                    <Typography className={customer_info}>
+                      Shipping Method
+                    </Typography>
+                  </Box>
+                </Grid>
+                <Grid xs={12} item>
+                  <RadioWrapper name="deliveryMethod" />
+                </Grid>
               </Grid>
-            </Grid>
-          </FormikStep>
-          <FormikStep
-            validationSchema={Yup.object().shape({
-              paymentMethod: Yup.string().required(
-                'You must select a payment method'
-              ),
-            })}
-            label="Payment"
-          >
-            <Grid container>
-              <Grid xs={12} item>
-                <Typography className={customer_info}>
-                  Payment Selection
-                </Typography>
+            </FormikStep>
+            <FormikStep
+              validationSchema={Yup.object().shape({
+                paymentMethod: Yup.string().required(
+                  'You must select a payment method'
+                ),
+              })}
+              label="Payment"
+            >
+              <Grid container>
+                <Grid xs={12} item>
+                  <Typography className={customer_info}>
+                    Payment Selection
+                  </Typography>
+                </Grid>
+                <Grid xs={12} item>
+                  <Paymentmethod name="paymentMethod" />
+                </Grid>
               </Grid>
-              <Grid xs={12} item>
-                <Paymentmethod name="paymentMethod" />
-              </Grid>
-            </Grid>
-          </FormikStep>
-        </FormikStepper>
-      </div>
+            </FormikStep>
+          </FormikStepper>
+        </div>
+      ) : (
+        <div className={checkout_left}>
+          <NotFound path="/login" text="Login" animationData={use_avatar} />
+        </div>
+      )}
 
       <div className={checkout_right}>
         <div className={shopping_cart_heading}>
@@ -501,6 +516,12 @@ export default function Checkout() {
           <Typography className={note}>Note: Min. Order : #2000.00</Typography>
         </div>
       </div>
+
+      <Snackbar
+        alertContent={alertContent}
+        open={open}
+        handleClose={handleClose}
+      />
     </div>
   );
 }

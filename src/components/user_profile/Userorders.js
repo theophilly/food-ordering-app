@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import noitemsfound from '../../utils/noitems-order.json';
 
 // material - ui;
@@ -74,17 +75,27 @@ const useStyles = makeStyles((theme) => ({
   cell: {
     border: 'none',
   },
+  more_details: {
+    textDecoration: 'none',
+    color: theme.palette.secondary.main,
+  },
 }));
 
 export default function Userorders() {
-  const { root, profileheading, button, selected, cell } = useStyles();
+  const {
+    root,
+    profileheading,
+    button,
+    selected,
+    cell,
+    more_details,
+  } = useStyles();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getUserOrders());
   }, []);
   const state = useSelector((state) => state.orderReducer.orders);
-  console.log(state);
 
   // data
   const checkStatus = (status) => {
@@ -109,44 +120,21 @@ export default function Userorders() {
     }
   };
 
+  //button for read more details
+  const getDetailsButton = (item) => {
+    return (
+      <Typography
+        className={more_details}
+        state={{ from: '/profile/orders', item: item }}
+        component={Link}
+        to="/profile/o"
+      >
+        more details
+      </Typography>
+    );
+  };
+
   const columns = [
-    // { field: 'id', headerName: 'ID', width: 40 },
-    // {
-    //   field: 'food_name',
-    //   headerName: 'Ordered Item',
-    //   width: 180,
-    //   renderCell: (params) => (
-    //     <Box display="flex" alignItems="center">
-    //       <img
-    //         style={{
-    //           width: '40px',
-    //           height: '40px',
-    //           objectFit: 'contain',
-    //           borderRadius: '5px',
-    //         }}
-    //         src={params.row.image}
-    //       />
-    //       <Box
-    //         height="30px"
-    //         display="flex"
-    //         flexDirection="column"
-    //         justifyContent=" center"
-    //         marginLeft="5px"
-    //       >
-    //         <Typography
-    //           style={{
-    //             fontFamily: 'Mulish',
-    //             fontSize: '0.9rem',
-    //             fontWeight: '700',
-    //           }}
-    //         >
-    //           {params.row.food_name}
-    //         </Typography>
-    //         <Typography variant="caption">{params.row.category}</Typography>
-    //       </Box>
-    //     </Box>
-    //   ),
-    // },
     {
       field: 'id',
       headerName: 'ID',
@@ -175,10 +163,11 @@ export default function Userorders() {
       field: 'more_details',
       headerName: 'Payment Method',
       width: 110,
+      renderCell: (params) => getDetailsButton(params.row.item),
     },
   ];
 
-  const aggregateRows = () => {
+  const prepareRows = () => {
     const orders = [];
     [...state].map((item) => {
       orders.push({
@@ -187,68 +176,24 @@ export default function Userorders() {
         more_details: 'details',
         status: item.isDelivered,
         payment_amount: item.totalPrice,
+        item: item,
       });
+      console.log(state);
     });
     return orders;
   };
 
-  const oldrows = [
-    //  {
-    //    id: 1,
-    //    image: 'https:picsum.photos/200',
-    //    food_name: 'Spagetti Rice',
-    //    category: 'bread',
-    //    date: '20/10/2021 8:02 PM',
-    //    more_details: 'details',
-    //    status: 'Delivered',
-    //    payment_amount: '#400.00',
-    //  },
-    //  {
-    //    id: 2,
-    //    image: 'https:picsum.photos/id/237/200',
-    //    food_name: 'Jamboree Tuiti',
-    //    category: 'meals',
-    //    date: '20/10/2021 8:02 PM',
-    //    more_details: 'details',
-    //    status: 'Failed',
-    //    payment_amount: '#400.00',
-    //  },
-    //  {
-    //    id: 3,
-    //    image: 'https:picsum.photos/id/1000/200',
-    //    food_name: 'Fried Rice',
-    //    category: 'meals',
-    //    date: '20/10/2021 8:02 PM',
-    //    more_details: 'details',
-    //    status: 'Delivered',
-    //    payment_amount: '#400.00',
-    //  },
-    //  {
-    //    id: 4,
-    //    image: 'https:picsum.photos/id/1001/200',
-    //    food_name: 'Bread Roll',
-    //    category: 'bread',
-    //    date: '20/10/2021 8:02 PM',
-    //    more_details: 'details',
-    //    status: 'Pending',
-    //    payment_amount: '#400.00',
-    //  },
-  ];
+  const rows = prepareRows();
 
-  const rows = aggregateRows();
-
-  console.log('state', [...state].lenght);
-  {
-    if (true) {
-      return (
+  return (
+    <>
+      {window.store.getState().orderReducer.orders.length === 0 ? (
         <NotFound
           animationData={noitemsfound}
           path="/allmeals"
-          text="Make An Order"
+          text="Make First Order"
         />
-      );
-    } else {
-      return (
+      ) : (
         <div
           style={{
             width: '100%',
@@ -278,7 +223,7 @@ export default function Userorders() {
             />
           </Box>
         </div>
-      );
-    }
-  }
+      )}
+    </>
+  );
 }

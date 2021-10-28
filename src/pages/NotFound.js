@@ -9,7 +9,7 @@ import notfound from '../utils/4339-not-found.json';
 const useStyles = makeStyles((theme) => ({
   root2: {
     padding: '20px calc((100vw - 1100px) / 2)',
-    height: '52vh',
+    height: '58.2vh',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
