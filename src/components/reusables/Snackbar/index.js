@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  Typography,
-  makeStyles,
-  Button,
-  Snackbar,
-  OutlinedInput,
-  Grid,
-  Box,
-} from '@material-ui/core';
-import { BsArrowLeft } from 'react-icons/bs';
+import { Snackbar } from '@material-ui/core';
 import Alert from '@mui/material/Alert';
 
 export default function index({ alertContent, open, handleClose }) {

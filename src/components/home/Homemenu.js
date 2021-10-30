@@ -71,7 +71,7 @@ export default function Homemenu() {
           Menu
         </Typography>
         <Typography className={leaderBoard_left_h1} variant="h2" component="h1">
-          Explore our featured food
+          Our Best Selling Meals
         </Typography>
       </div>
 

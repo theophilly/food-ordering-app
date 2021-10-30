@@ -303,8 +303,8 @@ export default function Foodlist() {
   const { products, totalQuantities, totalPrice } = useSelector(
     (state) => state.cartReducer
   );
-  const allMeals = useSelector((state) => state.productReducer.products);
-  console.log(allMeals);
+  const meals = useSelector((state) => state.productReducer.products);
+  const [allMeals, setAllMeals] = React.useState([]);
   const [open, setOpen] = React.useState(false);
   const [activeItem, setActiveItem] = React.useState({
     price: 0,
@@ -312,6 +312,7 @@ export default function Foodlist() {
     quantity: 1,
   });
   const theme = useTheme();
+  const inputEl = React.useRef('');
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   const [alertContent, setAlertContent] = React.useState({
@@ -319,6 +320,10 @@ export default function Foodlist() {
     content: '',
   });
   const [show, setShow] = React.useState(false);
+
+  React.useEffect(() => {
+    setAllMeals(meals);
+  }, []);
 
   const handleClick = () => {
     setShow(true);
@@ -336,6 +341,21 @@ export default function Foodlist() {
   const openModal = (item) => {
     handleClickOpen();
     setActiveItem({ ...item, totalPrice: item.price, quantity: 1 });
+  };
+
+  // control search
+  const searchHandler = () => {
+    if (inputEl.current.value !== '') {
+      const newAllmeals = meals.filter((currentMeal) => {
+        return Object.values(currentMeal)
+          .join(' ')
+          .toLowerCase()
+          .includes(inputEl.current.value.toLowerCase());
+      });
+      setAllMeals(newAllmeals);
+    } else {
+      setAllMeals(meals);
+    }
   };
 
   //control cart quantities
@@ -441,7 +461,11 @@ export default function Foodlist() {
       <div className={food_list}>
         <div className={searchSection}>
           <SearchIcon className={searchIcon} />
-          <input placeholder="Search For Dishes" />
+          <input
+            ref={inputEl}
+            onChange={searchHandler}
+            placeholder="Search For Dishes"
+          />
         </div>
         {/* meals section */}
         <div id="meals" className={mealsGroup}>

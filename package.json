@@ -16,6 +16,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.4",
+    "dotenv": "^10.0.0",
     "formik": "^2.2.9",
     "formik-material-ui": "^4.0.0-alpha.1",
     "history": "^5.0.1",

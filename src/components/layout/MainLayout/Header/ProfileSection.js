@@ -267,7 +267,6 @@ const ProfileSection = () => {
 
   const anchorRef = React.useRef(null);
   const handleLogout = async () => {
-    console.error('Logout');
     dispatch({ type: 'SIGN_OUT' });
   };
   const handleListItemClick = (event, index) => {

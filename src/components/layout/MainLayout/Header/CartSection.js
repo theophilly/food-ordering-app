@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Snackbar from '../../../reusables/Snackbar';
 
 // material-ui
 
@@ -49,14 +50,51 @@ const useStyles = makeStyles((theme) => ({
 
 const CartSection = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
   const theme = useTheme();
   const { products, totalQuantities, totalPrice } = useSelector(
     (state) => state.cartReducer
   );
+  const [alertContent, setAlertContent] = React.useState({
+    type: '',
+    content: '',
+  });
+
+  const [open, setOpen] = React.useState(false);
+  const auth = useSelector((state) => state.authReducer);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const onClickCart = async () => {
+    if (totalQuantities > 0) {
+      navigate('/checkout');
+    } else {
+      await setAlertContent({
+        type: 'warning',
+        content: 'sorry there are no items in cart',
+      });
+      handleClick();
+    }
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   return (
     <Box component="span" className={classes.box}>
-      <ButtonBase>
+      <Snackbar
+        alertContent={alertContent}
+        open={open}
+        handleClose={handleClose}
+      />
+      <ButtonBase onClick={onClickCart}>
         <Badge
           color="secondary"
           badgeContent={totalQuantities}

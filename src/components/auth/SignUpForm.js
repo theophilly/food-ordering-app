@@ -80,7 +80,6 @@ export default function SignUpForm({ onclick, setClickData, showToast, path }) {
             confirmPassword: '',
           }}
           onSubmit={async (values) => {
-            console.log('values', values);
             await dispatch(signup(values));
 
             if (window.store.getState().authReducer.authenticated === true) {

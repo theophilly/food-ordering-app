@@ -18,7 +18,6 @@ const SelectWrapper = ({ name, options, helpertext, ...otherProps }) => {
   const handleChange = (evt) => {
     const { value } = evt.target;
     setFieldValue(name, value);
-    console.log(value);
   };
 
   const configSelect = {

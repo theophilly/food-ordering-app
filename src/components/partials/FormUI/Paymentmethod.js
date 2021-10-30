@@ -11,11 +11,6 @@ import {
 import { useField, useFormikContext } from 'formik';
 
 const useStyles = makeStyles(() => ({
-  select_input: {
-    maxHeight: '43px !important',
-    width: '100%',
-    marginTop: '5px',
-  },
   deliverybox: {
     flex: '1',
     border: '1px solid #C4C4C4',
@@ -31,9 +26,7 @@ const useStyles = makeStyles(() => ({
     fontSize: '0.9rem',
     color: 'rgba(0,0,0,0.6)',
   },
-  free: {
-    fontWeight: '700',
-  },
+
   paystack_img: {
     height: '50px',
   },
@@ -41,8 +34,6 @@ const useStyles = makeStyles(() => ({
 
 const Paymentmethod = ({ name, options, ...otherProps }) => {
   const {
-    select_input,
-    free,
     paystack_img,
     deliverybox_header,
     deliverybox,
@@ -54,7 +45,6 @@ const Paymentmethod = ({ name, options, ...otherProps }) => {
   const handleChange = (evt) => {
     const { value } = evt.target;
     setFieldValue(name, value);
-    console.log(value);
   };
 
   const configSelect = {

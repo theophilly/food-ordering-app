@@ -2,26 +2,7 @@ import React from 'react';
 
 // material-ui
 
-import {
-  Avatar,
-  Card,
-  CardContent,
-  makeStyles,
-  Box,
-  useTheme,
-  Chip,
-  ButtonBase,
-  ClickAwayListener,
-  Divider,
-  Grid,
-  List,
-  ListItemIcon,
-  ListItemText,
-  Paper,
-  Popper,
-  Typography,
-  ListItem,
-} from '@material-ui/core';
+import { Typography, makeStyles, Box } from '@material-ui/core';
 
 // style const
 const useStyles = makeStyles((theme) => ({

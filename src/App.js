@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import dotenv from 'dotenv';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import './App.css';
@@ -15,7 +16,11 @@ import Routes from './routes';
 function App() {
   const dispatch = useDispatch();
   const online = useOnline();
-  useEffect(() => dispatch(getAllMeals()));
+  useEffect(() => {
+    dotenv.config();
+    dispatch(getAllMeals());
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <ScrollToTop />

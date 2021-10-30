@@ -9,9 +9,6 @@ import {
 } from '@material-ui/core';
 import { BsArrowLeft } from 'react-icons/bs';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
-import Textfield from '../components/partials/FormUI/Textfield';
 import Snackbar from '../components/reusables/Snackbar';
 // import CheckIcon from '@mui/icons-material/Check';
 // import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';

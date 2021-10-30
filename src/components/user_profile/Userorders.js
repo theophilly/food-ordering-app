@@ -178,7 +178,6 @@ export default function Userorders() {
         payment_amount: item.totalPrice,
         item: item,
       });
-      console.log(state);
     });
     return orders;
   };

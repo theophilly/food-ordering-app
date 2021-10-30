@@ -80,7 +80,6 @@ export default function SignInForm({ onclick, setClickData, showToast, path }) {
             loginPassword: '',
           }}
           onSubmit={async (values) => {
-            console.log('values', values);
             await dispatch(login(values));
 
             if (!window.store.getState().authReducer.authenticated) {

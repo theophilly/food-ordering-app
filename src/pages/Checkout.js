@@ -28,9 +28,7 @@ import Cartcheckout from '../components/reusables/Cartcheckout';
 import { processOrder } from '../store/actions/orderActions';
 import Snackbar from '../components/reusables/Snackbar';
 import NotFound from './NotFound';
-import { ON_ORDER_SUCCESS } from '../store/actionTypes/orderActionTypes';
 import use_avatar from '../utils/use_avatar.json';
-import { fabClasses } from '@mui/material';
 
 let values = null;
 
@@ -197,7 +195,7 @@ export default function Checkout() {
   const { products, totalQuantities, totalPrice } = useSelector(
     (state) => state.cartReducer
   );
-  const user = useSelector((state) => state.authReducer.authenticated);
+  const { user, authenticated } = useSelector((state) => state.authReducer);
 
   const [alertContent, setAlertContent] = React.useState({
     type: '',
@@ -205,7 +203,6 @@ export default function Checkout() {
   });
 
   const [open, setOpen] = React.useState(false);
-  const auth = useSelector((state) => state.authReducer);
 
   const handleClick = () => {
     setOpen(true);
@@ -216,14 +213,13 @@ export default function Checkout() {
       return;
     }
 
-    setOpen(user);
+    setOpen(false);
   };
 
   //reorder cart peoduct arrays
   const reorderProduct = (products) => {
     let newH = [];
     products.map((item) => {
-      console.log(item.category);
       newH.push({
         title: item.title,
         quantity: item.quantity,
@@ -255,9 +251,6 @@ export default function Checkout() {
 
   // you can call this function anything
   const onSuccess = async (reference) => {
-    console.log(values);
-    console.log(reference);
-
     const order = {
       orderItems: reorderProduct([...products]),
       deliveryAddress: {
@@ -276,8 +269,7 @@ export default function Checkout() {
     };
 
     await dispatch(processOrder(order));
-    console.log(order);
-    console.log('i got here');
+
     if (window.store.getState().orderReducer.status === true) {
       await setAlertContent({
         type: 'success',
@@ -300,7 +292,6 @@ export default function Checkout() {
   // you can call this function anything
   const onClose = () => {
     // implementation for  whatever you want to do when the Paystack dialog closed.
-    console.log('closed');
   };
 
   const [customer_detail, set_Customer_detail] = useState({
@@ -323,7 +314,7 @@ export default function Checkout() {
 
   return (
     <div className={checkout}>
-      {user ? (
+      {authenticated ? (
         <div className={checkout_left}>
           <FormikStepper
             initialValues={{
@@ -339,7 +330,6 @@ export default function Checkout() {
             }}
             onSubmit={async (formvalues) => {
               await sleep(3000);
-              console.log('values', formvalues);
 
               values = formvalues;
               initializePayment(onSuccessWrapper, onClose);
@@ -372,14 +362,14 @@ export default function Checkout() {
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <Textfield
-                    disabled={true}
+                    disabled={!!user.firstName}
                     name="firstName"
                     helpertext="First Name"
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <Textfield
-                    disabled={true}
+                    disabled={!!user.lastName}
                     name="lastName"
                     helpertext="Last Name"
                   />

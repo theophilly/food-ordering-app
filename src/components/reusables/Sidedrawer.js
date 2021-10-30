@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import {
   AppBar,
   Toolbar,
@@ -96,6 +97,7 @@ const ListStyle = styled(List)(({ theme }) => ({
 
 export default function Sidedrawer(props) {
   const { label, drawerheading, button, usersection, selected } = useStyles();
+  const auth = useSelector((state) => state.authReducer);
 
   const userData = () => {
     return (
@@ -103,7 +105,7 @@ export default function Sidedrawer(props) {
         <Avatar
           sx={{ width: 60, height: 60 }}
           alt="Travis Howard"
-          src="https://randomuser.me/api/portraits/women/57.jpg"
+          src="avatar.png"
         />
         <Typography component="h2">John Doe</Typography>
       </Box>
