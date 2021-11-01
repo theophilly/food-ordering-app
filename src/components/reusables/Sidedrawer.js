@@ -26,12 +26,6 @@ const links = [
     title: 'Home',
   },
   { id: 'L1', path: '/allmeals', icon: <IoFastFood />, title: 'All Meals' },
-  {
-    id: 'L2',
-    path: '/profile',
-    icon: <MdContacts />,
-    title: 'About Us',
-  },
 ];
 
 // style const
@@ -134,6 +128,21 @@ export default function Sidedrawer(props) {
             {link.title}
           </Button>
         ))}
+        <Button
+          classes={{ startIcon: label }}
+          end={true}
+          disableElevation
+          className={button}
+          variant="contained"
+          activeClassName={selected}
+          autoCapitalize={false}
+          startIcon={<MdContacts />}
+          onClick={() =>
+            (location.href = 'https://myreactprofile.netlify.app/')
+          }
+        >
+          About Me
+        </Button>
       </ListStyle>
     </>
   );
