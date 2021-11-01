@@ -2,14 +2,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
-  AppBar,
   Toolbar,
   Avatar,
   Button,
-  IconButton,
-  Drawer,
-  Link,
-  MenuItem,
   List,
   Box,
   styled,
@@ -20,6 +15,7 @@ import {
 import { BiHomeCircle } from 'react-icons/bi';
 import { IoFastFood } from 'react-icons/io5';
 import { MdContacts } from 'react-icons/md';
+import { AiOutlineUser } from 'react-icons/ai';
 
 // links for the side nav
 const links = [
@@ -102,12 +98,12 @@ export default function Sidedrawer(props) {
   const userData = () => {
     return (
       <Box className={usersection}>
-        <Avatar
-          sx={{ width: 60, height: 60 }}
-          alt="Travis Howard"
-          src="avatar.png"
-        />
-        <Typography component="h2">John Doe</Typography>
+        <Avatar sx={{ width: 60, height: 60 }} alt="John Doe">
+          <AiOutlineUser />
+        </Avatar>
+        <Typography component="h2">
+          {auth.authenticated ? auth.user.firstName : 'John Doe'}
+        </Typography>
       </Box>
     );
   };

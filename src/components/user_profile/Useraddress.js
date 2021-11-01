@@ -1,7 +1,6 @@
 import React from 'react';
 
 // material-ui
-
 import { Typography, makeStyles, Box } from '@material-ui/core';
 
 // style const

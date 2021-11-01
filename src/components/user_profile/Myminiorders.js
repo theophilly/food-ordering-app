@@ -3,7 +3,6 @@ import { BsArrowLeft } from 'react-icons/bs';
 import { useNavigate, useLocation, Navigate } from 'react-router-dom';
 
 // material-ui
-
 import { makeStyles, Box, Chip, Typography } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
 

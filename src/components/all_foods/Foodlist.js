@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Snackbar from '../reusables/Snackbar';
 import {
   makeStyles,
   Typography,
@@ -16,10 +15,12 @@ import { Link, animateScroll as scroll } from 'react-scroll';
 import { Link as NavLink } from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
+import { useDispatch, useSelector } from 'react-redux';
+
 import SingleFoodItem from './SingleFoodItem';
 import menudata2 from '../../utils/menudata2';
 import CartItem from './CartItem';
-import { useDispatch, useSelector } from 'react-redux';
+import Snackbar from '../reusables/Snackbar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -314,7 +315,6 @@ export default function Foodlist() {
   const theme = useTheme();
   const inputEl = React.useRef('');
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
-
   const [alertContent, setAlertContent] = React.useState({
     type: '',
     content: '',

@@ -9,9 +9,8 @@ import {
 } from '@material-ui/core';
 import { BsArrowLeft } from 'react-icons/bs';
 import { useNavigate, useLocation } from 'react-router-dom';
+
 import Snackbar from '../components/reusables/Snackbar';
-// import CheckIcon from '@mui/icons-material/Check';
-// import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import SignInForm from '../components/auth/SignInForm';
 import SignUpForm from '../components/auth/SignUpForm';
 

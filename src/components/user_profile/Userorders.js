@@ -5,42 +5,13 @@ import noitemsfound from '../../utils/noitems-order.json';
 
 // material - ui;
 
-import {
-  Avatar,
-  Card,
-  CardContent,
-  makeStyles,
-  Box,
-  useTheme,
-  Chip,
-  ButtonBase,
-  ClickAwayListener,
-  Divider,
-  Grid,
-  List,
-  ListItemIcon,
-  ListItemText,
-  Paper,
-  Popper,
-  Typography,
-  ListItem,
-} from '@material-ui/core';
+import { makeStyles, Box, Chip, Typography } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
 import { getUserOrders } from '../../store/actions/orderActions';
 import NotFound from '../../pages/NotFound';
 
 // style const
 const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    background: '#F4F6F8',
-    minHeight: '100vh',
-    paddingRight: '79px',
-    paddingLeft: '120px',
-    '@media (max-width: 900px)': {
-      paddingLeft: 0,
-    },
-  },
   profileheading: {
     fontWeight: '700',
     fontSize: '1.4rem',
@@ -48,29 +19,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '10px',
     paddingLeft: '14px',
     marginTop: '30px',
-  },
-  button: {
-    borderRadius: '5px',
-    display: 'flex',
-    justifyContent: 'flex-start',
-    textTransform: 'capitalize',
-    background: 'transparent',
-    color: 'black',
-    alignItems: 'left',
-    width: '280px',
-
-    '&:hover': {
-      color: '#1275D1',
-      background: '#E2ECF6',
-    },
-  },
-  selected: {
-    color: '#1275D1',
-    background: '#E2ECF6',
-    '& :hover': {
-      color: 'inherit',
-      background: '#E2ECF6',
-    },
   },
   cell: {
     border: 'none',
@@ -82,14 +30,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Userorders() {
-  const {
-    root,
-    profileheading,
-    button,
-    selected,
-    cell,
-    more_details,
-  } = useStyles();
+  const { profileheading, cell, more_details } = useStyles();
   const dispatch = useDispatch();
 
   useEffect(() => {
