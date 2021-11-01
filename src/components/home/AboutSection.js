@@ -1,10 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Typography, makeStyles, Button } from '@material-ui/core';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 
 const useStyles = makeStyles((theme) => ({
   about_section: {
-    // border: '1px solid red',
     display: 'flex',
     width: '100%',
     minHeight: '70vh',
@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
   about_section_right: {
     width: '50%',
     display: 'block',
-    //  border: '1px solid red',
     padding: '30px 70px',
     '@media (max-width: 900px)': {
       padding: '30px 0px',
@@ -103,6 +102,8 @@ export default function AboutSection() {
           color="primary"
           autoCapitalize={false}
           endIcon={<ArrowRightAltIcon />}
+          component={Link}
+          to={'/allmeals'}
         >
           our menu
         </Button>

@@ -28,10 +28,10 @@ const headersData = (path) => [
     label: 'Meals',
     href: '/allmeals',
   },
-  {
-    label: 'About us',
-    href: '/login',
-  },
+  // {
+  //   label: 'About us',
+  //   href: '/login',
+  // },
 ];
 
 const useStyles = makeStyles({

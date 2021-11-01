@@ -2,7 +2,6 @@ import React, { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 import Userprofile from '../pages/Userprofile';
 import Mydetails from '../components/user_profile/Mydetails';
-import Useraddress from '../components/user_profile/Useraddress';
 import Userorders from '../components/user_profile/Userorders';
 import Myminiorders from '../components/user_profile/Myminiorders';
 import Home from '../pages/Home';
@@ -39,10 +38,6 @@ const AuthenticationRoutes = (isLoggedIn) => [
       {
         path: 'details',
         element: <Mydetails />,
-      },
-      {
-        path: 'address',
-        element: <Useraddress />,
       },
       {
         path: 'orders',

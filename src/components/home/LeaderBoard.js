@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Typography, makeStyles, Button } from '@material-ui/core';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
@@ -98,11 +99,7 @@ export default function LeaderBoard() {
   const QuickTip = ({ Icon, quicktip_details1, quicktip_details2 }) => (
     <div className={quicktip}>
       {Icon}
-      <Typography
-        className={quicktip_text}
-        // variant="h2"
-        component="p"
-      >
+      <Typography className={quicktip_text} component="p">
         {quicktip_details1}
         <br /> {quicktip_details2}
       </Typography>
@@ -111,7 +108,6 @@ export default function LeaderBoard() {
 
   return (
     <div>
-      {/* <Navbar /> */}
       <div className={leaderBoard}>
         <div className={leaderBoard_left}>
           <Typography
@@ -121,11 +117,7 @@ export default function LeaderBoard() {
           >
             Order Your Favourite <br /> Food Easily
           </Typography>
-          <Typography
-            className={leaderBoard_left_p}
-            // variant="h2"
-            component="p"
-          >
+          <Typography className={leaderBoard_left_p} component="p">
             We deliver 100% organic and fresh food. You can <br /> order right
             now!
           </Typography>
@@ -136,6 +128,8 @@ export default function LeaderBoard() {
             color="primary"
             autoCapitalize={false}
             endIcon={<ArrowRightAltIcon />}
+            component={Link}
+            to={'/allmeals'}
           >
             our menu
           </Button>

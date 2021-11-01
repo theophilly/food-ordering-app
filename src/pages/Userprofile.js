@@ -22,12 +22,6 @@ const links = [
     icon: <FaShoppingBag />,
     title: 'my orders',
   },
-  {
-    id: 'L1',
-    path: '/profile/address',
-    icon: <FaAddressCard />,
-    title: 'My address book',
-  },
 ];
 
 // style const
