@@ -55,7 +55,7 @@
 - Express
 - MongoDB
 
-## <a name="built-using"></a> Design Inspiration:
+## <a name="design_inspiration"></a> Design Inspiration:
 
 During the course of this project I used different free UI design from Dribbble and would like to give credit to the designers
 
@@ -73,7 +73,7 @@ During the course of this project I used different free UI design from Dribbble 
 
 ## <a name="backend"></a> Backend
 
-The `backend` contains a completed Node js application. You would need to set up your environment and some environment variables to run the application successfully.
+The `backend` contains a completed Node js and Express application. Link to the backend repo and setup will appear here shortly
 
 [Find the steps to set up the backend server locally in the backend's README](https://github.com/theophilly/music-player-backend).
 

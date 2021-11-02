@@ -28,10 +28,6 @@ const headersData = (path) => [
     label: 'Meals',
     href: '/allmeals',
   },
-  // {
-  //   label: 'About us',
-  //   href: '/login',
-  // },
 ];
 
 const useStyles = makeStyles({
@@ -141,7 +137,7 @@ export default function Navbar() {
           <div>
             <Profile />
             <CartSection />
-            {auth.authenticated && <Notification />}
+            {/* {auth.authenticated && <Notification />} */}
           </div>
         </div>
       </Toolbar>

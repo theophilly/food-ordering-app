@@ -65,10 +65,7 @@ export default function SignInForm({ onclick, setClickData, showToast, path }) {
   } = useStyles();
   return (
     <div className={root_left_lower}>
-      <Typography>
-        {/* get your food */}
-        adeyemikholade@gmail.com
-      </Typography>
+      <Typography>get your food</Typography>
       <Typography variant="h1" component="h1">
         Login to Your Account
       </Typography>
