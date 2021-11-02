@@ -52,7 +52,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.3rem',
     fontFamily: 'mulish',
     paddingLeft: '14px',
-    // marginTop: '10px',
   },
   cell: {
     border: 'none',
