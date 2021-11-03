@@ -6,20 +6,16 @@ import { Link } from 'react-router-dom';
 import {
   Avatar,
   Box,
-  Button,
   makeStyles,
   useTheme,
   ButtonBase,
-  CardActions,
   Badge,
   CardContent,
-  Chip,
   ClickAwayListener,
   Divider,
   Grid,
   Paper,
   Popper,
-  TextField,
   Typography,
   useMediaQuery,
 } from '@material-ui/core';
@@ -34,12 +30,6 @@ import { IconBell } from '@tabler/icons';
 
 // style constant
 const useStyles = makeStyles((theme) => ({
-  ScrollHeight: {
-    height: '100%',
-    maxHeight: 'calc(100vh - 205px)',
-    overflowX: 'hidden',
-    scrollbarWidth: 'none',
-  },
   headerAvatar: {
     cursor: 'pointer',
     borderRadius: '8px',
@@ -57,29 +47,15 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     padding: '0px !important',
   },
-  notificationChip: {
-    color: theme.palette.background.default,
-    backgroundColor: theme.palette.warning.dark,
-  },
+
   divider: {
     marginTop: 0,
     marginBottom: 0,
   },
-  cardAction: {
-    padding: '10px',
-    justifyContent: 'center',
-  },
-  paddingBottom: {
-    paddingBottom: '16px',
-  },
+
   box: {
     overflow: 'hidden',
-    // marginLeft: '16px',
-    // marginRight: '24px',
     borderRadius: '8px',
-    [theme.breakpoints.down('sm')]: {
-      // marginRight: '16px',
-    },
   },
   bodyPPacing: {
     padding: '16px 16px 0',
@@ -184,11 +160,6 @@ const NotificationSection = () => {
                                 >
                                   All Notification
                                 </Typography>
-                                {/* <Chip
-                                  size="small"
-                                  label="01"
-                                  className={classes.notificationChip}
-                                /> */}
                               </Box>
                             </Grid>
                             <Grid item>
@@ -219,12 +190,6 @@ const NotificationSection = () => {
                       </Grid>
                     </Grid>
                   </CardContent>
-                  {/* <Divider />
-                  <CardActions className={classes.cardAction}>
-                    <Button size="small" disableElevation>
-                      View All
-                    </Button>
-                  </CardActions> */}
                 </MainCard>
               </ClickAwayListener>
             </Paper>

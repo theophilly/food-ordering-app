@@ -5,14 +5,7 @@ import Snackbar from '../../../reusables/Snackbar';
 
 // material-ui
 
-import {
-  Avatar,
-  Box,
-  makeStyles,
-  useTheme,
-  ButtonBase,
-  Badge,
-} from '@material-ui/core';
+import { Avatar, Box, makeStyles, ButtonBase, Badge } from '@material-ui/core';
 
 // assets
 import { IconShoppingCart } from '@tabler/icons';
@@ -37,31 +30,22 @@ const useStyles = makeStyles((theme) => ({
 
   box: {
     overflow: 'hidden',
-    // marginLeft: '16px',
-    // marginRight: '24px',
     borderRadius: '8px',
-    [theme.breakpoints.down('sm')]: {
-      // marginRight: '16px',
-    },
+    [theme.breakpoints.down('sm')]: {},
   },
 }));
 
 // ===========================|| Cart ||=========================== //
-
 const CartSection = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const theme = useTheme();
-  const { products, totalQuantities, totalPrice } = useSelector(
-    (state) => state.cartReducer
-  );
+  const { totalQuantities } = useSelector((state) => state.cartReducer);
   const [alertContent, setAlertContent] = React.useState({
     type: '',
     content: '',
   });
 
   const [open, setOpen] = React.useState(false);
-  const auth = useSelector((state) => state.authReducer);
 
   const handleClick = () => {
     setOpen(true);

@@ -4,38 +4,27 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // material-ui
 import {
-  Avatar,
-  Card,
   CardContent,
   makeStyles,
   useTheme,
   Chip,
-  ButtonBase,
   ClickAwayListener,
   Divider,
   Grid,
-  List,
-  ListItemIcon,
-  ListItemText,
   Paper,
   Popper,
   Typography,
-  ListItem,
   Button,
 } from '@material-ui/core';
 
 // third-party
-import PerfectScrollbar from 'react-perfect-scrollbar';
-
-import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 import { RiProfileLine } from 'react-icons/ri';
 import { BiHomeCircle } from 'react-icons/bi';
-import { IoFastFood } from 'react-icons/io5';
-import { MdContacts } from 'react-icons/md';
+
 import { ImEnter } from 'react-icons/im';
 import { FcLowPriority } from 'react-icons/fc';
 
-import { FaAddressCard, FaShoppingBag } from 'react-icons/fa';
+import { FaShoppingBag } from 'react-icons/fa';
 
 // links for the side nav
 const signedinUserLinks = [
@@ -99,26 +88,11 @@ import MainCard from '../../../../ui-component/cards/MainCard.js';
 import Transitions from '../../../../ui-component/extended/Transitions.js';
 
 // assets
-import { IconLogout, IconSettings, IconUser } from '@tabler/icons';
+import { IconUser } from '@tabler/icons';
 import { AiOutlinePoweroff } from 'react-icons/ai';
 
 // style const
 const useStyles = makeStyles((theme) => ({
-  navContainer: {
-    width: '100%',
-    maxWidth: '350px',
-    minWidth: '300px',
-    backgroundColor: theme.palette.background.paper,
-    borderRadius: '10px',
-    [theme.breakpoints.down('sm')]: {
-      minWidth: '100%',
-    },
-  },
-  headerAvatar: {
-    cursor: 'pointer',
-    ...theme.typography.mediumAvatar,
-    margin: '8px 0 8px 8px !important',
-  },
   profileChip: {
     height: '35px',
     alignItems: 'center',
@@ -154,31 +128,12 @@ const useStyles = makeStyles((theme) => ({
       margin: '0px !important',
     },
   },
-  listItem: {
-    marginTop: '5px',
-  },
   cardContent: {
     padding: '20px 0px !important',
     height: 'max-content',
     width: '250px',
     maxWidth: '250px',
     overflow: 'hidden',
-  },
-  card: {
-    backgroundColor: theme.palette.primary.light,
-    marginBottom: '16px',
-    marginTop: '16px',
-  },
-  searchControl: {
-    width: '100%',
-    paddingRight: '8px',
-    paddingLeft: '16px',
-    marginBottom: '16px',
-    marginTop: '16px',
-  },
-  startAdornment: {
-    fontSize: '1rem',
-    color: theme.palette.grey[500],
   },
   flex: {
     display: 'flex',
@@ -188,15 +143,6 @@ const useStyles = makeStyles((theme) => ({
   name: {
     marginLeft: '2px',
     fontWeight: 400,
-  },
-  ScrollHeight: {
-    height: '100%',
-    maxHeight: 'calc(100vh - 250px)',
-    overflowX: 'hidden',
-  },
-  badgeWarning: {
-    backgroundColor: theme.palette.warning.dark,
-    color: '#fff',
   },
   button: {
     borderRadius: '0px',
@@ -240,21 +186,13 @@ const useStyles = makeStyles((theme) => ({
 
 const ProfileSection = () => {
   const classes = useStyles();
-  const {
-    root,
-    profileheading,
-    button,
-    selected,
-    button_text,
-    profile_sidebar,
-  } = useStyles();
+  const { button, selected, button_text } = useStyles();
   const theme = useTheme();
   const { pathname } = useLocation();
   const state = useSelector((state) => state.authReducer);
   const dispatch = useDispatch();
 
   const [dropDownData, setDropDownData] = React.useState(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
 
   const [open, setOpen] = React.useState(false);
   React.useEffect(() => {
@@ -268,10 +206,6 @@ const ProfileSection = () => {
   const anchorRef = React.useRef(null);
   const handleLogout = async () => {
     dispatch({ type: 'SIGN_OUT' });
-  };
-  const handleListItemClick = (event, index) => {
-    setSelectedIndex(index);
-    handleClose(event);
   };
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);

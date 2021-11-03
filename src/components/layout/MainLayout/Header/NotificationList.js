@@ -4,11 +4,7 @@ import React from 'react';
 
 import {
   Avatar,
-  Button,
-  Box,
-  Card,
   makeStyles,
-  CardContent,
   Chip,
   Divider,
   Grid,
@@ -21,12 +17,7 @@ import {
 } from '@material-ui/core';
 
 // assets
-import {
-  IconBrandTelegram,
-  IconBuildingStore,
-  IconMailbox,
-  IconPhoto,
-} from '@tabler/icons';
+import { IconBuildingStore } from '@tabler/icons';
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -50,10 +41,7 @@ const useStyles = makeStyles((theme) => ({
   listItem: {
     padding: 0,
   },
-  sendIcon: {
-    marginLeft: '8px',
-    marginTop: '-3px',
-  },
+
   listDivider: {
     marginTop: 0,
     marginBottom: 0,
@@ -83,18 +71,11 @@ const useStyles = makeStyles((theme) => ({
     border: 'none',
     borderColor: theme.palette.success.main,
   },
-  listAvatarPrimary: {
-    color: theme.palette.primary.dark,
-    backgroundColor: theme.palette.primary.light,
-    border: 'none',
-    borderColor: theme.palette.primary.main,
-  },
+
   listContainer: {
     paddingLeft: '56px',
   },
-  uploadCard: {
-    backgroundColor: theme.palette.secondary.light,
-  },
+
   paddingBottom: {
     paddingBottom: '16px',
   },
