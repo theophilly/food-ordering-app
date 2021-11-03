@@ -75,8 +75,6 @@ During the course of this project I used different free UI design from Dribbble 
 
 The `backend` contains a completed Node js and Express application. Link to the backend repo and setup will appear here shortly
 
-[Find the steps to set up the backend server locally in the backend's README](https://github.com/theophilly/music-player-backend).
-
 ## <a name="feedback"></a> Feedback
 
 Any questions or suggestions? Notice any bugs or glitches? Feel free to send me an [email](mailto:theophilly20@gmail.com).

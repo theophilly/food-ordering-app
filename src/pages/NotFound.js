@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     '@media (max-width: 400px)': {
       height: '60vh  !important',
       width: '100%  !important',
-      // display: 'none',
     },
   },
   root: {
@@ -27,10 +26,8 @@ const useStyles = makeStyles((theme) => ({
     height: '370px',
     width: '400px ',
     '@media (max-width: 400px)': {
-      // border: '1px solid red',
       height: '230px  !important',
-      width: '200px  !important',
-      // display: 'none',
+      width: '220px  !important',
     },
   },
 }));

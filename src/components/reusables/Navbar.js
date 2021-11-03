@@ -190,7 +190,7 @@ export default function Navbar() {
         <Box>
           <Profile />
           <CartSection />
-          {auth.authenticated && <Notification />}
+          {/* {auth.authenticated && <Notification />} */}
         </Box>
       </Toolbar>
     );
