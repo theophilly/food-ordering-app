@@ -316,7 +316,7 @@ export default function Foodlist() {
   const inputEl = React.useRef('');
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   const [alertContent, setAlertContent] = React.useState({
-    type: '',
+    type: 'error',
     content: '',
   });
   const [show, setShow] = React.useState(false);
@@ -478,8 +478,9 @@ export default function Foodlist() {
           </div>
           {allMeals
             .filter((item) => item.category === 'meals')
-            .map((item) => (
+            .map((item, index) => (
               <SingleFoodItem
+                key={index}
                 showToast={handleClick}
                 setClickData={setAlertContent}
                 item={item}
@@ -498,8 +499,9 @@ export default function Foodlist() {
           </div>
           {allMeals
             .filter((item) => item.category === 'swallow')
-            .map((item) => (
+            .map((item, index) => (
               <SingleFoodItem
+                key={index}
                 showToast={handleClick}
                 setClickData={setAlertContent}
                 item={item}
@@ -518,8 +520,9 @@ export default function Foodlist() {
           </div>
           {allMeals
             .filter((item) => item.category === 'bread')
-            .map((item) => (
+            .map((item, index) => (
               <SingleFoodItem
+                key={index}
                 showToast={handleClick}
                 setClickData={setAlertContent}
                 item={item}
@@ -540,8 +543,8 @@ export default function Foodlist() {
                 scrollbarWidth: 'thin',
               }}
             >
-              {products.map((item) => (
-                <CartItem {...item} />
+              {products.map((item, index) => (
+                <CartItem key={index} {...item} />
               ))}
             </div>
 

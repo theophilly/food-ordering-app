@@ -171,7 +171,7 @@ export default function Login() {
   } = useStyles();
   let navigate = useNavigate();
   const [alertContent, setAlertContent] = React.useState({
-    type: '',
+    type: 'error',
     content: '',
   });
   const [open, setOpen] = React.useState(false);

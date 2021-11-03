@@ -144,8 +144,8 @@ export default function Resturantdetail() {
             { time: '30 MINS', min: 'DELIVERY TIME' },
             { time: 'PAYMENT', min: 'ONLINE PAYMENT' },
             { time: '#,4000', min: 'AVG COST' },
-          ].map((data) => (
-            <DPA {...data} />
+          ].map((data, index) => (
+            <DPA key={index} {...data} />
           ))}
         </div>
       </div>

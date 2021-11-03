@@ -41,7 +41,7 @@ const CartSection = () => {
   const navigate = useNavigate();
   const { totalQuantities } = useSelector((state) => state.cartReducer);
   const [alertContent, setAlertContent] = React.useState({
-    type: '',
+    type: 'error',
     content: '',
   });
 

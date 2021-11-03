@@ -111,15 +111,15 @@ export default function Sidedrawer(props) {
       {userData()}
       {/* List of links */}
       <ListStyle>
-        {links.map((link) => (
+        {links.map((link, index) => (
           <Button
+            key={index}
             classes={{ startIcon: label }}
-            end={true}
+            end="true"
             disableElevation
             className={button}
             variant="contained"
-            activeClassName={selected}
-            autoCapitalize={false}
+            autoCapitalize="none"
             startIcon={link.icon}
             component={NavLink}
             to={link.path}
@@ -130,12 +130,11 @@ export default function Sidedrawer(props) {
         ))}
         <Button
           classes={{ startIcon: label }}
-          end={true}
+          end="true"
           disableElevation
           className={button}
           variant="contained"
-          activeClassName={selected}
-          autoCapitalize={false}
+          autoCapitalize="none"
           startIcon={<MdContacts />}
           onClick={() =>
             (location.href = 'https://myreactprofile.netlify.app/')

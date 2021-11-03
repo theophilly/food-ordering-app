@@ -213,9 +213,10 @@ export default function Navbar() {
   const getMenuButtons = () => {
     const { pathname } = useLocation();
 
-    return headersData(pathname).map(({ label, href }) => {
+    return headersData(pathname).map(({ label, href }, index) => {
       return (
         <Button
+          key={index}
           {...{
             key: label,
             color: 'inherit',

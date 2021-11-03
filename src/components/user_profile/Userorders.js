@@ -78,7 +78,7 @@ export default function Userorders() {
   const columns = [
     {
       field: 'id',
-      headerName: 'ID',
+      headerName: 'Transaction ID',
       width: 150,
     },
     {

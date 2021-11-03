@@ -75,7 +75,7 @@ export default function WhyChooseUs() {
       <Typography className={icon_box_h1} variant="h2" component="h1">
         {title}
       </Typography>
-      <Typography className={icon_box_p} variant="p" component="p">
+      <Typography className={icon_box_p} component="p">
         {details1} <br /> {details2}
       </Typography>
     </div>
@@ -86,7 +86,7 @@ export default function WhyChooseUs() {
       <Typography className={leaderBoard_left_h1} variant="h2" component="h1">
         Why choose us?
       </Typography>
-      <Typography className={wcu_service} variant="p" component="p">
+      <Typography className={wcu_service} component="p">
         over 2 million people are happy with our service
       </Typography>
 

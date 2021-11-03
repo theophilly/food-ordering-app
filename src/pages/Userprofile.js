@@ -104,13 +104,13 @@ export default function Userprofile() {
           {/* grid for list nav */}
           <Grid container>
             <Grid item>
-              {links.map((link) => (
+              {links.map((link, index) => (
                 <Button
+                  key={index}
                   disableElevation
                   className={pathname === link.path ? selected : button}
                   variant="contained"
-                  activeClassName={selected}
-                  autoCapitalize={false}
+                  autoCapitalize="none"
                   startIcon={link.icon}
                   component={NavLink}
                   to={link.path}

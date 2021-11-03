@@ -76,15 +76,15 @@ export default function Homemenu() {
       </div>
 
       <div className={homemenu_data}>
-        {menudata.map((data) => (
-          <Homemenuitem {...data} />
+        {menudata.map((data, index) => (
+          <Homemenuitem key={index} {...data} />
         ))}
       </div>
       <Button
         disableElevation
         className={button}
         variant="contained"
-        autoCapitalize={false}
+        autoCapitalize="none"
         endIcon={<ArrowRightAltIcon />}
         component={Link}
         to={'/allmeals'}

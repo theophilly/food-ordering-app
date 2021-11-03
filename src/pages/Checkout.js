@@ -29,6 +29,7 @@ import { processOrder } from '../store/actions/orderActions';
 import Snackbar from '../components/reusables/Snackbar';
 import NotFound from './NotFound';
 import use_avatar from '../utils/use_avatar.json';
+import getCookie from '../helpers/getCookie';
 
 let values = null;
 
@@ -195,10 +196,12 @@ export default function Checkout() {
   const { products, totalQuantities, totalPrice } = useSelector(
     (state) => state.cartReducer
   );
-  const { user, authenticated } = useSelector((state) => state.authReducer);
+  const { user, authenticated, token } = useSelector(
+    (state) => state.authReducer
+  );
 
   const [alertContent, setAlertContent] = React.useState({
-    type: '',
+    type: 'error',
     content: '',
   });
 
@@ -234,7 +237,15 @@ export default function Checkout() {
 
   const dispatch = useDispatch();
 
-  const [orderDetails, setOrderDetails] = useState({});
+  //check login status
+  const cookie = getCookie(token);
+
+  const memoizedResult = React.useMemo(() => {
+    if (!cookie) {
+      dispatch({ type: 'SIGN_OUT' });
+      console.log('here');
+    }
+  }, [cookie]);
 
   //paystack hook
   const initializePayment = usePaystackPayment({
@@ -330,6 +341,17 @@ export default function Checkout() {
             }}
             onSubmit={async (formvalues) => {
               await sleep(3000);
+
+              const cookie = getCookie(token);
+              if (!cookie) {
+                await setAlertContent({
+                  type: 'error',
+                  content: 'session expired',
+                });
+                handleClick();
+                dispatch({ type: 'SIGN_OUT' });
+                return;
+              }
 
               values = formvalues;
               initializePayment(onSuccessWrapper, onClose);
@@ -486,8 +508,8 @@ export default function Checkout() {
             <Typography>{totalQuantities}</Typography>
           </div>
         </div>
-        {products.map((item) => (
-          <Cartcheckout {...item} />
+        {products.map((item, index) => (
+          <Cartcheckout key={index} {...item} />
         ))}
 
         <div className={submitbutton_section}>

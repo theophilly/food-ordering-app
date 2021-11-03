@@ -302,9 +302,10 @@ const ProfileSection = () => {
                     {/* grid for list nav */}
                     <Grid container>
                       <Grid item>
-                        {dropDownData.map((link) => (
+                        {dropDownData.map((link, index) => (
                           <Button
                             disableElevation
+                            key={index}
                             onClick={() => {
                               handleClose(event);
                               link.title === 'Sign Out' && handleLogout();
@@ -314,8 +315,7 @@ const ProfileSection = () => {
                             }
                             variant="contained"
                             classes={{ startIcon: button_text }}
-                            activeClassName={selected}
-                            autoCapitalize={false}
+                            autoCapitalize="none"
                             startIcon={link.icon}
                             component={NavLink}
                             to={link.path}

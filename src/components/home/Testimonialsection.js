@@ -108,14 +108,8 @@ export default function Testimonialsection() {
           margin={10}
           center={true}
         >
-          {/* <div class="item">
-            <Testimonial />
-          </div>
-          <div class="item">
-            <Testimonial />
-          </div> */}
-          {testimonialdata.map((data) => (
-            <div class="item">
+          {testimonialdata.map((data, index) => (
+            <div key={index} className="item">
               <Testimonial {...data} />
             </div>
           ))}

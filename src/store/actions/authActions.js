@@ -63,12 +63,21 @@ export const updateUser = (user) => {
         });
       })
       .catch((error) => {
-        dispatch({
-          type: actionType.ON_UPDATE_ERROR,
-          payload: {
-            error: error.response.data.error,
-          },
-        });
+        if (error.response?.status === 401) {
+          dispatch({
+            type: 'SIGN_OUT',
+            payload: {
+              error: 'session expired',
+            },
+          });
+        } else {
+          dispatch({
+            type: actionType.ON_UPDATE_ERROR,
+            payload: {
+              error: error.response.data.error,
+            },
+          });
+        }
       });
   };
 };
@@ -85,12 +94,21 @@ export const updatePassword = (user) => {
         });
       })
       .catch((error) => {
-        dispatch({
-          type: actionType.ON_UPDATE_ERROR,
-          payload: {
-            error: error.response.data.error,
-          },
-        });
+        if (error.response?.status === 401) {
+          dispatch({
+            type: 'SIGN_OUT',
+            payload: {
+              error: 'session expired',
+            },
+          });
+        } else {
+          dispatch({
+            type: actionType.ON_UPDATE_ERROR,
+            payload: {
+              error: error.response.data.error,
+            },
+          });
+        }
       });
   };
 };

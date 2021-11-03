@@ -86,12 +86,12 @@ export default function AboutSection() {
         <Typography className={leaderBoard_left_h1} variant="h2" component="h1">
           We are the best quality <br /> resturant
         </Typography>
-        <Typography className={about_descriptions} variant="p" component="p">
+        <Typography className={about_descriptions} component="p">
           Resturant in Nigeria sourcing our ingredient locally, to celebrate
           lifes special moments by offering the best food, service and ambience
           in every home
         </Typography>
-        <Typography className={about_descriptions} variant="p" component="p">
+        <Typography className={about_descriptions} component="p">
           If you want any food please login or sign up on our mobile app or
           website
         </Typography>
@@ -100,7 +100,7 @@ export default function AboutSection() {
           className={button}
           variant="contained"
           color="primary"
-          autoCapitalize={false}
+          autoCapitalize="none"
           endIcon={<ArrowRightAltIcon />}
           component={Link}
           to={'/allmeals'}

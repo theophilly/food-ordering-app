@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Mydetails() {
   const [alertContent, setAlertContent] = React.useState({
-    type: '',
+    type: 'error',
     content: '',
   });
 

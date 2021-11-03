@@ -3,14 +3,14 @@ import { store } from '../store';
 
 export default function getCookie(token) {
   if (!token || token === '') {
-    return undefined;
+    return null;
   }
 
   const decodeToken = jwt_decode(token);
   const expiresIn = new Date(decodeToken.exp * 1000);
 
   if (new Date() > expiresIn) {
-    return undefined;
+    return null;
   } else {
     return token;
   }

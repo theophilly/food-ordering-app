@@ -126,7 +126,7 @@ export default function LeaderBoard() {
             className={button}
             variant="contained"
             color="primary"
-            autoCapitalize={false}
+            autoCapitalize="none"
             endIcon={<ArrowRightAltIcon />}
             component={Link}
             to={'/allmeals'}

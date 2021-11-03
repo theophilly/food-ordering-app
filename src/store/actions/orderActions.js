@@ -14,12 +14,21 @@ export const processOrder = (order) => {
         });
       })
       .catch((error) => {
-        dispatch({
-          type: actionType.ON_ORDER_ERROR,
-          payload: {
-            error: error.response.data.error,
-          },
-        });
+        if (error.response?.status === 401) {
+          dispatch({
+            type: 'SIGN_OUT',
+            payload: {
+              error: 'session expired',
+            },
+          });
+        } else {
+          dispatch({
+            type: actionType.ON_ORDER_ERROR,
+            payload: {
+              error: error.response.data.error,
+            },
+          });
+        }
       });
   };
 };
