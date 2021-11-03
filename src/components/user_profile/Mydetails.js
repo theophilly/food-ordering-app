@@ -18,6 +18,7 @@ import Textfield from '../partials/FormUI/Textfield';
 import { updateUser, updatePassword } from '../../store/actions/authActions';
 
 import Snackbar from '../reusables/Snackbar';
+import getCookie from '../../helpers/getCookie';
 
 // style const
 const useStyles = makeStyles((theme) => ({
@@ -125,6 +126,20 @@ export default function Mydetails() {
               updatePhone: auth.user.phone,
             }}
             onSubmit={async (values) => {
+              const cookie = getCookie(auth.token);
+
+              if (!cookie) {
+                await setAlertContent({
+                  type: 'error',
+                  content: 'session expired',
+                });
+                handleClick();
+                await setTimeout(() => {
+                  dispatch({ type: 'SIGN_OUT' });
+                }, 3000);
+                return;
+              }
+
               await dispatch(
                 updateUser({
                   firstName: values.updateFirstName,
@@ -230,6 +245,20 @@ export default function Mydetails() {
               password: '',
             }}
             onSubmit={async (values) => {
+              const cookie = getCookie(auth.token);
+
+              if (!cookie) {
+                await setAlertContent({
+                  type: 'error',
+                  content: 'session expired',
+                });
+                handleClick();
+                await setTimeout(() => {
+                  dispatch({ type: 'SIGN_OUT' });
+                }, 3000);
+                return;
+              }
+
               if (values.newEmail === auth.user.email) {
                 await setAlertContent({
                   type: 'error',
@@ -348,6 +377,20 @@ export default function Mydetails() {
               confirmPassword: '',
             }}
             onSubmit={async (values) => {
+              const cookie = getCookie(auth.token);
+
+              if (!cookie) {
+                await setAlertContent({
+                  type: 'error',
+                  content: 'session expired',
+                });
+                handleClick();
+                await setTimeout(() => {
+                  dispatch({ type: 'SIGN_OUT' });
+                }, 3000);
+                return;
+              }
+
               await dispatch(
                 updatePassword({
                   password: values.password,
