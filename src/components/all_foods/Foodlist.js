@@ -21,6 +21,7 @@ import SingleFoodItem from './SingleFoodItem';
 import menudata2 from '../../utils/menudata2';
 import CartItem from './CartItem';
 import Snackbar from '../reusables/Snackbar';
+import { getAllMeals } from '../../store/actions/productActions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -312,6 +313,11 @@ export default function Foodlist() {
     totalPrice: 0,
     quantity: 1,
   });
+  React.useEffect(() => {
+    if (meals.length < 1) {
+      dispatch(getAllMeals());
+    }
+  }, [meals]);
   const theme = useTheme();
   const inputEl = React.useRef('');
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
