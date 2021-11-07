@@ -315,7 +315,9 @@ export default function Foodlist() {
   });
   React.useEffect(() => {
     if (meals.length < 1) {
-      dispatch(getAllMeals());
+      (async function () {
+        await dispatch(getAllMeals());
+      })();
     }
   }, [meals]);
   const theme = useTheme();

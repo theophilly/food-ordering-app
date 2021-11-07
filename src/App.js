@@ -18,7 +18,9 @@ function App() {
   const online = useOnline();
   useEffect(() => {
     dotenv.config();
-    dispatch(getAllMeals());
+    (async function () {
+      await dispatch(getAllMeals());
+    })();
   }, []);
 
   return (
