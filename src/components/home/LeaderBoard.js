@@ -25,12 +25,14 @@ const useStyles = makeStyles(() => ({
     backgroundPosition: '1050px -100px',
     backgroundSize: '700px',
     height: '100vh',
+    // minHeight: '100vh',
     '@media (max-width: 900px)': {
       paddingLeft: '20px',
       paddingRight: '0px',
       backgroundPosition: '500px -260px',
     },
     '@media (max-width: 500px)': {
+      height: 'max-content',
       paddingLeft: '20px',
       paddingRight: '0px',
       backgroundPosition: '200px 0px',
@@ -42,12 +44,17 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
     width: '100%',
     height: '100%',
+    border: '1px solid red',
   },
   leaderBoard_left_h1: {
+    border: '1px solid red',
     lineHeight: '50px',
     fontFamily: 'Inter, sans-serif',
     fontSize: '2.625rem',
     fontWeight: 'bold',
+    '@media (max-width: 500px)': {
+      marginTop: '100px',
+    },
   },
   leaderBoard_left_p: {
     fontFamily: 'Inter, sans-serif',
