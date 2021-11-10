@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
     backgroundPosition: '1050px -100px',
     backgroundSize: '700px',
     height: '100vh',
-    // minHeight: '100vh',
+
     '@media (max-width: 900px)': {
       paddingLeft: '20px',
       paddingRight: '0px',
@@ -44,10 +44,8 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
     width: '100%',
     height: '100%',
-    border: '1px solid red',
   },
   leaderBoard_left_h1: {
-    border: '1px solid red',
     lineHeight: '50px',
     fontFamily: 'Inter, sans-serif',
     fontSize: '2.625rem',
